@@ -6,6 +6,31 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
+.panel {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.panel button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+}
+.panel button.active {
+    background-color: #45a049;
+}
+
 .form-container {
     width: 800px;
     border: 1px solid #ccc;
