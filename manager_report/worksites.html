@@ -9,15 +9,12 @@
 
 <body>
     <div class="panel">
-        <button onclick="showForm(0)">Form 1</button>
-        <button onclick="showForm(1)">Form 2</button>
+        <button onclick="showForm(0)">Eastwind</button>
+        <!-- <button onclick="showForm(1)">EPW</button> -->
     </div>
 
-<div class="form-container">
+<div class="form-container active" id="form-0">
     <div class="tabs">
-        <!-- <div class="tab active" onclick="showTab(0)">Building 1</div>
-        <div class="tab" onclick="showTab(1)">Building 2</div> -->
-
         <div class="tab active" onclick="showTab(0, 0)">Building 1</div>
         <div class="tab" onclick="showTab(1, 0)">Building 2</div>
     </div>
@@ -26,133 +23,199 @@
     <div class="tab-content active" id="form-0-tab-0">
         <div class="scrollable-content">
             <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
-                    <div class="gantt-sub-item">
+                <div class="task-column">
+                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
+                    <div class="task-sub-item">
                         Pour 1
                         <div class="progress-bar"><div style="width: 100%;"></div></div>
+                            <ul>
+                                <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                    <label for="item1">Rebar Install</label>
+                                </li>
+                                <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                    <label for="item2">Form Prepare</label>
+                                </li>
+                                <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                    <label for="item3">Concrete Pour</label>
+                                </li>
+                            </ul>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 2
                         <div class="progress-bar"><div style="width: 95%;"></div></div>
+                        <ul>
+                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                <label for="item1">Rebar Install</label>
+                            </li>
+                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                <label for="item2">Form Prepare</label>
+                            </li>
+                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                <label for="item3">Concrete Pour</label>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 3
                         <div class="progress-bar"><div style="width: 90%;"></div></div>
+                        <ul>
+                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                <label for="item1">Rebar Install</label>
+                            </li>
+                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                <label for="item2">Form Prepare</label>
+                            </li>
+                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                <label for="item3">Concrete Pour</label>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 4
                         <div class="progress-bar"><div style="width: 80%;"></div></div>
+                        <ul>
+                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                <label for="item1">Rebar Install</label>
+                            </li>
+                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                <label for="item2">Form Prepare</label>
+                            </li>
+                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                <label for="item3">Concrete Pour</label>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 5
                         <div class="progress-bar"><div style="width: 45%;"></div></div>
+                        <ul>
+                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                <label for="item1">Rebar Install</label>
+                            </li>
+                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                <label for="item2">Form Prepare</label>
+                            </li>
+                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                <label for="item3">Concrete Pour</label>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 6
                         <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        <ul>
+                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                <label for="item1">Rebar Install</label>
+                            </li>
+                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                <label for="item2">Form Prepare</label>
+                            </li>
+                            <li><input type="checkbox" id="item3" name="item3" checked disabled>
+                                <label for="item3">Concrete Pour</label>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="image-column">
-                    <img src="img/d4_b1_jul2.png" alt="July 2">
+                    <img src="img/ep_eastwind/d4_b1_jul2.png" alt="July 2">
                 </div>
             </div>
             
             <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
-                    <div class="gantt-sub-item">
+                <div class="task-column">
+                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
+                    <div class="task-sub-item">
                         Pour 1
                         <div class="progress-bar"><div style="width: 95%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 2
                         <div class="progress-bar"><div style="width: 80%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 3
                         <div class="progress-bar"><div style="width: 75%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 4
                         <div class="progress-bar"><div style="width: 25%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 5
                         <div class="progress-bar"><div style="width: 30%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 6
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
                 </div>
                 <div class="image-column">
-                    <img src="img/d3_b1_jun26.png" alt="June 26">
+                    <img src="img/ep_eastwind/d3_b1_jun26.png" alt="June 26">
                 </div>
             </div>
                       
             <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1894835/map"><strong>Day 2: June 25</strong></a></div>
-                    <div class="gantt-sub-item">
+                <div class="task-column">
+                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1894835/map"><strong>Day 2: June 25</strong></a></div>
+                    <div class="task-sub-item">
                         Pour 1
                         <div class="progress-bar"><div style="width: 80%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 2
                         <div class="progress-bar"><div style="width: 60%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 3
                         <div class="progress-bar"><div style="width: 35%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 4
                         <div class="progress-bar"><div style="width: 5%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 5
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 6
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
                 </div>
                 <div class="image-column">
-                    <img src="img/d2_b1_jun25.png" alt="June 25">
+                    <img src="img/ep_eastwind/d2_b1_jun25.png" alt="June 25">
                 </div>
             </div>
             
             <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
-                    <div class="gantt-sub-item">
+                <div class="task-column">
+                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
+                    <div class="task-sub-item">
                         Pour 1
                         <div class="progress-bar"><div style="width: 45%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 2
                         <div class="progress-bar"><div style="width: 5%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 3
                         <div class="progress-bar"><div style="width: 20%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 4
                         <div class="progress-bar"><div style="width: 5%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 5
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 6
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
                     
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour Alternative</a>
                         <div class="progress-bar">
                             <div class="progress-part" style="width: 45%;"><span>Pour 1</span></div>
@@ -165,147 +228,191 @@
                     </div>
                 </div>
                 <div class="image-column">
-                    <img src="img/d1_b1_jun13.png" alt="June 13">
+                    <img src="img/ep_eastwind/d1_b1_jun13.png" alt="June 13">
                 </div>
             </div>
         </div>
     </div>
-    
-    
-    
+        
     <!-- <div class="tab-content" id="tab-1"> -->
-    <div class="tab-content" id="form-0-tab-1">
+        <div class="tab-content" id="form-0-tab-1">
+            <div class="scrollable-content">
+                <div class="subform">
+                    <div class="task-column">
+                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
+                        <div class="task-sub-item">
+                            Pour 1
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 2
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 3
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 4
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 5
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 6
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="image-column">
+                        <img src="img/ep_eastwind/d4_b2_jul2.png" alt="July 2">
+                    </div>
+                </div>
+                
+                <div class="subform">
+                    <div class="task-column">
+                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
+                        <div class="task-sub-item">
+                            Pour 1
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 2
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 3
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 4
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 5
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 6
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="image-column">
+                        <img src="img/ep_eastwind/d3_b2_jun26.png" alt="June 26">
+                    </div>
+                </div>
+    
+                <div class="subform">
+                    <div class="task-column">
+                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 2: June 25</strong></a></div>
+                        <div class="task-sub-item">
+                            Pour 1
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 2
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 3
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 4
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 5
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 6
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="image-column">
+                        <img src="img/ep_eastwind/d2_b2_jun25.png" alt="June 25">
+                    </div>
+                </div>
+    
+    
+                <div class="subform">
+                    <div class="task-column">
+                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
+                        <div class="task-sub-item">
+                            Pour 1
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 2
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 3
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 4
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 5
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 6
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                    </div>
+                    <div class="image-column">
+                        <img src="img/ep_eastwind/d1_b2_jun13.png" alt="June 13">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+<div class="form-container" id="form-1">
+    <div class="tabs">
+        <div class="tab active" onclick="showTab(0, 0)">Building 1</div>
+        <!-- <div class="tab" onclick="showTab(1, 0)">Building 2</div> -->
+    </div>
+
+
+    <div class="tab-content" id="form-1-tab-0">
         <div class="scrollable-content">
             <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
-                    <div class="gantt-sub-item">
+                <div class="task-column">
+                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285572/dataset/1881986/map"><strong>Day 1: June 13</strong></a></div>
+                    <div class="task-sub-item">
                         Pour 1
                         <div class="progress-bar"><div style="width: 5%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 2
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 3
                         <div class="progress-bar"><div style="width: 5%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 4
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/d4_b2_jul2.png" alt="July 2">
-                </div>
-            </div>
-            
-            <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
-                    <div class="gantt-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/d3_b2_jun26.png" alt="June 26">
-                </div>
-            </div>
-
-            <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 2: June 25</strong></a></div>
-                    <div class="gantt-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 5
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
-                    <div class="gantt-sub-item">
+                    <div class="task-sub-item">
                         Pour 6
                         <div class="progress-bar"><div style="width: 0%;"></div></div>
                     </div>
                 </div>
                 <div class="image-column">
-                    <img src="img/d2_b2_jun25.png" alt="June 25">
-                </div>
-            </div>
-
-
-            <div class="subform">
-                <div class="gantt-column">
-                    <div class="gantt-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
-                    <div class="gantt-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="gantt-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/d1_b2_jun13.png" alt="June 13">
+                    <img src="img/ep_water/EPW_jun13.png" alt="June 13">
                 </div>
             </div>
         </div>

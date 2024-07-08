@@ -32,11 +32,17 @@ body {
 }
 
 .form-container {
+    display: none;
     width: 800px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+
+.form-container.active {
+    display: inline;
+}
+
 .tabs {
     display: flex;
     justify-content: center;
@@ -73,23 +79,30 @@ body {
     display: flex;
     margin-bottom: 20px;
 }
-.gantt-column, .image-column {
+.task-column, .image-column {
     flex: 1;
     padding: 20px;
 }
-.gantt-item {
+.task-item {
     margin: 10px 0;
 }
-.gantt-sub-item {
+.task-sub-item {
     margin: 5px 0 5px 20px;
 }
-.gantt-item a, .gantt-sub-item a {
+.task-sub-sub-item {
+    font-size: smaller;
+    margin: 3px 10px 2px 20px;
+}
+
+.task-item a, .task-sub-item a {
     text-decoration: none;
     color: #007BFF;
 }
-.gantt-item a:hover, .gantt-sub-item a:hover {
+.task-item a:hover, .task-sub-item a:hover {
     text-decoration: underline;
 }
+
+
 .image-column img {
     width: 100%;
     height: auto;
@@ -109,3 +122,14 @@ body {
 .progress-part {
     font-size: smaller;
 }
+
+ul {
+    list-style: none;
+    font-size: smaller;
+    padding: 0;
+  }
+
+  /* Optional: Add some margin to the list items for spacing */
+  /* li {
+    margin-bottom: 5px;
+  } */
