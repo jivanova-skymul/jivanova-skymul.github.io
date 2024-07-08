@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.form-container {
+    width: 800px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+}
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.tab:hover {
+    background-color: #ddd;
+}
+.tab.active {
+    background-color: #ccc;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+.tab-content.active {
+    display: flex;
+}
+.scrollable-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+}
+.subform {
+    display: flex;
+    margin-bottom: 20px;
+}
+.gantt-column, .image-column {
+    flex: 1;
+    padding: 20px;
+}
+.gantt-item {
+    margin: 10px 0;
+}
+.gantt-sub-item {
+    margin: 5px 0 5px 20px;
+}
+.gantt-item a, .gantt-sub-item a {
+    text-decoration: none;
+    color: #007BFF;
+}
+.gantt-item a:hover, .gantt-sub-item a:hover {
+    text-decoration: underline;
+}
+.image-column img {
+    width: 100%;
+    height: auto;
+}
+.progress-bar {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.progress-bar div {
+    height: 10px;
+    background-color: #4caf50;
+}
+
+.progress-part {
+    font-size: smaller;
+}
