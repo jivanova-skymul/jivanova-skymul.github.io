@@ -125,11 +125,23 @@ body {
 
 ul {
     list-style: none;
-    font-size: smaller;
+    font-size: 0.7rem;
     padding: 0;
+  }
+
+.noclick {pointer-events:none;}
+
+/* .checkbox-small {height: 10px;} */
+
+input[type="checkbox"] {
+    /* width: 3em; */
+    height: 0.6rem;
+    accent-color: green;
   }
 
   /* Optional: Add some margin to the list items for spacing */
   /* li {
     margin-bottom: 5px;
   } */
+
+  /* .noclick {pointer-events:none;} */
