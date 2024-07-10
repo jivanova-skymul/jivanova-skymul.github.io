@@ -4,319 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worksites Report</title>
-    <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="test_styles.css">    
 </head>
 
 <body>
     <div class="panel">
-        <button onclick="showForm(0)">Eastwind</button>
-        <!-- <button onclick="showForm(1)">EPW</button> -->
+        <button onclick="showWorksite('worksite-0')">Eastwind</button>
+        <button onclick="showWorksite('worksite-1')">EPW</button>
     </div>
 
-<div class="form-container active" id="form-0">
-    <div class="tabs">
-        <div class="tab active" onclick="showTab(0, 0)">Building 1</div>
-        <div class="tab" onclick="showTab(1, 0)">Building 2</div>
-    </div>
-    
-    <!-- <div class="tab-content active" id="tab-0"> -->
-    <div class="tab-content active" id="form-0-tab-0">
-        <div class="scrollable-content">
-            <div class="subform">
-                <div class="task-column">
-                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
-                    <div class="task-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 100%;"></div></div>
-                            <ul class="noclick">
-                                <li><input type="checkbox" id="item1" name="item1" checked >
-                                    <label for="item1">Rebar Install</label>
-                                </li>
-                                <li><input type="checkbox" id="item2" name="item2" checked >
-                                    <label for="item2">Form Prepare</label>
-                                </li>
-                                <li><input type="checkbox" id="item3" name="item3" checked >
-                                    <label for="item3">Concrete Pour</label>
-                                </li>
-                            </ul>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 95%;"></div></div>
-                        <ul class="noclick">
-                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
-                                <label for="item1">Rebar Install</label>
-                            </li>
-                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
-                                <label for="item2">Form Prepare</label>
-                            </li>
-                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
-                                <label for="item3">Concrete Pour</label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 90%;"></div></div>
-                        <ul class="noclick">
-                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
-                                <label for="item1">Rebar Install</label>
-                            </li>
-                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
-                                <label for="item2">Form Prepare</label>
-                            </li>
-                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
-                                <label for="item3">Concrete Pour</label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 80%;"></div></div>
-                        <ul class="noclick">
-                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
-                                <label for="item1">Rebar Install</label>
-                            </li>
-                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
-                                <label for="item2">Form Prepare</label>
-                            </li>
-                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
-                                <label for="item3">Concrete Pour</label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 45%;"></div></div>
-                        <ul class="noclick">
-                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
-                                <label for="item1">Rebar Install</label>
-                            </li>
-                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
-                                <label for="item2">Form Prepare</label>
-                            </li>
-                            <li><input type="checkbox" id="item3" name="item3" checked enabled>
-                                <label for="item3">Concrete Pour</label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                        <ul class="noclick">
-                            <li><input type="checkbox" id="item1" name="item1" checked enabled>
-                                <label for="item1">Rebar Install</label>
-                            </li>
-                            <li><input type="checkbox" id="item2" name="item2" checked enabled>
-                                <label for="item2">Form Prepare</label>
-                            </li>
-                            <li><input type="checkbox" id="item3" name="item3" checked disabled>
-                                <label for="item3">Concrete Pour</label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/ep_eastwind/d4_b1_jul2.png" alt="July 2">
-                </div>
-            </div>
-            
-            <div class="subform">
-                <div class="task-column">
-                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
-                    <div class="task-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 95%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 80%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 75%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 25%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 30%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/ep_eastwind/d3_b1_jun26.png" alt="June 26">
-                </div>
-            </div>
-                      
-            <div class="subform">
-                <div class="task-column">
-                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1894835/map"><strong>Day 2: June 25</strong></a></div>
-                    <div class="task-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 80%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 60%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 35%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/ep_eastwind/d2_b1_jun25.png" alt="June 25">
-                </div>
-            </div>
-            
-            <div class="subform">
-                <div class="task-column">
-                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
-                    <div class="task-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 45%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 20%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    
-                    <div class="task-sub-item">
-                        Pour Alternative</a>
-                        <div class="progress-bar">
-                            <div class="progress-part" style="width: 45%;"><span>Pour 1</span></div>
-                            <div class="progress-part" style="width: 5%;"><span>Pour 2</span></div>
-                            <div class="progress-part" style="width: 20%;"><span>Pour 3</span></div>
-                            <div class="progress-part" style="width: 5%;"><span>Pour 4</span></div>
-                            <div class="progress-part" style="width: 0%;"><span>Pour 5</span></div>
-                            <div class="progress-part" style="width: 0%;"><span>Pour 6</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/ep_eastwind/d1_b1_jun13.png" alt="June 13">
-                </div>
-            </div>
+
+    <div class="worksite-container active" id="worksite-0">
+        <div class="building-tabs" id="worksite-0-building-tabs">
+            <div class="building-tab active" onclick="showBuilding('worksite-0-building-0')">Building 1</div>
+            <div class="building-tab" onclick="showBuilding('worksite-0-building-1')">Building 2</div>
         </div>
-    </div>
-        
-    <!-- <div class="tab-content" id="tab-1"> -->
-        <div class="tab-content" id="form-0-tab-1">
+
+        <div class="building-tab-content active" id="worksite-0-building-0">
+            <div class="day-sidebar">
+                <div class="day-button-container" onclick="showDayReport('worksite-0-building-0-day-3')">
+                        <button id="button-tab1" class="day-circle active"></button>
+                        <span class="day-button-text">July 2</span>
+                </div>
+                <div class="day-button-container" onclick="showDayReport('worksite-0-building-0-day-2')">
+                        <button id="button-tab2" class="day-circle"></button>
+                        <span class="day-button-text">June 26</span>
+                </div>
+                <div class="day-button-container" onclick="showDayReport('worksite-0-building-0-day-1')">
+                        <button id="button-tab3" class="day-circle"></button>
+                        <span class="day-button-text">June 25</span>
+                </div>
+                <div class="day-button-container" onclick="showDayReport('worksite-0-building-0-day-0')">
+                        <button id="button-tab3" class="day-circle"></button>
+                        <span class="day-button-text">June 13</span>
+                </div>
+            </div>
+
             <div class="scrollable-content">
-                <div class="subform">
+                <div class="building-day-tab-content active" id="worksite-0-building-0-day-3">
                     <div class="task-column">
                         <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
                         <div class="task-sub-item">
                             Pour 1
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 100%;"></div></div>
+                                <ul class="noclick">
+                                    <li><input type="checkbox" id="item1" name="item1" checked >
+                                        <label for="item1">Rebar Install</label>
+                                    </li>
+                                    <li><input type="checkbox" id="item2" name="item2" checked >
+                                        <label for="item2">Form Prepare</label>
+                                    </li>
+                                    <li><input type="checkbox" id="item3" name="item3" checked >
+                                        <label for="item3">Concrete Pour</label>
+                                    </li>
+                                </ul>
                         </div>
                         <div class="task-sub-item">
                             Pour 2
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 95%;"></div></div>
+                            <ul class="noclick">
+                                <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                    <label for="item1">Rebar Install</label>
+                                </li>
+                                <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                    <label for="item2">Form Prepare</label>
+                                </li>
+                                <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                    <label for="item3">Concrete Pour</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="task-sub-item">
                             Pour 3
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 90%;"></div></div>
+                            <ul class="noclick">
+                                <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                    <label for="item1">Rebar Install</label>
+                                </li>
+                                <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                    <label for="item2">Form Prepare</label>
+                                </li>
+                                <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                    <label for="item3">Concrete Pour</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="task-sub-item">
                             Pour 4
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 80%;"></div></div>
+                            <ul class="noclick">
+                                <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                    <label for="item1">Rebar Install</label>
+                                </li>
+                                <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                    <label for="item2">Form Prepare</label>
+                                </li>
+                                <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                    <label for="item3">Concrete Pour</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="task-sub-item">
                             Pour 5
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 45%;"></div></div>
+                            <ul class="noclick">
+                                <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                    <label for="item1">Rebar Install</label>
+                                </li>
+                                <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                    <label for="item2">Form Prepare</label>
+                                </li>
+                                <li><input type="checkbox" id="item3" name="item3" checked enabled>
+                                    <label for="item3">Concrete Pour</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="task-sub-item">
                             Pour 6
                             <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <ul class="noclick">
+                                <li><input type="checkbox" id="item1" name="item1" checked enabled>
+                                    <label for="item1">Rebar Install</label>
+                                </li>
+                                <li><input type="checkbox" id="item2" name="item2" checked enabled>
+                                    <label for="item2">Form Prepare</label>
+                                </li>
+                                <li><input type="checkbox" id="item3" name="item3" checked disabled>
+                                    <label for="item3">Concrete Pour</label>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="image-column">
-                        <img src="img/ep_eastwind/d4_b2_jul2.png" alt="July 2">
+                        <img src="img/ep_eastwind/d4_b1_jul2.png" alt="July 2">
                     </div>
                 </div>
                 
-                <div class="subform">
+                <div class="building-day-tab-content" id="worksite-0-building-0-day-2">
                     <div class="task-column">
                         <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
                         <div class="task-sub-item">
                             Pour 1
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 95%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 2
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 80%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 3
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 75%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 4
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 25%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 5
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 30%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 6
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
                         </div>
                     </div>
                     <div class="image-column">
-                        <img src="img/ep_eastwind/d3_b2_jun26.png" alt="June 26">
+                        <img src="img/ep_eastwind/d3_b1_jun26.png" alt="June 26">
                     </div>
                 </div>
-    
-                <div class="subform">
+                        
+                <div class="building-day-tab-content" id="worksite-0-building-0-day-1">
                     <div class="task-column">
-                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 2: June 25</strong></a></div>
+                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1894835/map"><strong>Day 2: June 25</strong></a></div>
                         <div class="task-sub-item">
                             Pour 1
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 80%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 2
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 60%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 3
-                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            <div class="progress-bar"><div style="width: 35%;"></div></div>
                         </div>
                         <div class="task-sub-item">
                             Pour 4
@@ -332,16 +202,246 @@
                         </div>
                     </div>
                     <div class="image-column">
-                        <img src="img/ep_eastwind/d2_b2_jun25.png" alt="June 25">
+                        <img src="img/ep_eastwind/d2_b1_jun25.png" alt="June 25">
                     </div>
                 </div>
-    
-    
-                <div class="subform">
+                
+                <div class="building-day-tab-content" id="worksite-0-building-0-day-0">
                     <div class="task-column">
                         <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
                         <div class="task-sub-item">
                             Pour 1
+                            <div class="progress-bar"><div style="width: 45%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 2
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 3
+                            <div class="progress-bar"><div style="width: 20%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 4
+                            <div class="progress-bar"><div style="width: 5%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 5
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                        <div class="task-sub-item">
+                            Pour 6
+                            <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        </div>
+                        
+                        <div class="task-sub-item">
+                            Pour Alternative</a>
+                            <div class="progress-bar">
+                                <div class="progress-part" style="width: 45%;"><span>Pour 1</span></div>
+                                <div class="progress-part" style="width: 5%;"><span>Pour 2</span></div>
+                                <div class="progress-part" style="width: 20%;"><span>Pour 3</span></div>
+                                <div class="progress-part" style="width: 5%;"><span>Pour 4</span></div>
+                                <div class="progress-part" style="width: 0%;"><span>Pour 5</span></div>
+                                <div class="progress-part" style="width: 0%;"><span>Pour 6</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-column">
+                        <img src="img/ep_eastwind/d1_b1_jun13.png" alt="June 13">
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <!-- <div class="building-tab-content" id="building-1"> -->
+            <div class="building-tab-content" id="worksite-0-building-1">
+                <div class="day-sidebar">
+                    <div class="day-button-container" onclick="showDayReport('worksite-0-building-1-day-3')">
+                        <button id="button-tab1" class="day-circle active"></button>
+                        <span class="day-button-text">July 2</span>
+                    </div>
+                    <div class="day-button-container" onclick="showDayReport('worksite-0-building-1-day-2')">
+                        <button id="button-tab2" class="day-circle"></button>
+                        <span class="day-button-text">June 26</span>
+                    </div>
+                    <div class="day-button-container" onclick="showDayReport('worksite-0-building-1-day-1')">
+                        <button id="button-tab3" class="day-circle"></button>
+                        <span class="day-button-text">June 25</span>
+                    </div>
+                    <div class="day-button-container" onclick="showDayReport('worksite-0-building-1-day-0')">
+                        <button id="button-tab3" class="day-circle"></button>
+                        <span class="day-button-text">June 13</span>
+                    </div>
+                </div>
+
+                <div class="scrollable-content">
+                    <div class="building-day-tab-content" id="worksite-0-building-1-day-3">
+                        <div class="task-column">
+                            <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 4: July 2</strong></a></div>
+                            <div class="task-sub-item">
+                                Pour 1
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 2
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 3
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 4
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 5
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 6
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                        </div>
+                        <div class="image-column">
+                            <img src="img/ep_eastwind/d4_b2_jul2.png" alt="July 2">
+                        </div>
+                    </div>
+                    
+                    <div class="building-day-tab-content" id="worksite-0-building-1-day-2">
+                        <div class="task-column">
+                            <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1897425/map"><strong>Day 3: June 26</strong></a></div>
+                            <div class="task-sub-item">
+                                Pour 1
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 2
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 3
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 4
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 5
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 6
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                        </div>
+                        <div class="image-column">
+                            <img src="img/ep_eastwind/d3_b2_jun26.png" alt="June 26">
+                        </div>
+                    </div>
+        
+                    <div class="building-day-tab-content" id="worksite-0-building-1-day-1">
+                        <div class="task-column">
+                            <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1901919/map"><strong>Day 2: June 25</strong></a></div>
+                            <div class="task-sub-item">
+                                Pour 1
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 2
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 3
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 4
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 5
+                                <div class="progress-bar"><div style="width: 0%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 6
+                                <div class="progress-bar"><div style="width: 0%;"></div></div>
+                            </div>
+                        </div>
+                        <div class="image-column">
+                            <img src="img/ep_eastwind/d2_b2_jun25.png" alt="June 25">
+                        </div>
+                    </div>
+        
+        
+                    <div class="building-day-tab-content" id="worksite-0-building-1-day-0">
+                        <div class="task-column">
+                            <div class="task-item"><a href="https://cloud.pix4d.com/site/285110/dataset/1881853/map"><strong>Day 1: June 13</strong></a></div>
+                            <div class="task-sub-item">
+                                Pour 1
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 2
+                                <div class="progress-bar"><div style="width: 0%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 3
+                                <div class="progress-bar"><div style="width: 5%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 4
+                                <div class="progress-bar"><div style="width: 0%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 5
+                                <div class="progress-bar"><div style="width: 0%;"></div></div>
+                            </div>
+                            <div class="task-sub-item">
+                                Pour 6
+                                <div class="progress-bar"><div style="width: 0%;"></div></div>
+                            </div>
+                        </div>
+                        <div class="image-column">
+                            <img src="img/ep_eastwind/d1_b2_jun13.png" alt="June 13">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="worksite-container" id="worksite-1">
+        <div class="building-tabs" id="worksite-1-building-tabs">
+            <div class="building-tab active" onclick="showBuilding('worksite-1-building-0')">Building 1</div>
+            <!-- <div class="building-tab" onclick="showBuilding(1, 0)">Building 2</div> -->
+        </div>
+
+
+        <div class="building-tab-content" id="worksite-1-building-0">
+            <div class="day-sidebar">
+                <div class="day-button-container" onclick="showDayReport('worksite-1-building-0-day-0')">
+                    <button id="button-tab1" class="day-circle active"></button>
+                    <span class="day-button-text">June 13</span>
+                </div>
+            </div>
+
+            <div class="scrollable-content">
+                <div class="building-day-tab-content" id="worksite-1-building-0-day-0">
+                    <div class="task-column">
+                        <div class="task-item"><a href="https://cloud.pix4d.com/site/285572/dataset/1881986/map"><strong>Day 1: June 13</strong></a></div>
+                        <div class="task-sub-item">
+                            Pour 1
                             <div class="progress-bar"><div style="width: 5%;"></div></div>
                         </div>
                         <div class="task-sub-item">
@@ -366,117 +466,103 @@
                         </div>
                     </div>
                     <div class="image-column">
-                        <img src="img/ep_eastwind/d1_b2_jun13.png" alt="June 13">
+                        <img src="img/ep_water/EPW_jun13.png" alt="June 13">
                     </div>
                 </div>
             </div>
         </div>
-    
-</div>
-
-<div class="form-container" id="form-1">
-    <div class="tabs">
-        <div class="tab active" onclick="showTab(0, 0)">Building 1</div>
-        <!-- <div class="tab" onclick="showTab(1, 0)">Building 2</div> -->
     </div>
 
 
-    <div class="tab-content" id="form-1-tab-0">
-        <div class="scrollable-content">
-            <div class="subform">
-                <div class="task-column">
-                    <div class="task-item"><a href="https://cloud.pix4d.com/site/285572/dataset/1881986/map"><strong>Day 1: June 13</strong></a></div>
-                    <div class="task-sub-item">
-                        Pour 1
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 2
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 3
-                        <div class="progress-bar"><div style="width: 5%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 4
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 5
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                    <div class="task-sub-item">
-                        Pour 6
-                        <div class="progress-bar"><div style="width: 0%;"></div></div>
-                    </div>
-                </div>
-                <div class="image-column">
-                    <img src="img/ep_water/EPW_jun13.png" alt="June 13">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function showForm(index) {
-        var forms = document.querySelectorAll('.tab-content');
-        var buttons = document.querySelectorAll('.panel button');
-
-        forms.forEach(function(form, idx) {
-            if (index === idx) {
-                form.classList.add('active');
-                buttons[idx].classList.add('active');
-            } else {
-                form.classList.remove('active');
-                buttons[idx].classList.remove('active');
-            }
-        });
 
 
-        showTab(0, index);
-    }
-
-    // function showTab(index) {
-    //     const tabs = document.querySelectorAll('.tab');
-    //     const tabContents = document.querySelectorAll('.tab-content');
-
-    //     tabs.forEach((tab, i) => {
-    //         if (i === index) {
-    //             tab.classList.add('active');
-    //             tabContents[i].classList.add('active');
-    //         } else {
-    //             tab.classList.remove('active');
-    //             tabContents[i].classList.remove('active');
-    //         }
-    //     });
-    // }
 
 
-    function showTab(tabIndex, formIndex) {
-        var tabs = document.querySelectorAll('.tab');
-        var tabContents = document.querySelectorAll('.tab-content');
+    <script>
+        function showWorksite(worksiteId) {
+            console.log('showWorksite: ' + worksiteId);
+            // var worksites = document.querySelectorAll('.building-tab-content');
+            var buttons = document.querySelectorAll('.panel button');
 
-        tabs.forEach(function(tab, index) {
-            if (index === tabIndex) {
-                tab.classList.add('active');
-            } else {
-                tab.classList.remove('active');
-            }
-        });
+            // worksites.forEach(function(worksite, idx) {
+            //     if (worksiteId === idx) {
+            //         worksite.classList.add('active');
+            //         buttons[idx].classList.add('active');
+            //     } else {
+            //         worksite.classList.remove('active');
+            //         buttons[idx].classList.remove('active');
+            //     }
+            // });
 
-        tabContents.forEach(function(content, index) {
-            if (index === tabIndex) {
-                content.classList.add('active');
-            } else {
-                content.classList.remove('active');
-            }
-        });
-    }
 
-    showForm(0);
-</script>
+            // var worksites = document.getElementsByClassName('.worksite-container');
+            var worksites = document.querySelectorAll('.worksite-container');
+            console.log(worksites);
+
+            worksites.forEach(function(worksite, idx) {
+                if (worksite.id == worksiteId) {
+                    worksite.classList.add('active');
+                    buttons[idx].classList.add('active');
+                } else {
+                    worksite.classList.remove('active');
+                    buttons[idx].classList.remove('active');
+                }
+            });
+
+            showBuilding(worksiteId + '-building-0');
+        }
+
+        function showBuilding(buildingId) {
+            console.log('showBuilding: ' + buildingId);
+            const buildingTabs = document.querySelectorAll('.building-tab');
+            const buildingContents = document.querySelectorAll('.building-tab-content');
+
+            buildingContents.forEach((buildingContent, i) => {
+                if (buildingContent.id === buildingId) {
+                    buildingTabs[i].classList.add('active');
+                    buildingContents[i].classList.add('active');
+                } else {
+                    buildingTabs[i].classList.remove('active');
+                    buildingContents[i].classList.remove('active');
+                }
+            });
+
+            showLastDayReport(buildingId);
+        }
+
+        function showDayReport(dayReportId) {
+            console.log('showDayReport: ' + dayReportId);
+            const daysCircles = document.querySelectorAll('.day-circle');
+            const daysContents = document.querySelectorAll('.building-day-tab-content');
+
+            daysContents.forEach((dayContent, i) => {
+                if (dayContent.id === dayReportId) {
+                    daysCircles[i].classList.add('active');
+                    daysContents[i].classList.add('active');
+                } else {
+                    daysCircles[i].classList.remove('active');
+                    daysContents[i].classList.remove('active');
+                }
+            });
+        }
+
+        function showLastDayReport(buildingId) {
+            console.log('showLastDayReport: ' + buildingId);
+            // const daysCircles = document.querySelectorAll('.day-circle');
+            // const daysContents = document.querySelectorAll('.building-day-tab-content');
+
+            var buildingContent = document.getElementById(buildingId);
+            console.log(buildingContent);
+            var daysContents = buildingContent.getElementsByClassName('day-button-container');
+            // console.log(daysContents);
+            // console.log(daysContents.length);
+            // lastDayInd = daysContents.length - 1;
+            dayReportId = buildingId + '-day-' + (daysContents.length - 1);
+            showDayReport(dayReportId);
+        }
+
+        showWorksite('worksite-0');
+    </script>
 
 </body>
 </html>

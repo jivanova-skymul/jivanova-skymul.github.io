@@ -7,6 +7,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* ---------------------------- */
 .panel {
     background-color: #f0f0f0;
     padding: 10px;
@@ -31,54 +32,118 @@ body {
     background-color: #45a049;
 }
 
-.form-container {
+
+/* ---------------------------- */
+.worksite-container {
     display: none;
-    width: 800px;
+    width: 80%;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.form-container.active {
+.worksite-container.active {
     display: inline;
 }
 
-.tabs {
+/* ---------------------------- */
+.building-tabs {
     display: flex;
     justify-content: center;
     background-color: #f1f1f1;
     border-bottom: 1px solid #ccc;
 }
-.tab {
+.building-tab {
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
-.tab:hover {
+.building-tab:hover {
     background-color: #ddd;
 }
-.tab.active {
+.building-tab.active {
     background-color: #ccc;
 }
-.tab-content {
+
+/* ---------------------------- */
+.building-tab-content {
     display: none;
     padding: 20px;
     overflow-y: auto;
     max-height: 60vh;
 }
-.tab-content.active {
+.building-tab-content.active {
     display: flex;
 }
+
+/* ---------------------------- */
+.day-button-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: auto; /* 10px; */
+
+}
+
+.day-button-text {
+    color:  #0056b3; /* #3c52c2; */
+    font-size: 12px;
+    width: 58px;
+}
+
+.day-sidebar {
+    width: 3px;
+    background-color:  #0056b3; /* #3c52c2; */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    margin-left: 50px;
+    margin-right: 100px;
+}
+
+.day-sidebar .day-circle {
+    background:  #0056b3; /* #3c52c2; */
+    border: none;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 78px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.day-sidebar .day-circle.active {
+    width: 13px;
+    height: 13px;
+    background-color: #0056b3; /* #3c52c2; */
+}
+
+/* ---------------------------- */
 .scrollable-content {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     width: 100%;
 }
-.subform {
-    display: flex;
+
+.building-day-tab-content {
+    display: None;
     margin-bottom: 20px;
 }
+
+.building-day-tab-content.active {
+    display: flex;
+}
+
+
+
+
 .task-column, .image-column {
     flex: 1;
     padding: 20px;
@@ -93,10 +158,9 @@ body {
     font-size: smaller;
     margin: 3px 10px 2px 20px;
 }
-
 .task-item a, .task-sub-item a {
     text-decoration: none;
-    color: #007BFF;
+    color: #0056b3;
 }
 .task-item a:hover, .task-sub-item a:hover {
     text-decoration: underline;
@@ -107,6 +171,8 @@ body {
     width: 100%;
     height: auto;
 }
+
+/* Progress Bar */
 .progress-bar {
     width: 100%;
     background-color: #f3f3f3;
@@ -123,6 +189,7 @@ body {
     font-size: smaller;
 }
 
+/* List  */
 ul {
     list-style: none;
     font-size: 0.7rem;
@@ -131,17 +198,12 @@ ul {
 
 .noclick {pointer-events:none;}
 
-/* .checkbox-small {height: 10px;} */
-
 input[type="checkbox"] {
     /* width: 3em; */
     height: 0.6rem;
     accent-color: green;
-  }
+}
 
-  /* Optional: Add some margin to the list items for spacing */
-  /* li {
-    margin-bottom: 5px;
-  } */
 
-  /* .noclick {pointer-events:none;} */
+/* .hidden { visibility: hidden; } */
+
