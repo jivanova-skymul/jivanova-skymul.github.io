@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate manager report file</title>
+    <link rel="stylesheet" href="styles/generate_report.css">
+</head>
+
+<body>
+    <h1>Generate manager report JSON file</h1>
+    <form id="reportForm">
+        <label for="scan_date">Scan Date:</label>
+        <input type="date" id="scan_date" name="scan_date" value="2024-07-18" required><br>
+
+        <label for="company">Company:</label>
+        <input type="text" id="company" name="company" value="VEMAC" required><br>
+
+        <label for="worksite">Worksite:</label>
+        <input type="text" id="worksite" name="worksite" value="El Paso Eastwind" required><br>
+
+        <label for="pix4dcloudlink">Pix4D Cloud Link:</label>
+        <input type="url" id="pix4dcloudlink" name="pix4dcloudlink" value="https://..." required><br>
+
+        <label for="screenshot">Screenshot Filename:</label>
+        <input type="text" id="screenshot" name="screenshot" value="screenshot.png" required><br>
+
+        <label for="building">Building:</label>
+        <input type="text" id="building" name="building" value="1" required><br>
+
+        <h2>Foundation Spot Footings</h2>
+        <div id="spotFootingsSection" class="section">
+            <div class="spotFooting">
+                <h3>Spot Footing 1</h3>
+
+                <label> Trench:</label>
+                <input type="checkbox" name="spotFooting_trench" checked><br>
+
+                <label>Rebar:</label>
+                <input type="checkbox" name="spotFooting_rebar" checked><br>
+
+                <label>Pour:</label>
+                <input type="checkbox" name="spotFooting_pour"><br>
+            </div>
+        </div>
+        <div class="section-buttons">
+            <button type="button" onclick="addSpotFooting()">Add Spot Footing</button>
+        </div>
+
+        <h2>Slab-on-Grade Pours</h2>
+        <div id="poursSection" class="section">
+            <div class="pour">
+                <h3>Pour 1</h3>
+
+                <label>Grade:</label>
+                <input type="text" name="pour_grade" value="95%" required><br>
+
+                <label>Form:</label>
+                <input type="text" name="pour_form" value="90%" required><br>
+
+                <label>Rebars:</label>
+                <input type="text" name="pour_rebars" value="20%" required><br>
+
+                <label>Pour:</label>
+                <input type="text" name="pour_pour" value="0%" required><br>
+            </div>
+        </div>
+        <div class="section-buttons">
+            <button type="button" onclick="addPour()">Add Pour</button>
+        </div>
+
+        <h2>Panel Pours</h2>
+        <div id="panelPoursSection" class="section">
+            <label for="panelBookReady">Panel Book Ready:</label>
+            <input type="checkbox" name="panelBookReady" ><br>
+
+            <div class="panelPour">
+                <h3>Panel Pour 1</h3>
+
+                <label>Form:</label>
+                <input type="checkbox" name="panelPour_form" checked><br>
+
+                <label>Reveal:</label>
+                <input type="checkbox" name="panelPour_reveal" checked><br>
+
+                <label>Embeds:</label>
+                <input type="checkbox" name="panelPour_embeds" checked><br>
+
+                <label>Rebars:</label>
+                <input type="checkbox" name="panelPour_rebars" checked><br>
+
+                <label>Inserts:</label>
+                <input type="checkbox" name="panelPour_inserts" checked><br>
+
+                <label>Pour:</label>
+                <input type="checkbox" name="panelPour_pour" checked><br>
+            </div>
+        </div>
+        <div class="section-buttons">
+            <button type="button" onclick="addPanelPour()">Add Panel Pour</button>
+        </div>
+
+        <button type="button" onclick="generateAndDownloadJSON()">Generate JSON report</button>
+
+        <!-- <div class="section-buttons">
+            <button type="button" onclick="addBuilding()">Add Another Building</button>
+            <button type="button" onclick="generateAndDownloadJSON()">Generate JSON report</button>
+        </div> -->
+    </form>
+    
+    <script src="scripts/generate_report.js"></script>
+</body>
+</html>
