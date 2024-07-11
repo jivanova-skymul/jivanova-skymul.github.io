@@ -1,0 +1,150 @@
+{
+   "reports": [
+      {
+         "scan_date": "June 18",
+         "company": "VEMAC",
+         "worksite": "El Paso Eastwind",
+         "pix4dcloudlink": "https://....",
+         "screenshot": "dunno something here to show as a pic, filename maybe",
+         "buildings": [
+         { 
+            "building": "1",
+               "works": [
+                  {
+                     "type": "Foundation",
+                     "spotFootings": [
+                        {
+                           "id" : "1",
+                           "trench": "done",
+                           "rebar": "done",
+                           "pour": "none"
+                        },
+                        {
+                           "id" : "2",
+                           "trench": "done",
+                           "rebar": "done",
+                           "pour": "none"
+                        },
+                        {
+                           "id" : "3",
+                           "trench": "done",
+                           "rebar": "done",
+                           "pour": "none"
+                        }
+                     ]
+                  },
+                  {
+                     "type": "Slab-on-Grade",
+                     "pours": [
+                        {
+                           "id": "1",
+                           "grade": "95%",
+                           "form": "90%",
+                           "rebars": "20%",
+                           "pour": "0%"
+                        },
+                        {
+                           "id": "2",
+                           "grade": "90%",
+                           "form": "70%",
+                           "rebars": "10%",
+                           "pour": "0%"
+                        },
+                        {
+                           "id": "3",
+                           "grade": "80%",
+                           "form": "35%",
+                           "rebars": "0%",
+                           "pour": "0%"
+                        },
+                        {
+                           "id": "4",
+                           "grade": "85%",
+                           "form": "40%",
+                           "rebars": "0%",
+                           "pour": "0%"
+                        },
+                        {
+                           "id": "5",
+                           "grade": "25%",
+                           "form": "10%",
+                           "rebars": "0%",
+                           "pour": "0%"
+                        },
+                        {
+                           "id": "6",
+                           "grade": "5%",
+                           "form": "0%",
+                           "rebars": "0%",
+                           "pour": "0%"
+                        }
+                     ]
+                     
+                  },
+                  {
+                     "type":  "Panel",
+                     "panelBookReady": true,
+                     "panelPours": [
+                        {
+                           "id": "1",
+                           "form": true,
+                           "reveal": true,
+                           "embeds": true,
+                           "rebars": true,
+                           "inserts": true,
+                           "pour": true
+                        },
+                        {
+                           "id": "2",
+                           "form": true,
+                           "reveal": true,
+                           "embeds": true,
+                           "rebars": true,
+                           "inserts": true,
+                           "pour": false
+                        },
+                        {
+                           "id": "3",
+                           "form": true,
+                           "reveal": true,
+                           "embeds": true,
+                           "rebars": true,
+                           "inserts": false,
+                           "pour": false
+                        },
+                        {
+                           "id": "4",
+                           "form": true,
+                           "reveal": true,
+                           "embeds": false,
+                           "rebars": false,
+                           "inserts": false,
+                           "pour": false
+                        },
+                        {
+                           "id": "5",
+                           "form": true,
+                           "reveal": false,
+                           "embeds": false,
+                           "rebars": false,
+                           "inserts": false,
+                           "pour": false
+                        },
+                        {
+                           "id": "6",
+                           "form": false,
+                           "reveal": false,
+                           "embeds": false,
+                           "rebars": false,
+                           "inserts": false,
+                           "pour": false
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+      
+   ]
+}
