@@ -9,31 +9,56 @@
 
 <body>
     <h1>Generate manager report JSON file</h1>
+    <form id="previousReportForm">
+        <h3>Load from the prior report (Optional)</h3>
+        <input type="file" id="previousReportFile" accept=".json">
+        <button type="submit">Load</button>
+    </form>
+    <br>
     <form id="reportForm">
-        <label for="scan_date">Scan Date:</label>
-        <input type="date" id="scan_date" name="scan_date" value="2024-07-18" required><br>
+        <!-- <div class="form-top"> -->
+            <!-- <div class="column-1"> -->
+                <label for="scan_date">Scan Date:</label>
+                <input type="date" id="scan_date" name="scan_date" value="2024-07-18" required><br>
 
-        <label for="company">Company:</label>
-        <input type="text" id="company" name="company" value="VEMAC" required><br>
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company" value="VEMAC" required><br>
 
-        <label for="worksite">Worksite:</label>
-        <input type="text" id="worksite" name="worksite" value="El Paso Eastwind" required><br>
+                <label for="worksite">Worksite:</label>
+                <input type="text" id="worksite" name="worksite" value="El Paso Eastwind" required><br>
 
-        <label for="pix4dcloudlink">Pix4D Cloud Link:</label>
-        <input type="url" id="pix4dcloudlink" name="pix4dcloudlink" value="https://..." required><br>
+                <label for="pix4dcloudlink">Pix4D Cloud Link:</label>
+                <input type="url" id="pix4dcloudlink" name="pix4dcloudlink" value="https://..." required><br>
 
-        <label for="screenshot">Screenshot Filename:</label>
-        <input type="text" id="screenshot" name="screenshot" value="screenshot.png" required><br>
+                <label for="screenshot">Screenshot Filename:</label>
+                <input type="text" id="screenshot" name="screenshot" value="screenshot.png" required><br>
 
-        <label for="building">Building:</label>
-        <input type="text" id="building" name="building" value="1" required><br>
+                <label for="building">Building:</label>
+                <input type="text" id="building" name="building" value="1" required><br>
+            <!-- </div> -->
 
-        <h2>Foundation Spot Footings</h2>
+            <!-- <div class="column-2">
+            <form id="previousReportForm">
+                <h3>Load from the prior report</h3>
+                <input type="file" id="previousReportFile" accept=".json">
+                <button type="submit">Load</button>
+            </form>
+            </div> -->
+        <!-- </div> -->
+
+            <br>
+
+        <hr class="horizontal-line">
+
+        <h2><input type="checkbox" name="addSpotFootingsSection" id="addSpotFootingsSection" checked> Foundation Spot Footings</h2>
+        <!-- <label for="addFoundationSpotFootingsSection">Add Foundation Spot Footings Section:</label>
+        <input type="checkbox" name="addFoundationSpotFootingsSection" checked><br> -->
+
         <div id="spotFootingsSection" class="section">
             <div class="spotFooting">
                 <h3>Spot Footing 1</h3>
 
-                <label> Trench:</label>
+                <label>Trench:</label>
                 <input type="checkbox" name="spotFooting_trench" checked><br>
 
                 <label>Rebar:</label>
@@ -47,7 +72,12 @@
             <button type="button" onclick="addSpotFooting()">Add Spot Footing</button>
         </div>
 
-        <h2>Slab-on-Grade Pours</h2>
+
+        <hr class="horizontal-line">
+        <h2> <input type="checkbox" name="addPoursSection" id="addPoursSection" checked> Slab-on-Grade Pours</h2>
+        <!-- <label for="addPoursSection">Add Slap-on-Grade Pours Section:</label>
+        <input type="checkbox" name="addPoursSection" checked><br> -->
+
         <div id="poursSection" class="section">
             <div class="pour">
                 <h3>Pour 1</h3>
@@ -69,10 +99,15 @@
             <button type="button" onclick="addPour()">Add Pour</button>
         </div>
 
-        <h2>Panel Pours</h2>
+
+        <hr class="horizontal-line">
+        <h2> <input type="checkbox" name="addPanelPoursSection" id="addPanelPoursSection" checked> Panel Pours</h2>
+        <!-- <label for="addPanelPoursSection">Add Panel Pours Section:</label>
+        <input type="checkbox" name="addPanelPoursSection" checked><br> -->
+
         <div id="panelPoursSection" class="section">
             <label for="panelBookReady">Panel Book Ready:</label>
-            <input type="checkbox" name="panelBookReady" ><br>
+            <input type="checkbox" name="panelBookReady" id="panelBookReady" ><br>
 
             <div class="panelPour">
                 <h3>Panel Pour 1</h3>

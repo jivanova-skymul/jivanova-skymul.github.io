@@ -28,6 +28,24 @@ form {
     margin: auto;
 }
 
+
+
+.form-top {
+    display: flex;
+}
+
+.column-1 {
+    display: block;
+    margin: auto;
+}
+
+.column-2 {
+    margin: auto;
+    display: block;
+}
+
+
+
 label {
     display: inline-block;
     width: 200px;
@@ -50,6 +68,8 @@ input[type="checkbox"] {
     width: auto;
 }
 
+
+
 button {
     padding: 10px 20px;
     background: #5a9bd6;
@@ -63,6 +83,8 @@ button:hover {
     background: #3a7bd6;
 }
 
+
+
 .section {
     margin-bottom: 20px;
 }
@@ -71,3 +93,10 @@ button:hover {
     text-align: right;
     margin-bottom: 20px;
 }
+
+.horizontal-line {
+    border: none;
+    border-top: 1px solid #575757;
+    margin: 20px 0;
+}
+
