@@ -1,11 +1,11 @@
 {
    "reports": [
       {
-         "scan_date": "June 18",
+         "scan_date": "2024-07-18",
          "company": "VEMAC",
          "worksite": "El Paso Eastwind",
          "pix4dcloudlink": "https://....",
-         "screenshot": "dunno something here to show as a pic, filename maybe",
+         "screenshot": "dunno something here to show as a pic, screenshot filename maybe",
          "buildings": [
          { 
             "building": "1",
