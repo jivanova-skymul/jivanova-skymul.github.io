@@ -50,17 +50,6 @@
             background-color: #0056b3;
         }
 
-        a {
-            margin-top: 20px;
-            display: inline-block;
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
         .hidden {
             display: none;
         }
@@ -90,12 +79,10 @@
                 const kml = createKML(geojson);
                 const blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
                 const url = URL.createObjectURL(blob);
-
-                const downloadLink = document.getElementById('downloadLink');
+                const link = document.createElement('a');
                 downloadLink.href = url;
                 downloadLink.download = 'output.kml';
-                downloadLink.style.display = 'block';
-                downloadLink.textContent = 'Download KML';
+                downloadLink.click();
             };
             reader.readAsText(file);
         }
@@ -112,8 +99,8 @@
                 if (feature.geometry && feature.geometry.coordinates) {
                     const coordinates = feature.geometry.coordinates;
                     if (feature.geometry.type === 'Point') {
-                        if (feature.properties.name) {
-                            kml += `<name>${feature.properties.photo}</name>\n`;
+                        if (feature.properties.Photo) {
+                            kml += `<name>${feature.properties.Photo}</name>\n`;
                         }
                         kml += `<Point>\n`;
                         kml += `<coordinates>${coordinates[0]},${coordinates[1]}</coordinates>\n`;
