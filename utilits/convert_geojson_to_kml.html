@@ -68,6 +68,8 @@
         function convertGeoJSONToKML() {
             const fileInput = document.getElementById('geojsonInput');
             const file = fileInput.files[0];
+            console.log(file.name);
+            data_name = file.name.split('.')[0]
             if (!file) {
                 alert('Please select a GeoJSON file first.');
                 return;
@@ -76,21 +78,24 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 const geojson = JSON.parse(e.target.result);
-                const kml = createKML(geojson);
+                const kml = createKML(geojson, data_name);
                 const blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 downloadLink.href = url;
-                downloadLink.download = 'output.kml';
+                downloadLink.download = data_name + '.kml';
                 downloadLink.click();
             };
             reader.readAsText(file);
         }
 
-        function createKML(geojson) {
+        function createKML(geojson, data_name=None) {
             let kml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
             kml += `<kml xmlns="http://www.opengis.net/kml/2.2">\n`;
             kml += `<Document>\n`;
+            if (data_name) {
+                kml += `<name>` + data_name + `</name>\n`;
+            }
             kml += `<Folder><name>Photos</name>\n`;
 
             for (const feature of geojson.features) {
