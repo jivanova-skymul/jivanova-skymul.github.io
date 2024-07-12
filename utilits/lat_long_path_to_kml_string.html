@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Points to KML</title>
+    <style>
+        input[type="text"] {
+            width: 1000px;
+        }
+    </style>
+    <script>
+        function generateKML() {
+            var pointsStr = document.getElementById('pointsInput').value.trim();
+            var pointsArr = pointsStr.match(/\(([^)]+)\)/g);
+
+            if (pointsArr.length < 2) {
+                alert('Please enter at least 2 points with latitude and longitude coordinates in the correct format.');
+                return;
+            }
+
+            var points = [];
+            pointsArr.forEach(function(pointStr) {
+                var coords = pointStr.replace(/[()]/g, '').split(',').map(parseFloat);
+                points.push({ lat: coords[0], lng: coords[1] });
+            });
+
+            var kml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<kml xmlns="http://www.opengis.net/kml/2.2">' +
+                '<Document>' +
+                '<Placemark>' +
+                '<LineString>' +
+                '<coordinates>';
+
+            for (var i = 0; i < points.length; i++) {
+                kml += points[i].lng + ',' + points[i].lat + ' ';
+            }
+
+            kml += '</coordinates>' +
+                '</LineString>' +
+                '</Placemark>' +
+                '</Document>' +
+                '</kml>';
+
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(kml));
+            element.setAttribute('download', 'points.kml');
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    </script>
+</head>
+<body>
+    <h2>Convert Points to KML</h2>
+    <p>Enter the latitude and longitude for each point in the format '(Lat, Long), (Lat, Long), ...':</p>
+    <div>
+        <label for="pointsInput">Points:</label>
+        <input type="text" id="pointsInput" placeholder="(31.615215, -106.209691), (31.614978, -106.210101), (31.616074, -106.210947), (31.616311, -106.21053700000002)">
+    </div>
+    <button onclick="generateKML()">Generate KML</button>
+</body>
+</html>
