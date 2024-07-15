@@ -118,6 +118,19 @@
             }
 
             kml += `</Folder>\n`;
+
+
+            
+            // kml += `<Folder><name>Path</name>\n`;
+            kml += `<Placemark>\n`;
+            kml += `<name>Path</name>\n`;
+            kml += `<LineString>\n`;
+            kml += `<coordinates>` + geojson.features.map(feature => `${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]}`).join(' ') + `</coordinates>\n`;
+
+            kml += `</LineString>\n`;
+            kml += `</Placemark>\n`;
+            // kml += `</Folder>\n`;
+
             kml += `</Document>\n`;
             kml += `</kml>\n`;
 
