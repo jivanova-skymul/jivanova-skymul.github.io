@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMS to Decimal Degrees Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            height: 200px;
+        }
+        .output-group {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>DMS to Decimal Degrees Converter</h1>
+    <form id="dmsForm">
+        <div class="input-group">
+            <label for="coordinates">Enter coordinates (e.g., N31,36,50.768024 and W106,12,31.760249 for each point, separated by new lines):</label>
+            <textarea id="coordinates" placeholder="N31,36,50.768024\nW106,12,31.760249\nN31,36,50.768024\nW106,12,31.760249\nN31,36,50.768024\nW106,12,31.760249\nN31,36,50.768024\nW106,12,31.760249"></textarea>
+        </div>
+        <button type="button" onclick="convertAndGenerateKML()">Convert and Generate KML</button>
+    </form>
+    <div class="output-group">
+        <h2>Results</h2>
+        <p id="lat-decimal1">Latitude 1 (Decimal Degrees): </p>
+        <p id="lon-decimal1">Longitude 1 (Decimal Degrees): </p>
+        <p id="lat-decimal2">Latitude 2 (Decimal Degrees): </p>
+        <p id="lon-decimal2">Longitude 2 (Decimal Degrees): </p>
+        <p id="lat-decimal3">Latitude 3 (Decimal Degrees): </p>
+        <p id="lon-decimal3">Longitude 3 (Decimal Degrees): </p>
+        <p id="lat-decimal4">Latitude 4 (Decimal Degrees): </p>
+        <p id="lon-decimal4">Longitude 4 (Decimal Degrees): </p>
+    </div>
+</div>
+
+<script>
+    function dmsToDecimal(degrees, minutes, seconds, direction) {
+        let decimal = degrees + (minutes / 60) + (seconds / 3600);
+        if (direction === 'S' || direction === 'W') {
+            decimal *= -1;
+        }
+        return decimal;
+    }
+
+    function parseDMS(input) {
+        const parts = input.match(/([NSEW])(\d+),(\d+),([\d.]+)/);
+        if (parts) {
+            const direction = parts[1];
+            const degrees = parseFloat(parts[2]);
+            const minutes = parseFloat(parts[3]);
+            const seconds = parseFloat(parts[4]);
+            return { degrees, minutes, seconds, direction };
+        } else {
+            return null;
+        }
+    }
+
+    function convertToDecimalDegrees(coordinates) {
+        const lines = coordinates.split('\n').map(line => line.trim()).filter(line => line !== '');
+        
+        if (lines.length !== 8) {
+            alert("Please enter exactly 8 lines of coordinates (2 lines per point).");
+            return [];
+        }
+
+        const points = [];
+        for (let i = 0; i < lines.length; i += 2) {
+            const latInput = lines[i];
+            const lonInput = lines[i + 1];
+
+            const latDMS = parseDMS(latInput);
+            const lonDMS = parseDMS(lonInput);
+
+            if (latDMS && lonDMS) {
+                const latDecimal = dmsToDecimal(latDMS.degrees, latDMS.minutes, latDMS.seconds, latDMS.direction);
+                const lonDecimal = dmsToDecimal(lonDMS.degrees, lonDMS.minutes, lonDMS.seconds, lonDMS.direction);
+
+                document.getElementById(`lat-decimal${(i / 2) + 1}`).textContent = `Latitude ${(i / 2) + 1} (Decimal Degrees): ${latDecimal.toFixed(6)}`;
+                document.getElementById(`lon-decimal${(i / 2) + 1}`).textContent = `Longitude ${(i / 2) + 1} (Decimal Degrees): ${lonDecimal.toFixed(6)}`;
+
+                points.push({ lat: latDecimal.toFixed(6), lon: lonDecimal.toFixed(6) });
+            } else {
+                alert(`Please enter the coordinates for point ${(i / 2) + 1} in the correct format (e.g., N31,36,50.768024).`);
+                return [];
+            }
+        }
+
+        return points;
+    }
+
+    function generateKML(points) {
+        let kml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        kml += `<kml xmlns="http://www.opengis.net/kml/2.2">\n`;
+        kml += `<Document>\n`;
+
+        kml += `<Placemark>\n`;
+        kml += `<LineString>\n`;
+        kml += `<coordinates>\n`;
+			
+        points.forEach((point, index) => {
+            kml += `${point.lon},${point.lat} `;
+        });
+
+		kml += `\n</coordinates>\n`;
+        kml += `</LineString>\n`;
+        kml += `</Placemark>\n`;
+
+
+
+        kml += `</Document>\n`;
+        kml += `</kml>\n`;
+
+        const blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'points.kml';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function convertAndGenerateKML() {
+        const coordinates = document.getElementById('coordinates').value;
+        const points = convertToDecimalDegrees(coordinates);
+        if (points.length === 4) {
+            generateKML(points);
+        }
+    }
+</script>
+
+</body>
+</html>

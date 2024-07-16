@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utils</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            
+            /*background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;*/
+        }
+        .button {
+            display: block;
+            
+            margin-top: 25px;
+            padding: 13px 0px;
+            background-color: #4CAF50; /*#007BFF;*/
+            border: none;
+            color: white;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; 
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Available utilities</h2>
+        <a href="convert_geojson_to_kml.html" class="button" target="_blank">Convert GeoJSON to KML</a>
+        <!-- <a href="corners_to_kml.html" class="button" target="_blank">Convert array of GPS coordinates to KML path</a>
+        <a href="dms_to_dd.html" class="button" target="_blank">DMS to DD</a> -->
+        <a href="lat_long_path_to_kml_string.html" class="button" target="_blank">Generate KML from array of GPS coords</a>
+        <a href="dms_to_dd_2.html" class="button" target="_blank">Convert GPS lat long: DMS to DD</a>
+    </div>
+</body>
+</html>

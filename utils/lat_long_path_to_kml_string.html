@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate KML from array of GPS points</title>
+    <style>
+        input[type="text"] {
+            width: 1000px;
+        }
+
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            /* text-align: center; */
+            width: 90%;
+            /* max-width: 400px; */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function generateKML() {
+            var pointsStr = document.getElementById('pointsInput').value.trim();
+            var pointsArr = pointsStr.match(/\(([^)]+)\)/g);
+
+            if (pointsArr.length < 2) {
+                alert('Please enter at least 2 points with latitude and longitude coordinates in the correct format.');
+                return;
+            }
+
+            var points = [];
+            pointsArr.forEach(function(pointStr) {
+                var coords = pointStr.replace(/[()]/g, '').split(',').map(parseFloat);
+                points.push({ lat: coords[0], lng: coords[1] });
+            });
+
+            var kml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<kml xmlns="http://www.opengis.net/kml/2.2">' +
+                '<Document>' +
+                '<Placemark>' +
+                '<LineString>' +
+                '<coordinates>';
+
+            for (var i = 0; i < points.length; i++) {
+                kml += points[i].lng + ',' + points[i].lat + ' ';
+            }
+
+            kml += '</coordinates>' +
+                '</LineString>' +
+                '</Placemark>' +
+                '</Document>' +
+                '</kml>';
+
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(kml));
+            element.setAttribute('download', 'points.kml');
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+    <h1>Convert Points to KML</h1>
+    <p>Enter the latitude and longitude for each point in the format '(Lat, Long), (Lat, Long), ...':</p>
+    <div>
+        <label for="pointsInput">Points:</label>
+        <input type="text" id="pointsInput" placeholder="(31.615215, -106.209691), (31.614978, -106.210101), (31.616074, -106.210947), (31.616311, -106.21053700000002)">
+    </div>
+    <button onclick="generateKML()">Generate KML</button>
+    </div>
+</body>
+</html>

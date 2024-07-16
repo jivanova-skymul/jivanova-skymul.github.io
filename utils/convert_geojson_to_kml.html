@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoJSON to KML Converter</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GeoJSON to KML Converter</h1>
+        <input type="file" id="geojsonInput" accept=".json, .geojson">
+        <button onclick="convertGeoJSONToKML()">Convert to KML</button>
+        <br><br>
+        <a id="downloadLink" class="hidden">Download KML</a>
+    </div>
+
+    <script>
+        function convertGeoJSONToKML() {
+            const fileInput = document.getElementById('geojsonInput');
+            const file = fileInput.files[0];
+            console.log(file.name);
+            data_name = file.name.split('.')[0]
+            if (!file) {
+                alert('Please select a GeoJSON file first.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const geojson = JSON.parse(e.target.result);
+                const kml = createKML(geojson, data_name);
+                const blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = data_name + '.kml';
+                downloadLink.click();
+            };
+            reader.readAsText(file);
+        }
+
+        function createKML(geojson, data_name=None) {
+            let kml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+            kml += `<kml xmlns="http://www.opengis.net/kml/2.2">\n`;
+            kml += `<Document>\n`;
+            if (data_name) {
+                kml += `<name>` + data_name + `</name>\n`;
+            }
+            kml += `<Folder><name>Photos</name>\n`;
+
+            for (const feature of geojson.features) {
+                kml += `<Placemark>\n`;
+
+                if (feature.geometry && feature.geometry.coordinates) {
+                    const coordinates = feature.geometry.coordinates;
+                    if (feature.geometry.type === 'Point') {
+                        if (feature.properties.Photo) {
+                            kml += `<name>${feature.properties.Photo}</name>\n`;
+                        }
+                        kml += `<Point>\n`;
+                        /* kml += `<altitudeMode>absolute</altitudeMode>\n`; */
+                        kml += `<coordinates>${coordinates[0]},${coordinates[1]},${coordinates[2]}</coordinates>\n`;
+                        kml += `</Point>\n`;
+                    }
+                    // Add support for more geometry types as needed
+                }
+
+                kml += `</Placemark>\n`;
+            }
+
+            kml += `</Folder>\n`;
+
+
+            
+            // kml += `<Folder><name>Path</name>\n`;
+            kml += `<Placemark>\n`;
+            kml += `<name>Path</name>\n`;
+            kml += `<LineString>\n`;
+            kml += `<coordinates>` + geojson.features.map(feature => `${feature.geometry.coordinates[0]},${feature.geometry.coordinates[1]},${feature.geometry.coordinates[2]}`).join(' ') + `</coordinates>\n`;
+
+            kml += `</LineString>\n`;
+            kml += `</Placemark>\n`;
+            // kml += `</Folder>\n`;
+
+            kml += `</Document>\n`;
+            kml += `</kml>\n`;
+
+            return kml;
+        }
+    </script>
+</body>
+</html>
