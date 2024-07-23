@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Slider with Tabs</title>
+    <link rel="stylesheet" href="test_styles_2.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="button-container" onclick="showTab('tab1')">
+            <button id="button-tab1" class="circle active-circle"></button>
+            <span class="button-text">July 2</span>
+        </div>
+        <div class="button-container" onclick="showTab('tab2')">
+            <button id="button-tab2" class="circle"></button>
+            <span class="button-text">June 18</span>
+        </div>
+        <div class="button-container" onclick="showTab('tab3')">
+            <button id="button-tab3" class="circle"></button>
+            <span class="button-text">June 17</span>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div id="tab1" class="tab-content active">
+            <h2>Tab 1 Content</h2>
+            <p>This is the content for Tab 1.</p>
+        </div>
+        <div id="tab2" class="tab-content">
+            <h2>Tab 2 Content</h2>
+            <p>This is the content for Tab 2.</p>
+        </div>
+        <div id="tab3" class="tab-content">
+            <h2>Tab 3 Content</h2>
+            <p>This is the content for Tab 3.</p>
+        </div>
+    </div>
+
+
+    
+    <script src="script.js"></script>
+
+    <!-- <script>
+        function showTab(tabId) {
+            var tabs = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+
+            var buttons = document.getElementsByClassName("circle");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active-circle");
+            }
+            document.getElementById("button-" + tabId).classList.add("active-circle");
+        }
+    </script> -->
+</body>
+</html>

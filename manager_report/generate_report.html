@@ -15,84 +15,114 @@
         <button type="submit">Load</button>
     </form>
     <br>
+
     <form id="reportForm">
-        <!-- <div class="form-top"> -->
-            <!-- <div class="column-1"> -->
-                <label for="scan_date">Scan Date:</label>
-                <input type="date" id="scan_date" name="scan_date" value="2024-07-18" required><br>
+        <label for="scan_date" class="labelReportHeading">Scan Date:</label>
+        <input type="date" id="scan_date" name="scan_date" value="2024-07-18" required><br> <!-- value="2024-07-18"-->
 
-                <label for="company">Company:</label>
-                <input type="text" id="company" name="company" value="VEMAC" required><br>
+        <label for="company" class="labelReportHeading">Company:</label>
+        <input type="text" id="company" name="company" value="VEMAC" required><br>
 
-                <label for="worksite">Worksite:</label>
-                <input type="text" id="worksite" name="worksite" value="El Paso Eastwind" required><br>
+        <label for="worksite" class="labelReportHeading">Worksite:</label>
+        <input type="text" id="worksite" name="worksite" value="El Paso Eastwind" required><br>
 
-                <label for="pix4dcloudlink">Pix4D Cloud Link:</label>
-                <input type="url" id="pix4dcloudlink" name="pix4dcloudlink" value="https://..." required><br>
+        <label for="pix4dcloudlink" class="labelReportHeading">Pix4D Cloud Link:</label>
+        <input type="url" id="pix4dcloudlink" name="pix4dcloudlink" value="https://..." required><br>
 
-                <label for="screenshot">Screenshot Filename:</label>
-                <input type="text" id="screenshot" name="screenshot" value="screenshot.png" required><br>
+        <label for="screenshot" class="labelReportHeading">Screenshot Filename:</label>
+        <input type="text" id="screenshot" name="screenshot" value="screenshot.png" required><br>
 
-                <label for="building">Building:</label>
-                <input type="text" id="building" name="building" value="1" required><br>
-            <!-- </div> -->
+        <label for="building" class="labelReportHeading">Building:</label>
+        <input type="text" id="building" name="building" value="1" required><br>
+        <br>
 
-            <!-- <div class="column-2">
-            <form id="previousReportForm">
-                <h3>Load from the prior report</h3>
-                <input type="file" id="previousReportFile" accept=".json">
-                <button type="submit">Load</button>
-            </form>
-            </div> -->
-        <!-- </div> -->
 
-            <br>
 
         <hr class="horizontal-line">
-
         <h2><input type="checkbox" name="addSpotFootingsSection" id="addSpotFootingsSection" checked> Foundation Spot Footings</h2>
-        <!-- <label for="addFoundationSpotFootingsSection">Add Foundation Spot Footings Section:</label>
-        <input type="checkbox" name="addFoundationSpotFootingsSection" checked><br> -->
+        <label for="spotFootingRowSize">Number of columns:</label>
+        <input type="text" name="spotFootingRowSize" id="spotFootingRowSize" readonly="readonly" value="5"> <br>
+        <label for="spotFootingColumnSize">Number of rows:</label>
+        <input type="text" name="spotFootingColumnSize"  id="spotFootingColumnSize" readonly="readonly" value="16">
 
         <div id="spotFootingsSection" class="section">
-            <div class="spotFooting">
-                <h3>Spot Footing 1</h3>
+            <!-- <div class="spotFootingsRow">
+                <div class="spotFootingFirst">
+                    <spotFootingNumber> </spotFootingNumber><br>
+                    <label class="labelSpotFooting" for="spotFooting_trench">Trench:</label><br>
+                    <label class="labelSpotFooting" for="spotFooting_rebar">Rebar:</label><br>
+                    <label class="labelSpotFooting" for="spotFooting_pour">Pour:</label><br>
+                </div>
+                <div class="spotFooting">
+                    <spotFootingNumber>1</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench" checked><br>
+                    <input type="checkbox" name="spotFooting_rebar" checked><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div>
+                <div class="spotFooting">
+                    <spotFootingNumber>2</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench"><br>
+                    <input type="checkbox" name="spotFooting_rebar"><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div>
+                <div class="spotFooting">
+                    <spotFootingNumber>3</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench"><br>
+                    <input type="checkbox" name="spotFooting_rebar"><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div>
+                <div class="spotFooting">
+                    <spotFootingNumber>4</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench" ><br>
+                    <input type="checkbox" name="spotFooting_rebar"><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div>
+                <div class="spotFooting">
+                    <spotFootingNumber>5</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench" ><br>
+                    <input type="checkbox" name="spotFooting_rebar" ><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div> -->
 
-                <label>Trench:</label>
-                <input type="checkbox" name="spotFooting_trench" checked><br>
+                <!-- <div class="spotFooting">
+                    <spotFootingNumber>6</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench" ><br>
+                    <input type="checkbox" name="spotFooting_rebar" ><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div>
+                <div class="spotFooting">
+                    <spotFootingNumber>7</spotFootingNumber><br>
+                    <input type="checkbox" name="spotFooting_trench"><br>
+                    <input type="checkbox" name="spotFooting_rebar"><br>
+                    <input type="checkbox" name="spotFooting_pour"><br>
+                </div> -->
+            <!-- </div> -->
 
-                <label>Rebar:</label>
-                <input type="checkbox" name="spotFooting_rebar" checked><br>
-
-                <label>Pour:</label>
-                <input type="checkbox" name="spotFooting_pour"><br>
-            </div>
         </div>
         <div class="section-buttons">
-            <button type="button" onclick="addSpotFooting()">Add Spot Footing</button>
+            <!-- <button type="button" onclick="addSpotFooting()">Add Spot Footing</button> -->
+            <button type="button" onclick="addSpotFootingRow()">Add Spot Footing Row</button>
         </div>
 
 
         <hr class="horizontal-line">
         <h2> <input type="checkbox" name="addPoursSection" id="addPoursSection" checked> Slab-on-Grade Pours</h2>
-        <!-- <label for="addPoursSection">Add Slap-on-Grade Pours Section:</label>
-        <input type="checkbox" name="addPoursSection" checked><br> -->
 
         <div id="poursSection" class="section">
             <div class="pour">
                 <h3>Pour 1</h3>
 
                 <label>Grade:</label>
-                <input type="text" name="pour_grade" value="95%" required><br>
+                <input type="text" class="percent" name="pour_grade" value="95%" required><br>
 
                 <label>Form:</label>
-                <input type="text" name="pour_form" value="90%" required><br>
+                <input type="text" class="percent" name="pour_form" value="90%" required><br>
 
                 <label>Rebars:</label>
-                <input type="text" name="pour_rebars" value="20%" required><br>
+                <input type="text" class="percent" name="pour_rebars" value="20%" required><br>
 
                 <label>Pour:</label>
-                <input type="text" name="pour_pour" value="0%" required><br>
+                <input type="text" class="percent" name="pour_pour" value="0%" required><br>
             </div>
         </div>
         <div class="section-buttons">
@@ -100,41 +130,60 @@
         </div>
 
 
-        <hr class="horizontal-line">
-        <h2> <input type="checkbox" name="addPanelPoursSection" id="addPanelPoursSection" checked> Panel Pours</h2>
-        <!-- <label for="addPanelPoursSection">Add Panel Pours Section:</label>
-        <input type="checkbox" name="addPanelPoursSection" checked><br> -->
 
-        <div id="panelPoursSection" class="section">
+        <hr class="horizontal-line">
+        <h2> <input type="checkbox" name="addPanelSection" id="addPanelSection" checked> Panel Pours</h2>
+        <label for="panelRowNSize">Number of panel on North side:</label>
+        <input type="text" name="panelRowNSize" id="panelRowNSize" readonly="readonly" value="4"> <br>
+        <label for="panelRowESize">Number of panel on East side:</label>
+        <input type="text" name="panelRowESize" id="panelRowESize" readonly="readonly" value="7"> <br>
+        <label for="panelRowSSize">Number of panel on South side:</label>
+        <input type="text" name="panelRowSSize" id="panelRowSSize" readonly="readonly" value="3"> <br>
+        <label for="panelRowWSize">Number of panel on West side:</label>
+        <input type="text" name="panelRowWSize" id="panelRowWSize" readonly="readonly" value="6"> <br>
+
+        <div id="panelSection" class="section">
             <label for="panelBookReady">Panel Book Ready:</label>
             <input type="checkbox" name="panelBookReady" id="panelBookReady" ><br>
 
-            <div class="panelPour">
-                <h3>Panel Pour 1</h3>
+            <div class="labelPanelName">NORTH</div>
+            <div class="panelRow" id="panelRowN"></div>
+            <div class="labelPanelName">EAST</div>
+            <div class="panelRow" id="panelRowE"></div>
+            <div class="labelPanelName">SOUTH</div>
+            <div class="panelRow" id="panelRowS"></div>
+            <div class="labelPanelName">WEST</div>
+            <div class="panelRow" id="panelRowW"></div>
+
+            <!-- <div class="panel">
+                <h3>Panel 1</h3>
+                <label>Panel code:</label>
+                <input type="text" name="panel_code" class="panelCode" value=1><br>
 
                 <label>Form:</label>
-                <input type="checkbox" name="panelPour_form" checked><br>
+                <input type="checkbox" name="panel_form"><br>
 
                 <label>Reveal:</label>
-                <input type="checkbox" name="panelPour_reveal" checked><br>
+                <input type="checkbox" name="panel_reveal"><br>
 
                 <label>Embeds:</label>
-                <input type="checkbox" name="panelPour_embeds" checked><br>
+                <input type="checkbox" name="panel_embeds"><br>
 
                 <label>Rebars:</label>
-                <input type="checkbox" name="panelPour_rebars" checked><br>
+                <input type="checkbox" name="panel_rebars"><br>
 
                 <label>Inserts:</label>
-                <input type="checkbox" name="panelPour_inserts" checked><br>
+                <input type="checkbox" name="panel_inserts"><br>
 
                 <label>Pour:</label>
-                <input type="checkbox" name="panelPour_pour" checked><br>
-            </div>
+                <input type="checkbox" name="panel_pour"><br>
+            </div> -->
         </div>
-        <div class="section-buttons">
-            <button type="button" onclick="addPanelPour()">Add Panel Pour</button>
-        </div>
+        <!-- <div class="section-buttons">
+            <button type="button" onclick="addPanel()">Add Panel Pour</button>
+        </div> -->
 
+        
         <button type="button" onclick="generateAndDownloadJSON()">Generate JSON report</button>
 
         <!-- <div class="section-buttons">
