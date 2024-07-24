@@ -220,6 +220,19 @@ button:hover {
     background: #3a7bd6;
 }
 
+.button {
+    padding: 10px 20px;
+    background: #5a9bd6;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: #3a7bd6;
+}
 
 .section {
     margin-bottom: 20px;

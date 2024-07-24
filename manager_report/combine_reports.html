@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine manager report JSON files Files</title>
+    <link rel="stylesheet" href="styles/combine_reports.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Combine JSON Files</h1>
+        <input type="file" id="fileInput" multiple>
+        <button onclick="combineFiles()">Combine Files</button>
+        <a id="downloadLink" style="display: none;">Download Combined JSON</a>
+        <div id="warnings"></div>
+    </div>
+
+    
+    <script src="scripts/combine_reports.js"></script>
+</body>
+</html>
