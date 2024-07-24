@@ -159,7 +159,30 @@ function addPour() {
             <input type="text" class="percent" name="pour_pour" value="0%" required><br>
         </div>
     `;
+
     poursSection.insertAdjacentHTML('beforeend', newPour);
+
+    // console.log('pour section last element child:');
+    // console.log(poursSection.lastElementChild);
+
+    const percentFields = poursSection.lastElementChild.querySelectorAll('.percent');
+    // console.log('Percent fields:');
+    // console.log(percentFields);
+    percentFields.forEach(input => {
+        input.addEventListener('input', () => {
+            let value = input.value;
+
+            value = ensurePercent(value);
+            input.value = value;
+        });
+
+        input.addEventListener('blur', () => {
+            let value = input.value;
+
+            value = ensurePercent(value);
+            input.value = value;
+        });
+    });
 }
 
 function ensurePercent(value) {
@@ -196,7 +219,25 @@ function addPourWithData(pour_grade, pour_form, pour_rebars, pour_pour) {
             <input type="text" class="percent" name="pour_pour" value="` + ensurePercent(pour_pour) + `" required><br>
         </div>
     `;
+
     poursSection.insertAdjacentHTML('beforeend', newPour);
+
+    const percentFields = poursSection.lastElementChild.querySelectorAll('.percent');
+    percentFields.forEach(input => {
+        input.addEventListener('input', () => {
+            let value = input.value;
+
+            value = ensurePercent(value);
+            input.value = value;
+        });
+
+        input.addEventListener('blur', () => {
+            let value = input.value;
+
+            value = ensurePercent(value);
+            input.value = value;
+        });
+    });
 }
 
 // Panel pours
@@ -648,7 +689,45 @@ function populateForm(fileData) {
 }
 
 
-////////////////// Listeners
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Adding sections
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Add spot footings row
+const spotFootingColumnSize = document.getElementById('spotFootingColumnSize').value;
+const spotFootingSection = document.getElementById('spotFootingsSection');
+const spotFootingRowsCount = spotFootingSection.getElementsByClassName('spotFootingsRow').length;
+
+for(let i = 0; i < spotFootingColumnSize - spotFootingRowsCount; i++) {
+    addSpotFootingRow();
+}
+
+// Add pours
+const poursSize = document.getElementById('poursSize').value;
+const poursSection = document.getElementById('poursSection');
+const poursCount = spotFootingSection.getElementsByClassName('pour').length;
+
+for(let i = 0; i < poursSize-1 - poursCount; i++) {
+    addPour();
+}
+
+// Add panel rows
+const panelRows = document.getElementsByClassName('panelRow');
+console.log('Found panel rowss: ');
+console.log(panelRows);
+
+const panelRowN = document.getElementById('panelRowN');
+console.log('Found panel row: ');
+console.log(panelRowN);
+
+addPanelRow(document.getElementById('panelRowN')); //, 'NORTH');
+addPanelRow(document.getElementById('panelRowE')); //, 'EAST');
+addPanelRow(document.getElementById('panelRowS')); //, 'SOUTH');
+addPanelRow(document.getElementById('panelRowW')); //, 'WEST');
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Listeners
+//////////////////////////////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', (event) => {
     const percentageInputs = document.querySelectorAll('.percent');
 
@@ -704,31 +783,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
 // scanDateField.value = todayFormatted;
 // console.log('Today is ' + todayFormatted);
 
-
-// Add spot footings row
-const spotFootingColumnSize = document.getElementById('spotFootingColumnSize').value;
-const spotFootingSection = document.getElementById('spotFootingsSection');
-const spotFootingRowsCount = spotFootingSection.getElementsByClassName('spotFootingsRow').length;
-
-for(let i = 0; i < spotFootingColumnSize - spotFootingRowsCount; i++){
-    addSpotFootingRow();
-}
-
-// Add panel rows
-const panelRows = document.getElementsByClassName('panelRow');
-console.log('Found panel rowss: ');
-console.log(panelRows);
-
-const panelRowN = document.getElementById('panelRowN');
-console.log('Found panel row: ');
-console.log(panelRowN);
-
-addPanelRow(document.getElementById('panelRowN')); //, 'NORTH');
-addPanelRow(document.getElementById('panelRowE')); //, 'EAST');
-addPanelRow(document.getElementById('panelRowS')); //, 'SOUTH');
-addPanelRow(document.getElementById('panelRowW')); //, 'WEST');
-
-// panelRows.forEach((panelRow, index) => {
-//     console.log('Adding panel row ' + panelRow);
-//     addPanelRow(panelRow);
-// });

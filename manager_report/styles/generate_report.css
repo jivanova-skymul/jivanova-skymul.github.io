@@ -185,14 +185,6 @@ label {
     text-align: left;
 }
 
-.panelCode {
-    width: 1.8vw;
-    height: 1vh;
-    text-align: center;
-    font-size: smaller;
-    margin: 0;
-    padding: 4px;
-}
 
 
 input[type="text"],
@@ -245,3 +237,13 @@ button:hover {
     margin: 20px 0;
 }
 
+
+.panelCode {
+    width: 1.8vw;
+    height: 1vh;
+    text-align: center;
+    font-size: smaller;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 4px;
+}
