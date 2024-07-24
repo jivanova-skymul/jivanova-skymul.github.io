@@ -499,9 +499,17 @@ function generateAndDownloadJSON() {
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
+
+    // Date
+    const scanDateValue = document.getElementById('scan_date').value;
+    scanDate = new Date(scanDateValue);
+    // console.log(scanDate);
+    formattedScanDate = scanDate.toJSON().slice(0, 10);
+    console.log('Scan date is ' + formattedScanDate);
+
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'manager_report.json';
+    link.download = 'manager_report_' + formattedScanDate + '.json';
     link.click();
 }
 
@@ -767,19 +775,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // });
 });
 
-// Today's date for scan report
-// const scanDateField = document.getElementById('scan_date');
-// const today = new Date()
-// const dd = today.getDate(); 
-// const mm = today.getMonth() + 1;
-// // if (dd.length == 1) {
-// //     dd = '0' + dd;
-// // }
-// // if (string(mm).length == 1) {
-// //     mm = '0' + mm;
-// // }
-// // const yyyy = today.getFullYear(); 
-// const todayFormatted = today.format('YYYY-MM-DD'); //yyyy + "-" + mm + "-" + dd; 
-// scanDateField.value = todayFormatted;
-// console.log('Today is ' + todayFormatted);
 
+// Today's date for the scan date
+const scanDateField = document.getElementById('scan_date');
+const today = new Date();
+scanDateField.value = today.toJSON().slice(0, 10);
