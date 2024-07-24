@@ -493,12 +493,12 @@ function generateAndDownloadJSON() {
     };
 
     // For all buildings
-    
-
     const json = JSON.stringify({ reports: [report] }, null, 4);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
+    // Building number
+    const buildingValue = document.getElementById('building').value;
 
     // Date
     const scanDateValue = document.getElementById('scan_date').value;
@@ -509,7 +509,7 @@ function generateAndDownloadJSON() {
 
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'manager_report_' + formattedScanDate + '.json';
+    link.download = 'manager_report_bld' + buildingValue + '_' + formattedScanDate + '.json';
     link.click();
 }
 
