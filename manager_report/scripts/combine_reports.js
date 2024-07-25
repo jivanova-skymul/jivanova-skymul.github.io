@@ -1,10 +1,19 @@
-function sortReportsByDate(reports) {
-    // console.log(reports);
-    reports.forEach(a => {
-        console.log("date:" + new Date(a.scan_date));
-    });
-    // console.log(reports.sort((a, b) => new Date(b.scan_date) - new Date(a.scan_date)));
-    return reports.sort((a, b) => new Date(b.scan_date) - new Date(a.scan_date));
+// function sortReportsByDate(reports) {
+//     // console.log(reports);
+//     reports.forEach(a => {
+//         console.log("date:" + new Date(a.scan_date));
+//     });
+//     // console.log(reports.sort((a, b) => new Date(b.scan_date) - new Date(a.scan_date)));
+//     return reports.sort((a, b) => new Date(b.scan_date) - new Date(a.scan_date));
+// }
+
+const sortByDate = (scans) => {
+    console.log(scans);
+    // scans.forEach(a => {
+    //     console.log("date:" + new Date(a.scan_date));
+    // });
+    // console.log(scans.sort((a, b) => new Date(b.scan_date) - new Date(a.scan_date)));
+    return scans.sort((a, b) => - (new Date(b.scan_date) - new Date(a.scan_date)));
 }
 
 function combineFiles() {
@@ -16,6 +25,7 @@ function combineFiles() {
     }
 
     let combinedData = {};
+    combinedData.version = 0.1;
     combinedData.reports = [];
     let warnings = [];
 
@@ -49,27 +59,16 @@ function combineFiles() {
         }
     }
 
-    console.log(combinedData);
-    // combinedData.reports.entries().all
-    // console.log(el);
-    // // combinedData = sortReportsByDate(combinedData);
-    // combinedData = { reports: combinedData.reports };
-    // combinedData.reports = sortReportsByDate(combinedData.reports);
-    // console.log(combinedData);
-
     Promise.all(filePromises).then(() => {
+        combinedData.reports.sort((a, b) => {
+            return -(new Date(a.scan_date) - new Date(b.scan_date));
+        });
+        console.log('Sorted reports:');
+        console.log(combinedData.reports);
+
         const combinedJson = JSON.stringify(combinedData, null, 4);
         const blob = new Blob([combinedJson], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
-
-        // const downloadLink = document.getElementById('downloadLink');
-        // downloadLink.href = url;
-        // downloadLink.download = 'manager_report_combined.json';
-        // downloadLink.style.display = 'block';
-        // downloadLink.textContent = 'Download Combined JSON';
-
-        // const warningsDiv = document.getElementById('warnings');
-        // warningsDiv.innerHTML = warnings.map(w => `<div class="warning">${w}</div>`).join('');
 
         const a = document.createElement('a');
         a.href = url;
