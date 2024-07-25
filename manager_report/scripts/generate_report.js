@@ -468,10 +468,11 @@ function generateAndDownloadJSON() {
         company: form.company.value,
         worksite: form.worksite.value,
         pix4dcloudlink: form.pix4dcloudlink.value,
-        screenshot: form.screenshot.value,
+        // screenshot: form.screenshot.value,
         buildings: [
             {
                 building: form.building.value, //"1",
+                screenshot: form.screenshot.value,
                 works: buildingWorks
                 // works: [
                 //     {
@@ -493,7 +494,7 @@ function generateAndDownloadJSON() {
     };
 
     // For all buildings
-    const json = JSON.stringify({ reports: [report] }, null, 4);
+    const json = JSON.stringify({ version: 0.1, reports: [report] }, null, 4);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
@@ -553,20 +554,32 @@ function doneToBool(value) {
 }
 
 function populateForm(fileData) {
-    report = fileData.reports[0];
+    const report = fileData.reports[0];
     document.getElementById('scan_date').value = report.scan_date || '';
     document.getElementById('company').value = report.company || '';
     document.getElementById('worksite').value = report.worksite || '';
     document.getElementById('pix4dcloudlink').value = report.pix4dcloudlink || '';
-    document.getElementById('screenshot').value = report.screenshot || '';
 
     // ideally go over the array of things
+    let reportVersion = 0.0;
+    if (fileData.hasOwnProperty('version')) {
+        reportVersion = fileData.version;
+        console.log('The file has version field! Version is ', reportVersion);
+    } else {
+        console.log('The file does not have version field! Version is ', reportVersion);
+    }
+    
     report.buildings.forEach((building, index) => {
         console.log(building);
     })
 
     // but for now only only one building
     building = report.buildings[0];
+    if (reportVersion > 0) {
+        document.getElementById('screenshot').value = building.screenshot || '';
+    } else {
+        document.getElementById('screenshot').value = report.screenshot || '';
+    }
 
     document.getElementById('building').value = building.building || '';
     buildingWorks = building.works;
