@@ -253,8 +253,8 @@ function addPanel() {
             <label>Form:</label>
             <input type="checkbox" name="panel_form"><br>
 
-            <label>Reveal:</label>
-            <input type="checkbox" name="panel_reveal"><br>
+            // <label>Reveal:</label>
+            // <input type="checkbox" name="panel_reveal"><br>
 
             <label>Embeds:</label>
             <input type="checkbox" name="panel_embeds"><br>
@@ -262,8 +262,8 @@ function addPanel() {
             <label>Rebars:</label>
             <input type="checkbox" name="panel_rebars"><br>
 
-            <label>Inserts:</label>
-            <input type="checkbox" name="panel_inserts"><br>
+            // <label>Inserts:</label>
+            // <input type="checkbox" name="panel_inserts"><br>
 
             <label>Pour:</label>
             <input type="checkbox" name="panel_pour"><br>
