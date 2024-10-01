@@ -18,19 +18,19 @@
 
     <form id="reportForm">
         <label for="scan_date" class="labelReportHeading">Scan Date:</label>
-        <input type="date" id="scan_date" name="scan_date" value="2024-07-18" required><br> <!-- value="2024-07-18"-->
+        <input type="date" id="scan_date" name="scan_date" value="2024-09-24" required><br> <!-- value="2024-07-18"-->
 
         <label for="company" class="labelReportHeading">Company:</label>
-        <input type="text" id="company" name="company" value="VEMAC" required><br>
+        <input type="text" id="company" name="company" value="MARTIN CONCRETE" required><br>
 
         <label for="worksite" class="labelReportHeading">Worksite:</label>
-        <input type="text" id="worksite" name="worksite" value="El Paso Eastwind" required><br>
+        <input type="text" id="worksite" name="worksite" value="Cubes" required><br>
 
         <label for="pix4dcloudlink" class="labelReportHeading">Pix4D Cloud Link:</label>
         <input type="url" id="pix4dcloudlink" name="pix4dcloudlink" value="https://..." required><br>
 
         <label for="screenshot" class="labelReportHeading">Screenshot Filename:</label>
-        <input type="text" id="screenshot" name="screenshot" value="screenshot.png" required><br>
+        <input type="text" id="screenshot" name="screenshot" value="bld1/bld1_2024_09_24.png" required><br>
 
         <label for="building" class="labelReportHeading">Building:</label>
         <input type="text" id="building" name="building" value="1" required><br>
@@ -41,9 +41,9 @@
         <hr class="horizontal-line">
         <h2><input type="checkbox" name="addSpotFootingsSection" id="addSpotFootingsSection" checked> Foundation Spot Footings</h2>
         <label for="spotFootingRowSize">Number of columns:</label>
-        <input type="text" name="spotFootingRowSize" id="spotFootingRowSize" readonly="readonly" value="5"> <br>
+        <input type="text" name="spotFootingRowSize" id="spotFootingRowSize" readonly="readonly" value="7"> <br>
         <label for="spotFootingColumnSize">Number of rows:</label>
-        <input type="text" name="spotFootingColumnSize"  id="spotFootingColumnSize" readonly="readonly" value="16">
+        <input type="text" name="spotFootingColumnSize"  id="spotFootingColumnSize" readonly="readonly" value="21">
 
         <div id="spotFootingsSection" class="section">
             <!-- <div class="spotFootingsRow">
@@ -108,17 +108,17 @@
         <hr class="horizontal-line">
         <h2> <input type="checkbox" name="addPoursSection" id="addPoursSection" checked> Slab-on-Grade Pours</h2>
         <label for="poursSize">Number of pours:</label>
-        <input type="text" name="poursSize" id="poursSize" readonly="readonly" value="6"> <br>
+        <input type="text" name="poursSize" id="poursSize" readonly="readonly" value="12"> <br>
 
         <div id="poursSection" class="section">
             <div class="pour">
                 <h3>Pour 1</h3>
 
                 <label>Grade:</label>
-                <input type="text" class="percent" name="pour_grade" value="95%" required><br>
+                <input type="text" class="percent" name="pour_grade" value="0%" required><br>
 
                 <label>Form:</label>
-                <input type="text" class="percent" name="pour_form" value="90%" required><br>
+                <input type="text" class="percent" name="pour_form" value="0%" required><br>
 
                 <label>Rebars:</label>
                 <input type="text" class="percent" name="pour_rebars" value="0%" required><br>
@@ -136,13 +136,13 @@
         <hr class="horizontal-line">
         <h2> <input type="checkbox" name="addPanelSection" id="addPanelSection" checked> Panel Pours</h2>
         <label for="panelRowNSize">Number of panel on North side:</label>
-        <input type="text" name="panelRowNSize" id="panelRowNSize" readonly="readonly" value="35"> <br>
+        <input type="text" name="panelRowNSize" id="panelRowNSize" readonly="readonly" value="48"> <br>
         <label for="panelRowESize">Number of panel on East side:</label>
-        <input type="text" name="panelRowESize" id="panelRowESize" readonly="readonly" value="10"> <br>
+        <input type="text" name="panelRowESize" id="panelRowESize" readonly="readonly" value="21"> <br>
         <label for="panelRowSSize">Number of panel on South side:</label>
-        <input type="text" name="panelRowSSize" id="panelRowSSize" readonly="readonly" value="36"> <br>
+        <input type="text" name="panelRowSSize" id="panelRowSSize" readonly="readonly" value="45"> <br>
         <label for="panelRowWSize">Number of panel on West side:</label>
-        <input type="text" name="panelRowWSize" id="panelRowWSize" readonly="readonly" value="8"> <br>
+        <input type="text" name="panelRowWSize" id="panelRowWSize" readonly="readonly" value="21"> <br>
 
         <div id="panelSection" class="section">
             <label for="panelBookReady">Panel Book Ready:</label>
