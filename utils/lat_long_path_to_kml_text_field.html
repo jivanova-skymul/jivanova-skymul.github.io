@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate KML from array of GPS points</title>
+    <style>
+        input[type="text"] {
+            width: 1000px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 2vw;
+            width: 70%;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        textarea {
+            width: 50%;
+            height: 16vh;
+            margin-top: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <script>
+        function generateKML(points, withCode=false) {
+            var filename = document.getElementById('filename').value.trim();
+
+            var kml = '<?xml version="1.0" encoding="UTF-8"?>' +
+                '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
+                '    <Document>\n' +
+                '        <name>' + filename + '</name>\n' + 
+                '        <Placemark>\n' +
+                '            <name>Path</name>\n' + 
+                '            <LineString>\n' +
+                '                <coordinates>\n                    ';
+
+            for (var i = 0; i < points.length; i++) {
+                kml += points[i].lng + ',' + points[i].lat + ' ';
+            }
+
+            kml += '\n                </coordinates>\n' +
+                    '            </LineString>\n' +
+                    '        </Placemark>\n';
+
+
+
+
+            kml +=         '        <Folder>\n' +
+                    '            <name>Markers</name>\n';
+            
+                for (var i = 0; i < points.length; i++) {
+                    kml += '                <Placemark>\n';
+                    if (withCode) {
+                        kml += '                    <name>' + points[i].code + '</name>\n';
+                    }
+                    
+                    kml += '<Point><coordinates>' + points[i].lng + ',' + points[i].lat + '</coordinates></Point>\n' +
+                    '                </Placemark>\n';
+                }
+            
+
+            kml += '        </Folder>\n' +
+            '    </Document>\n' +
+                '</kml>';
+
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(kml));
+            element.setAttribute('download', filename + '.kml');
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        function parseDDCoords() {
+            var pointsStr = document.getElementById('pointsInputDD').value.trim();
+            // var pointsArr = pointsStr.match(/\(([^)]+)\)/g);
+            var pointsArr = pointsStr.split('\n').filter(line => line.trim() !== '');
+
+            if (pointsArr.length < 2) {
+                alert('Please enter at least 2 points with latitude and longitude coordinates in the correct format.');
+                return;
+            }
+
+            var points = [];
+            var withCode = false;
+            pointsArr.forEach(function(pointStr) {
+                var coords = pointStr.replace(/[()]/g, '').split(',');
+                if (coords.length > 2) {
+                    points.push({ lat: parseFloat(coords[0]), lng: parseFloat(coords[1]), code: coords[2] });
+                    withCode = true;
+                } else {
+                    points.push({ lat: parseFloat(coords[0]), lng: parseFloat(coords[1]) });
+                }
+            });
+
+            generateKML(points, withCode=withCode);
+        }
+
+
+
+        function parseDMS(input) {
+            const parts = input.match(/([NSEW])(\d+),(\d+),([\d.]+)/);
+
+            if (parts) {
+                const direction = parts[1];
+                const degrees = parseFloat(parts[2]);
+                const minutes = parseFloat(parts[3]);
+                const seconds = parseFloat(parts[4]);
+                return { degrees, minutes, seconds, direction };
+            } else {
+                return null;
+            }
+        }
+
+        function dmsToDecimal(degrees, minutes, seconds, direction) {
+            let decimal = degrees + (minutes / 60) + (seconds / 3600);
+            if (direction === 'S' || direction === 'W') {
+                decimal *= -1;
+            }
+            return decimal;
+        }
+
+        function convertToDD2DMS(points) {
+            var points_converted = []
+            points.forEach(function(point) {
+                const latDMS = parseDMS(point['lat']);
+                const lonDMS = parseDMS(point['lng']);
+                points_converted.push({ lat: dmsToDecimal(latDMS.degrees, latDMS.minutes, latDMS.seconds, latDMS.direction), lng: dmsToDecimal(lonDMS.degrees, lonDMS.minutes, lonDMS.seconds, lonDMS.direction), code:point['code'] })
+            });
+
+            return points_converted;
+        }
+
+        function parseDMSCoords() {
+            var pointsStr = document.getElementById('pointsInputDMS').value.trim();
+            //var pointsArr = pointsStr.match(/\(([^)]+)\)/g);
+            var pointsArr = pointsStr.split('\n').filter(line => line.trim() !== '');
+
+            if (pointsArr.length < 2) {
+                alert('Please enter at least 2 points with latitude and longitude coordinates in the correct format.');
+                return;
+            }
+
+            var points = [];
+            var withCode = false;
+            pointsArr.forEach(function(pointStr) {
+                // var coords = pointStr.replace(/[()]/g, '').split(';');
+                //points.push({ lat: coords[0], lng: coords[1] });
+                var coords = pointStr.split(';');
+                if (coords.length > 2) {
+                    points.push({ lat: coords[0].trim(), lng: coords[1].trim(), code: coords[2].trim() });
+                    withCode = true;
+                } else {
+                    points.push({ lat: coords[0].trim(), lng: coords[1].trim() });
+                }
+            });
+
+            console.log('Received array:', points);
+            var points_converted = convertToDD2DMS(points);
+
+            generateKML(points_converted, withCode=withCode);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container" >
+        <label for="filename">Filename:</label>
+        <input type="text" id="filename" value="points" placeholder="Pearl Springs Waypoints" style="width: auto">
+        
+        <br><br><br><br>
+
+        <div id="points_deg">
+        <h1>Generate KML for points (deg)</h1>
+        <p>Enter the latitude and longitude for each point in the format 'Lat, Long, Marker code (optional), Lat, Long, Marker code (optional), ...':</p>
+        <div>
+            <label for="pointsInputDD">Points:</label></br>
+            <!-- <input type="text" id="pointsInputDD" placeholder="(31.615215, -106.209691, 1x12:11), (31.614978, -106.210101, 1x12:0a), (31.616074, -106.210947, 1x12:2b), (31.616311, -106.2105370, 1x12:3c)"> -->
+            <textarea id="pointsInputDD" placeholder="31.615215, -106.209691, 1x12:11
+31.614978, -106.210101, 1x12:0a
+31.616074, -106.210947, 1x12:2b
+31.616311, -106.2105370, 1x12:3c"></textarea>
+        </div>
+        <button onclick="parseDDCoords()">Generate KML from DD coords</button>
+        </div>
+
+        <br><br><br><br>
+
+        <div id="points_dms">
+            <h1>Generate KML for points (dms)</h1>
+            <p>Enter the latitude and longitude for each point, one per line, in the format 'Lat; Long; Marker code (optional)':</p>
+            <div>
+                <label for="pointsInputDMS">Points:</label></br>
+                <!-- <input type="text" id="pointsInputDMS" value="(N31,36,50.768024; W106,12,31.760249); (N31,36,50.768024; W106,12,31.760249); (N31,36,50.768024; W106,12,31.760249); (N31,36,50.768024; W106,12,31.760249)" placeholder="(N31,36,50.768024, W106,12,31.760249), (N31,36,50.768024, W106,12,31.760249), (N31,36,50.768024, W106,12,31.760249), (N31,36,50.768024, W106,12,31.760249)"> -->
+                <textarea id="pointsInputDMS" placeholder="N31,36,50.768024; W106,12,31.760249; 1x12:11
+N31,36,50.768024; W106,12,31.760249; 1x12:0a
+N31,36,50.768024; W106,12,31.760249; 1x12:2b
+N31,36,50.768024; W106,12,31.760249; 1x12:3c"></textarea>
+            </div>
+            <button onclick="parseDMSCoords()">Generate KML from DMS coords</button>
+        </div>
+    </div>
+</body>
+</html>
