@@ -272,11 +272,14 @@ function addPanel() {
 
             <label>Pour:</label>
             <input type="checkbox" name="panel_pour"><br>
+
+            <label>Lifted:</label>
+            <input type="checkbox" name="panel_lifted"><br>
         </div>
     `;
     panelSection.insertAdjacentHTML('beforeend', newPanel);
 }
-function addPanelWithData(form, reveal, embeds, rebars, inserts, pour) {
+function addPanelWithData(form, reveal, embeds, rebars, inserts, pour, lifted) {
     const panelSection = document.getElementById('panelSection');
     const count = panelSection.getElementsByClassName('panel').length + 1;
     const newPanel = `
@@ -301,7 +304,10 @@ function addPanelWithData(form, reveal, embeds, rebars, inserts, pour) {
             <input type="checkbox" name="panel_inserts" ` + boolToCheckString(inserts) + `><br>
 
             <label>Pour:</label>
-            <input type="checkbox" name="panel_pour" ` + boolToCheckString(pour) + `
+            <input type="checkbox" name="panel_pour" ` + boolToCheckString(pour) + `><br>
+
+            <label>Lifted:</label>
+            <input type="checkbox" name="panel_lifted" ` + boolToCheckString(lifted) + `><br>
     `;
     panelSection.insertAdjacentHTML('beforeend', newPanel);
 }
@@ -331,6 +337,7 @@ function addPanelRow(panelElement) {
                     <div class="labelPanel" for="panel_rebars"><input type="checkbox" name="panel_rebars_row" id="panel_rebars_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars:</div>
                     <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
                     <div class="labelPanel" for="panel_pour"><input type="checkbox" name="panel_pour_row" id="panel_pour_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour:</div>
+                    <div class="labelPanel" for="panel_lifted"><input type="checkbox" name="panel_lifted_row" id="panel_lifted_row_${panels_row_counter}" class="checkboxPanelRowFill"> Lifted:</div>
             </div>
     `;
 
@@ -349,6 +356,7 @@ function addPanelRow(panelElement) {
                     <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
                     <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
                     <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                    <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
             </div>
         `;
     }
@@ -358,7 +366,7 @@ function addPanelRow(panelElement) {
     panelElement.insertAdjacentHTML('beforeend', newPanelRow);
 }
 
-function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, rebarss, insertss, pours) {
+function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds) {
     console.log('PanelElement: ');
     console.log(panelElement);
     console.log(panelElement.id);
@@ -379,6 +387,7 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
                     <div class="labelPanel" for="panel_rebars"><input type="checkbox" name="panel_rebars_row" id="panel_rebars_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars:</div>
                     <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
                     <div class="labelPanel" for="panel_pour"><input type="checkbox" name="panel_pour_row" id="panel_pour_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour:</div>
+                    <div class="labelPanel" for="panel_lifted"><input type="checkbox" name="panel_lifted_row" id="panel_lifted_row_${panels_row_counter}" class="checkboxPanelRowFill"> Lifted:</div>
             </div>
     `;
 
@@ -394,6 +403,7 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
                     <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}" ` + boolToCheckString(rebarss[i]) + `><br>
                     <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
                     <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}" ` + boolToCheckString(pours[i]) + `><br>
+                    <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br>
             </div>
         `;
     }
@@ -460,7 +470,8 @@ function generateAndDownloadJSON() {
             embeds: element.querySelector('[name="panel_embeds"]').checked,
             rebars: element.querySelector('[name="panel_rebars"]').checked,
             inserts: element.querySelector('[name="panel_inserts"]').checked,
-            pour: element.querySelector('[name="panel_pour"]').checked
+            pour: element.querySelector('[name="panel_pour"]').checked,
+            lifted: element.querySelector('[name="panel_lifted"]').checked
         });
     });
     if (form.addPanelSection.checked)
@@ -659,6 +670,7 @@ function populateForm(fileData) {
             let rebarss = [];
             let insertss = [];
             let pours = [];
+            let lifteds = [];
 
             let panelRowElements = [
                 document.getElementById('panelRowN'),
@@ -687,6 +699,7 @@ function populateForm(fileData) {
                 rebarss.push(panel.rebars);
                 insertss.push(panel.inserts);
                 pours.push(panel.pour);
+                lifteds.push(panel.lifted);
                 console.log('Added');
 
                 if (index > 0 && index == panelRowSizeIndex-1) {
@@ -701,7 +714,7 @@ function populateForm(fileData) {
                     console.log('rebarss: ' + rebarss);
                     console.log('insertss: ' + insertss);
                     console.log('pours: ' + pours);
-                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, forms, reveals, embedss, rebarss, insertss, pours);
+                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds);
             
                     panelCodes = [];
                     forms = [];
@@ -710,6 +723,7 @@ function populateForm(fileData) {
                     rebarss = [];
                     insertss = [];
                     pours = [];
+                    lifteds = [];
                     currentPanel += 1;
                     panelRowSizeIndex = panelRowSizeIndex + panelRowSizes[currentPanel];
                     console.log('Next index to hit for the row is ' + (panelRowSizeIndex-1));
