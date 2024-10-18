@@ -41,6 +41,9 @@ function addSpotFooting() {
 
             <label>Pour:</label>
             <input type="checkbox" name="spotFooting_pour"><br>
+
+            <label>Inspected:</label>
+            <input type="checkbox" name="spotFooting_inspected"><br>
         </div>
     `;
     spotFootingSection.insertAdjacentHTML('beforeend', newSpotFooting);
@@ -60,6 +63,7 @@ function addSpotFootingRow() {
                     <input type="checkbox" name="spotFooting_trench_row" id="spotFooting_trench_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_trench">Trench:</label><br>
                     <input type="checkbox" name="spotFooting_rebar_row" id="spotFooting_rebar_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_rebar">Rebar:</label><br>
                     <input type="checkbox" name="spotFooting_pour_row" id="spotFooting_pour_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_pour">Pour:</label><br>
+                    <input type="checkbox" name="spotFooting_inspected_row" id="spotFooting_inspected_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_pour">Inspected:</label><br>
             </div>
     `;
     
@@ -72,6 +76,7 @@ function addSpotFootingRow() {
                     <input type="checkbox" name="spotFooting_trench" id="${footings_row_counter}_spotFooting_trench_${count}"><br>
                     <input type="checkbox" name="spotFooting_rebar" id="${footings_row_counter}_spotFooting_rebar_${count}"><br>
                     <input type="checkbox" name="spotFooting_pour" id="${footings_row_counter}_spotFooting_pour_${count}"><br>
+                    <input type="checkbox" name="spotFooting_inspected" id="${footings_row_counter}_spotFooting_inspected_${count}"><br>
             </div>
         `;
     }
@@ -85,7 +90,7 @@ function addSpotFootingRow() {
     spotFootingSection.insertAdjacentHTML('beforeend', newSpotFootingRow);
 }
 
-function addSpotFootingWithData(trench, rebar, pour) {
+function addSpotFootingWithData(trench, rebar, pour, inspected) {
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
     const newSpotFooting = `
@@ -100,12 +105,15 @@ function addSpotFootingWithData(trench, rebar, pour) {
 
             <label>Pour:</label>
             <input type="checkbox" name="spotFooting_pour" ` + boolToCheckString(pour) + `><br>
+
+            <label>Pour:</label>
+            <input type="checkbox" name="spotFooting_inspected" ` + boolToCheckString(inspected) + `><br>
         </div>
     `;
     spotFootingSection.insertAdjacentHTML('beforeend', newSpotFooting);
 }
 
-function addSpotFootingRowWithData(trenches, rebares, poures) {
+function addSpotFootingRowWithData(trenches, rebars, poures, inspecteds) {
     const rowSize = document.getElementById('spotFootingRowSize').value;
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
@@ -117,6 +125,7 @@ function addSpotFootingRowWithData(trenches, rebares, poures) {
                     <input type="checkbox" name="spotFooting_trench_row" id="spotFooting_trench_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_trench">Trench:</label><br>
                     <input type="checkbox" name="spotFooting_rebar_row" id="spotFooting_rebar_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_rebar">Rebar:</label><br>
                     <input type="checkbox" name="spotFooting_pour_row" id="spotFooting_pour_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_pour">Pour:</label><br>
+                    <input type="checkbox" name="spotFooting_inspected_row" id="spotFooting_inspected_row_${footings_row_counter}" class="checkboxFootingRowFill"> <label class="labelSpotFooting" for="spotFooting_pour">Inspected:</label><br>
             </div>
     `;
 
@@ -128,8 +137,9 @@ function addSpotFootingRowWithData(trenches, rebares, poures) {
             <div class="spotFooting">
                     <spotFootingNumber>${count + i}</spotFootingNumber><br>
                     <input type="checkbox" name="spotFooting_trench" id="${footings_row_counter}_spotFooting_trench_${count}" ` + boolToCheckString(trenches[i]) + `><br>
-                    <input type="checkbox" name="spotFooting_rebar" id="${footings_row_counter}_spotFooting_rebar_${count}" ` + boolToCheckString(rebares[i]) + `><br>
+                    <input type="checkbox" name="spotFooting_rebar" id="${footings_row_counter}_spotFooting_rebar_${count}" ` + boolToCheckString(rebars[i]) + `><br>
                     <input type="checkbox" name="spotFooting_pour" id="${footings_row_counter}_spotFooting_pour_${count}" ` + boolToCheckString(poures[i]) + `><br>
+                    <input type="checkbox" name="spotFooting_inspected" id="${footings_row_counter}_spotFooting_inspected_${count}" ` + boolToCheckString(inspecteds[i]) + `><br>
             </div>
         `;
     }
@@ -429,7 +439,8 @@ function generateAndDownloadJSON() {
             id: (index + 1).toString(),
             trench: element.querySelector('[name="spotFooting_trench"]').checked ? "done" : "none",
             rebar: element.querySelector('[name="spotFooting_rebar"]').checked ? "done" : "none",
-            pour: element.querySelector('[name="spotFooting_pour"]').checked ? "done" : "none"
+            pour: element.querySelector('[name="spotFooting_pour"]').checked ? "done" : "none",
+            inspected: element.querySelector('[name="spotFooting_inspected"]').checked ? "done" : "none"
         });
     });
     if (form.addSpotFootingsSection.checked)
@@ -620,12 +631,14 @@ function populateForm(fileData) {
             let trenches = [];
             let rebars = [];
             let pours = [];
+            let inspecteds = [];
             buildingWork.spotFootings.forEach((spotFooting, index) => {
                 // addSpotFootingWithData(doneToBool(spotFooting.trench), doneToBool(spotFooting.rebar), doneToBool(spotFooting.pour));
                 console.log('Adding arrays');
                 trenches.push(doneToBool(spotFooting.trench))
                 rebars.push(doneToBool(spotFooting.rebar));
                 pours.push(doneToBool(spotFooting.pour));
+                inspecteds.push(doneToBool(spotFooting.inspected));
                 console.log('Added');
                 
                 if (index > 0 && ((index+1) % spotFootingRowSize) == 0) {
@@ -634,11 +647,13 @@ function populateForm(fileData) {
                     console.log('trenches: ' + trenches);
                     console.log('rebars: ' + rebars);
                     console.log('pours: ' + pours);
-                    addSpotFootingRowWithData(trenches, rebars, pours);
+                    console.log('inspecteds: ' + inspecteds);
+                    addSpotFootingRowWithData(trenches, rebars, pours, inspecteds);
             
                     trenches = [];
                     rebars = [];
                     pours = [];
+                    inspecteds = [];
                 }
             });
         }
@@ -714,6 +729,7 @@ function populateForm(fileData) {
                     console.log('rebarss: ' + rebarss);
                     console.log('insertss: ' + insertss);
                     console.log('pours: ' + pours);
+                    console.log('lifteds: ' + lifteds);
                     addPanelRowWithData(panelRowElements[currentPanel], panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds);
             
                     panelCodes = [];
