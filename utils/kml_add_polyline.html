@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhance KML with polyline</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enhance KML with polyline</h1>
+        <input type="file" id="kmlInput" accept=".kml">
+        <button onclick="addPolylinesToKML()">Add polyline</button>
+        <br><br>
+        <a id="downloadLink" class="hidden">Download KML</a>
+    </div>
+
+    <script>
+        function addPolylinesToKML() {
+            const fileInput = document.getElementById('kmlInput');
+            const file = fileInput.files[0];
+            console.log(file.name);
+            data_name = file.name.split('.')[0]
+            if (!file) {
+                alert('Please select a KML file first.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const kmlContent = e.target.result;
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(kmlContent, "text/xml");
+                
+                const kml = updateKML(xmlDoc, data_name);
+
+                const blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = data_name + '_with_path.kml';
+                downloadLink.click();
+            };
+            reader.readAsText(file);
+        }
+
+        function updateKML(inputKML, data_name=None) {
+            // Find all Placemarks with Point geometry
+            const placemarks = inputKML.getElementsByTagName('Placemark');
+            const coordinates = [];
+
+            for (const placemark of placemarks) {
+                const point = placemark.getElementsByTagName('Point')[0];
+                if (point) {
+                    const coord = point.getElementsByTagName('coordinates')[0].textContent.trim().split(',');
+                    coordinates.push(coord.join(','));
+                }
+            }
+
+            // Create a new Placemark for the LineString
+            const newPlacemark = inputKML.createElement('Placemark');
+            const name = inputKML.createElement('name');
+            name.textContent = 'Path';
+            newPlacemark.appendChild(name);
+
+            const lineString = inputKML.createElement('LineString');
+            const lineCoordinates = inputKML.createElement('coordinates');
+            lineCoordinates.textContent = coordinates.join(' ');
+            lineString.appendChild(lineCoordinates);
+            newPlacemark.appendChild(lineString);
+
+            // Add the new Placemark to the Document
+            const document = inputKML.getElementsByTagName('Document')[0];
+            document.appendChild(newPlacemark);
+
+            // Convert the modified XML back to a string
+            const serializer = new XMLSerializer();
+            return serializer.serializeToString(inputKML);
+
+            return kml;
+        }
+    </script>
+</body>
+</html>
