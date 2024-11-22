@@ -52,6 +52,7 @@ function addSpotFooting() {
 footings_row_counter = 0
 
 function addSpotFootingRow() {
+    console.log('Adding spot footing row');
     const rowSize = document.getElementById('spotFootingRowSize').value;
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
@@ -88,6 +89,34 @@ function addSpotFootingRow() {
     `;
     
     spotFootingSection.insertAdjacentHTML('beforeend', newSpotFootingRow);
+
+    // const spotFootingCheckboxes = spotFootingSection.getElementsByClassName('checkboxFootingRowFill');
+    const spotFootingCheckboxes = spotFootingSection.lastElementChild.querySelectorAll('.checkboxFootingRowFill');
+
+    for (let i = 0; i < spotFootingCheckboxes.length; i++) {
+        spotFootingCheckboxes[i].addEventListener('change', function() {
+
+        splitted = this['id'].split('_')
+        row_id = splitted[3]
+        row_name_pattern = splitted[3] + '_' + splitted[0] + '_' + splitted[1] + '_'
+
+        // ${footings_row_counter}_spotFooting_trench_${count}
+        const spotFootingsRow = [...document.querySelectorAll('[id^="' + row_name_pattern + '"]')];
+        
+
+        if (this.checked) {
+            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            for (let j = 0; j < spotFootingsRow.length; j++) {
+                spotFootingsRow[j].checked = true;
+            }
+        } else {
+            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            for (let j = 0; j < spotFootingsRow.length; j++) {
+                spotFootingsRow[j].checked = false;
+            }
+        }
+        });
+    }
 }
 
 function addSpotFootingWithData(trench, rebar, pour, inspected) {
@@ -114,6 +143,7 @@ function addSpotFootingWithData(trench, rebar, pour, inspected) {
 }
 
 function addSpotFootingRowWithData(trenches, rebars, poures, inspecteds) {
+    console.log('Adding spot footing row with data');
     const rowSize = document.getElementById('spotFootingRowSize').value;
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
@@ -151,6 +181,34 @@ function addSpotFootingRowWithData(trenches, rebars, poures, inspecteds) {
     `;
     
     spotFootingSection.insertAdjacentHTML('beforeend', newSpotFootingRow);
+
+    // const spotFootingCheckboxes = spotFootingSection.getElementsByClassName('checkboxFootingRowFill');
+    const spotFootingCheckboxes = spotFootingSection.lastElementChild.querySelectorAll('.checkboxFootingRowFill');
+
+    for (let i = 0; i < spotFootingCheckboxes.length; i++) {
+        spotFootingCheckboxes[i].addEventListener('change', function() {
+
+        splitted = this['id'].split('_')
+        row_id = splitted[3]
+        row_name_pattern = splitted[3] + '_' + splitted[0] + '_' + splitted[1] + '_'
+
+        // ${footings_row_counter}_spotFooting_trench_${count}
+        const spotFootingsRow = [...document.querySelectorAll('[id^="' + row_name_pattern + '"]')];
+        
+
+        if (this.checked) {
+            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            for (let j = 0; j < spotFootingsRow.length; j++) {
+                spotFootingsRow[j].checked = true;
+            }
+        } else {
+            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            for (let j = 0; j < spotFootingsRow.length; j++) {
+                spotFootingsRow[j].checked = false;
+            }
+        }
+        });
+    }
 }
 
 // Slab on grade pours
