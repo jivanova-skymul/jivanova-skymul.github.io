@@ -289,6 +289,7 @@ function addPanel() {
     `;
     panelSection.insertAdjacentHTML('beforeend', newPanel);
 }
+
 function addPanelWithData(form, reveal, embeds, rebars, inserts, pour, lifted) {
     const panelSection = document.getElementById('panelSection');
     const count = panelSection.getElementsByClassName('panel').length + 1;
@@ -324,12 +325,11 @@ function addPanelWithData(form, reveal, embeds, rebars, inserts, pour, lifted) {
 
 panels_row_counter = 0;
 
-function addPanelRow(panelElement) {
-    console.log('PanelElement: ');
+function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
+    console.log('Adding panelElement: ');
     console.log(panelElement);
     console.log(panelElement.id);
-    codeLetter = panelElement.id.slice(-1);
-    // codeLetter = name.slice(0);
+    // codeLetter = panelElement.id.slice(-1);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
     const count = document.getElementsByClassName('panel').length + 1;
@@ -376,11 +376,11 @@ function addPanelRow(panelElement) {
     panelElement.insertAdjacentHTML('beforeend', newPanelRow);
 }
 
-function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds) {
+function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds, codeLetter = panelElement.id.slice(-1)) {
     console.log('PanelElement: ');
     console.log(panelElement);
     console.log(panelElement.id);
-    codeLetter = panelElement.id.slice(-1);
+    // codeLetter = panelElement.id.slice(-1);
     // codeLetter = name.slice(0);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
@@ -675,6 +675,14 @@ function populateForm(fileData) {
             removeChildrenNodes('panelRowS', 'panelFirst');
             removeChildrenNodes('panelRowW', 'panel');
             removeChildrenNodes('panelRowW', 'panelFirst');
+
+            
+            let panelRowCPElement = document.getElementById('panelRowCP');
+            if (panelRowCPElement)
+            {
+                removeChildrenNodes('panelRowCP', 'panel');
+                removeChildrenNodes('panelRowCP', 'panelFirst');
+            }
             document.getElementById('panelBookReady').checked = buildingWork.panelBookReady;
 
 
@@ -687,17 +695,43 @@ function populateForm(fileData) {
             let pours = [];
             let lifteds = [];
 
-            let panelRowElements = [
-                document.getElementById('panelRowN'),
-                document.getElementById('panelRowE'),
-                document.getElementById('panelRowS'),
-                document.getElementById('panelRowW')];
+            let panelRowElements = [];
+            let panelRowSizes = [];
+            if (panelRowCPElement)
+            {
+                panelRowElements = [
+                    document.getElementById('panelRowN'),
+                    document.getElementById('panelRowE'),
+                    document.getElementById('panelRowS'),
+                    document.getElementById('panelRowW'),
+                    panelRowCPElement
+                ];
 
-            let panelRowSizes = [
-                parseInt(document.getElementById('panelRowNSize').value),
-                parseInt(document.getElementById('panelRowESize').value),
-                parseInt(document.getElementById('panelRowSSize').value),
-                parseInt(document.getElementById('panelRowWSize').value)];
+                panelRowSizes = [
+                    parseInt(document.getElementById('panelRowNSize').value),
+                    parseInt(document.getElementById('panelRowESize').value),
+                    parseInt(document.getElementById('panelRowSSize').value),
+                    parseInt(document.getElementById('panelRowWSize').value),
+                    parseInt(document.getElementById('panelRowCPSize').value)
+                ];
+            }
+            else
+            {
+                panelRowElements = [
+                    document.getElementById('panelRowN'),
+                    document.getElementById('panelRowE'),
+                    document.getElementById('panelRowS'),
+                    document.getElementById('panelRowW')
+                ];
+
+                panelRowSizes = [
+                    parseInt(document.getElementById('panelRowNSize').value),
+                    parseInt(document.getElementById('panelRowESize').value),
+                    parseInt(document.getElementById('panelRowSSize').value),
+                    parseInt(document.getElementById('panelRowWSize').value),
+                    0
+                ];
+            }
 
             let currentPanel = 0;
             let panelRowSizeIndex = 0;
@@ -869,10 +903,23 @@ const panelRowN = document.getElementById('panelRowN');
 console.log('Found panel row: ');
 console.log(panelRowN);
 
-addPanelRow(document.getElementById('panelRowN')); //, 'NORTH');
-addPanelRow(document.getElementById('panelRowE')); //, 'EAST');
-addPanelRow(document.getElementById('panelRowS')); //, 'SOUTH');
-addPanelRow(document.getElementById('panelRowW')); //, 'WEST');
+addPanelRow(document.getElementById('panelRowN')); //, 'N'); //, 'NORTH');
+addPanelRow(document.getElementById('panelRowE')); //, 'E'); //, 'EAST');
+addPanelRow(document.getElementById('panelRowS')); //, 'S'); //, 'SOUTH');
+addPanelRow(document.getElementById('panelRowW')); //, 'W'); //, 'WEST');
+
+const panelRowCPSizeElement = document.getElementById('panelRowCPSize');
+if (panelRowCPSizeElement)
+{
+    const panelRowCPSize = parseInt(panelRowCPSizeElement.value);
+    if (panelRowCPSize && panelRowCPSize > 0)
+    {
+        addPanelRow(document.getElementById('panelRowCP'), 'CP'); //, 'CP');
+    }
+} else
+{
+    panelRowCPSize = 0;
+}
 
 
 const panelCheckboxes = panelSection.getElementsByClassName('checkboxPanelRowFill');
