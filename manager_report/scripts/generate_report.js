@@ -409,10 +409,6 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
             </div>
     `;
 
-
-    // const newSpotFooting = ``;
-                    // <panelNumber>${count + i}</panelNumber><br>
-
     for (let i = 0; i < rowSize; i++) {
         newPanelRow += `
             <div class="panel">
@@ -459,22 +455,43 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
             </div>
     `;
 
-
-    for (let i = 0; i < rowSize; i++) {
-        newPanelRow += `
-            <div class="panel">
-                    <panelNumber>${count + i}</panelNumber><br>
-                    <input type="text" name="panel_code" class="panelCode" value=` + panelCodes[i] + `><br>
-                    <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}" ` + boolToCheckString(forms[i]) + `><br>
-                    <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}" ` + boolToCheckString(reveals[i]) + `><br>
-                    <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}" ` + boolToCheckString(embedss[i]) + `><br>
-                    <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}" ` + boolToCheckString(rebarss[i]) + `><br>
-                    <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
-                    <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}" ` + boolToCheckString(pours[i]) + `><br>
-                    <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br>
-            </div>
-        `;
+    if (panelCodes && panelCodes.length > 0)
+    {
+        for (let i = 0; i < rowSize; i++) {
+            newPanelRow += `
+                <div class="panel">
+                        <panelNumber>${count + i}</panelNumber><br>
+                        <input type="text" name="panel_code" class="panelCode" value=` + panelCodes[i] + `><br>
+                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}" ` + boolToCheckString(forms[i]) + `><br>
+                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}" ` + boolToCheckString(reveals[i]) + `><br>
+                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}" ` + boolToCheckString(embedss[i]) + `><br>
+                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}" ` + boolToCheckString(rebarss[i]) + `><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
+                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}" ` + boolToCheckString(pours[i]) + `><br>
+                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br>
+                </div>
+            `;
+        }
+    } else
+    {    
+        for (let i = 0; i < rowSize; i++) {
+            newPanelRow += `
+                <div class="panel">
+                        <panelNumber>${count + i}</panelNumber><br>
+                        <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${i+1}> <br>
+                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                </div>
+            `;
+        }
     }
+
+
 
     panels_row_counter += 1;
 
@@ -734,7 +751,6 @@ function populateForm(fileData) {
             removeChildrenNodes('panelRowW', 'panel');
             removeChildrenNodes('panelRowW', 'panelFirst');
 
-            
             let panelRowCPElement = document.getElementById('panelRowCP');
             if (panelRowCPElement)
             {
@@ -809,7 +825,7 @@ function populateForm(fileData) {
                 lifteds.push(panel.lifted);
                 console.log('Added');
 
-                if (index > 0 && index == panelRowSizeIndex-1) {
+                if (index >= 0 && index == panelRowSizeIndex-1) {
                     console.log('currentPanel = ' + currentPanel);
                     console.log('panelRowSizeIndex = ' + panelRowSizeIndex);
                     console.log('Index ' + (index+1) + ' is divisable');
