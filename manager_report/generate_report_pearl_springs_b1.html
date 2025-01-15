@@ -134,15 +134,18 @@
 
 
         <hr class="horizontal-line">
-        <h2> <input type="checkbox" name="addPanelSection" id="addPanelSection"> Panel Pours</h2> <!-- checked -->
+        <h2> <input type="checkbox" name="addPanelSection" id="addPanelSection" checked> Panel Pours</h2> <!-- checked -->
         <label for="panelRowNSize">Number of panel on North side:</label>
-        <input type="text" name="panelRowNSize" id="panelRowNSize" readonly="readonly" value="48"> <br>
+        <input type="text" name="panelRowNSize" id="panelRowNSize" readonly="readonly" value="28"> <br>
         <label for="panelRowESize">Number of panel on East side:</label>
-        <input type="text" name="panelRowESize" id="panelRowESize" readonly="readonly" value="21"> <br>
+        <input type="text" name="panelRowESize" id="panelRowESize" readonly="readonly" value="14"> <br>
         <label for="panelRowSSize">Number of panel on South side:</label>
-        <input type="text" name="panelRowSSize" id="panelRowSSize" readonly="readonly" value="45"> <br>
+        <input type="text" name="panelRowSSize" id="panelRowSSize" readonly="readonly" value="50"> <br>
         <label for="panelRowWSize">Number of panel on West side:</label>
-        <input type="text" name="panelRowWSize" id="panelRowWSize" readonly="readonly" value="21"> <br>
+        <input type="text" name="panelRowWSize" id="panelRowWSize" readonly="readonly" value="13"> <br>
+
+        <label for="panelRowCPSize">Number of panel on CP side:</label>
+        <input type="text" name="panelRowCPSize" id="panelRowCPSize" readonly="readonly" value="4"> <br>
 
         <div id="panelSection" class="section">
             <label for="panelBookReady">Panel Book Ready:</label>
@@ -156,6 +159,8 @@
             <div class="panelRow" id="panelRowS"></div>
             <div class="labelPanelName">WEST</div>
             <div class="panelRow" id="panelRowW"></div>
+            <div class="labelPanelName">CP</div>
+            <div class="panelRow" id="panelRowCP"></div>
 
             <!-- <div class="panel">
                 <h3>Panel 1</h3>
