@@ -383,18 +383,27 @@ function addPanelWithData(form, reveal, embeds, rebars, inserts, pour, lifted) {
 
 panels_row_counter = 0;
 
-function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
+function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {    
     console.log('Adding panelElement: ');
     console.log(panelElement);
     console.log(panelElement.id);
     // codeLetter = panelElement.id.slice(-1);
-    const rowSize = document.getElementById(panelElement.id + 'Size').value;
+    let rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
     const count = document.getElementsByClassName('panel').length + 1;
     console.log('Panel count: ' + count);
 
-    // <div class="panelRow">
-                    // <panelNumber> </panelNumber><br>
+    // Only for DC Blox S107 exclusion rule
+    const worksiteName = document.getElementById('worksite').value;
+    const buildingId = document.getElementById('building').value;
+    let skipS107 = false;
+    if (codeLetter == 'S' && worksiteName && worksiteName == 'DC Blox' && buildingId && buildingId == '1') {
+        console.log('Exclusion rule for worksite DC Blox BLD1: no S107 panel');
+        skipS107 = true;
+        rowSize = parseInt(rowSize) + 1;
+        console.log('New rowSize:', rowSize);
+    }
+
     var newPanelRow = `
             <div class="panelFirst">
                     <panelNumber>  </panelNumber><br>
@@ -410,19 +419,55 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
     `;
 
     for (let i = 0; i < rowSize; i++) {
-        newPanelRow += `
-            <div class="panel">
-                    <panelNumber>${count + i}</panelNumber><br>
-                    <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${i+1}> <br>
-                    <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
-                    <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
-                    <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
-                    <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
-                    <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
-                    <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
-                    <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
-            </div>
-        `;
+        // if (!(skipS107 && i == 6)) {
+
+        if (!skipS107) {
+            newPanelRow += `
+                <div class="panel">
+                        <panelNumber>${count + i}</panelNumber><br>
+                        <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                </div>
+            `;
+        } else {
+            if (i > 6) {
+                // panelNumber = count + i -1 ;
+
+                newPanelRow += `
+                    <div class="panel">
+                        <panelNumber>${count + i - 1}</panelNumber><br>
+                        <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                    </div>
+                `;
+            } else if (i < 6) {
+                newPanelRow += `
+                    <div class="panel">
+                        <panelNumber>${count + i}</panelNumber><br>
+                        <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                    </div>
+                `;
+            }
+        }
     }
 
     panels_row_counter += 1;
@@ -455,8 +500,7 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
             </div>
     `;
 
-    if (panelCodes && panelCodes.length > 0)
-    {
+    if (panelCodes && panelCodes.length > 0) {
         for (let i = 0; i < rowSize; i++) {
             newPanelRow += `
                 <div class="panel">
@@ -473,21 +517,68 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
             `;
         }
     } else
-    {    
+    {   
+        // Only for DC Blox S107 exclusion rule
+        const worksiteName = document.getElementById('worksite').value;
+        const buildingId = document.getElementById('building').value;
+        let skipS107 = False;
+        if (codeLetter == 'S' && worksiteName && worksiteName == 'DC Blox' && buildingId && buildingId == 'bld1') {
+            console.log('Exclusion rule for worksite DC Blox BLD1: no S107 panel');
+            skipS107 = true;
+            rowSize = parseInt(rowSize) + 1;
+            console.log('New rowSize:', rowSize);
+        }
+
         for (let i = 0; i < rowSize; i++) {
-            newPanelRow += `
-                <div class="panel">
-                        <panelNumber>${count + i}</panelNumber><br>
-                        <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${i+1}> <br>
-                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
-                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
-                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
-                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
-                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
-                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
-                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
-                </div>
-            `;
+            // if (!(skipS107 && i == 6)) {
+
+            if (!skipS107) {
+                newPanelRow += `
+                    <div class="panel">
+                            <panelNumber>${count + i}</panelNumber><br>
+                            <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                            <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                            <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                            <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                            <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                            <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                            <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                            <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                    </div>
+                `;
+            } else {
+                if (i > 6) {
+                    // panelNumber = count + i -1 ;
+
+                    newPanelRow += `
+                        <div class="panel">
+                            <panelNumber>${count + i - 1}</panelNumber><br>
+                            <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                            <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                            <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                            <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                            <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                            <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                            <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                            <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                        </div>
+                    `;
+                } else if (i < 6) {
+                    newPanelRow += `
+                        <div class="panel">
+                            <panelNumber>${count + i}</panelNumber><br>
+                            <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                            <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
+                            <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
+                            <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
+                            <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
+                            <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                            <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                            <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                        </div>
+                    `;
+                }
+            }
         }
     }
 
@@ -709,12 +800,12 @@ function populateForm(fileData) {
             let inspecteds = [];
             buildingWork.spotFootings.forEach((spotFooting, index) => {
                 // addSpotFootingWithData(doneToBool(spotFooting.trench), doneToBool(spotFooting.rebar), doneToBool(spotFooting.pour));
-                console.log('Adding arrays');
+                // console.log('Adding arrays');
                 trenches.push(doneToBool(spotFooting.trench))
                 rebars.push(doneToBool(spotFooting.rebar));
                 pours.push(doneToBool(spotFooting.pour));
                 inspecteds.push(doneToBool(spotFooting.inspected));
-                console.log('Added');
+                // console.log('Added');
                 
                 if (index > 0 && ((index+1) % spotFootingRowSize) == 0) {
                     console.log('Index ' + (index+1) + ' is divisable');
@@ -810,11 +901,21 @@ function populateForm(fileData) {
             let currentPanel = 0;
             let panelRowSizeIndex = 0;
             panelRowSizeIndex = panelRowSizes[currentPanel];
+
+            // const worksiteName = document.getElementById('worksite').value;
+            // const buildingId = document.getElementById('building').value;
+            // if (worksiteName == 'DC Blox' && buildingId == 1) {
+            //     console.log('Exclusion rule for S107 of DC Blox bld1');
+            //     // panelRowSizeIndex += 1;
+            //     // panelRowSizes[2] += 1;
+            // }
+            
+
             console.log('Next index to hit for the row is ' + (panelRowSizeIndex-1));
             buildingWork.panels.forEach((panel, index) => {
                 // addPanelWithData(panel.form, panel.reveal, panel.embeds, panel.rebars, panel.inserts, panel.pour);
 
-                console.log('Adding arrays');
+                // console.log('Adding arrays');
                 panelCodes.push(panel.panelCode);
                 forms.push(panel.form)
                 reveals.push(panel.reveal);
@@ -823,7 +924,9 @@ function populateForm(fileData) {
                 insertss.push(panel.inserts);
                 pours.push(panel.pour);
                 lifteds.push(panel.lifted);
-                console.log('Added');
+                // console.log('Added');
+                
+                console.log('Current currentPanel:', currentPanel, ', worksiteName:', worksiteName, ', buildingId:', buildingId);
 
                 if (index >= 0 && index == panelRowSizeIndex-1) {
                     console.log('currentPanel = ' + currentPanel);
