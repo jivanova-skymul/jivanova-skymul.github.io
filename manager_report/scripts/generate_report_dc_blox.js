@@ -602,6 +602,16 @@ function generateAndDownloadJSON() {
     };
 
     // For all buildings
+    
+    // FOR DC BLOX REMOVE S107 FROM THE REPORT
+    const worksiteName = document.getElementById('worksite').value;
+    const buildingId = document.getElementById('building').value;
+    if (worksiteName && worksiteName == 'DC Blox' && buildingId && buildingId == '1') {
+        console.log('Removing S107 from the report');
+        const filteredPanels = panels.filter(panel => panel.panelCode !== "S-107");
+        report.buildings[0].works.find(work => work.type === "Panel").panels = filteredPanels;
+    }
+
     const json = JSON.stringify({ version: 0.1, reports: [report] }, null, 4);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -643,8 +653,38 @@ function loadPreviousReport() {
     const reader = new FileReader();
     reader.onload = function(e) {
         try {
-            const json = JSON.parse(e.target.result);
-            populateForm(json);
+            let report_json = JSON.parse(e.target.result);
+
+            const worksiteName = document.getElementById('worksite').value;
+            const buildingId = document.getElementById('building').value;
+            if (worksiteName && worksiteName == 'DC Blox' && buildingId && buildingId == '1') {
+                console.log('Removing S107 from the report');
+                // const filteredPanels = panels.filter(panel => panel.panelCode !== "S-107");
+                // report.buildings[0].works.find(work => work.type === "Panel").panels = filteredPanels;
+
+                let panels = report_json.reports[0].buildings[0].works.find(work => work.type === "Panel").panels;
+                console.log('Array panels before the update:', panels);
+                const s106Index = panels.findIndex(panel => panel.panelCode === "S-106");
+                console.log('Found index for panel S-106');
+                if (s106Index !== -1) {
+                    panels.splice(s106Index + 1, 0, {
+                        "id": "36",
+                        "panelCode": "S-107",
+                        "form": true,
+                        "reveal": true,
+                        "embeds": true,
+                        "rebars": true,
+                        "inserts": true,
+                        "pour": true,
+                        "lifted": true
+                    });
+                    console.log('Updated array of panels:', panels);
+                    // console.log('Updated report_json before populating form:', report_json);
+                }
+            }
+
+
+            populateForm(report_json);
         } catch (error) {
             alert('Invalid JSON file.');
         }
