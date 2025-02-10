@@ -72,7 +72,7 @@ function combineFiles() {
 
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'manager_report_combined.json';
+        a.download = 'progress_report.json';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

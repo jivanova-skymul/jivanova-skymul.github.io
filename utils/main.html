@@ -15,14 +15,23 @@
             height: 100vh;
             margin: 0;
         }
+
         .container {
+            gap: 5vw;
+            display: flex;
+            flex-flow: horizontal;
+        }
+
+        .container_links {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 38px;
             text-align: center;
-            width: 90%;
+            /* width: 90%; */
+            width: 30vw;
             max-width: 400px;
+            overflow: auto;
             
             /*background-color: #fff;
             padding: 20px;
@@ -32,6 +41,7 @@
             width: 90%;
             max-width: 400px;*/
         }
+
         .button {
             display: block;
             
@@ -71,7 +81,7 @@
             
             margin-top: 25px;
             padding: 13px 0px;
-            background-color: #946631; /*#007BFF;*/
+            background-color: #ce914a; /*#007BFF;*/
             border: none;
             color: white;
             border-radius: 7px;
@@ -82,30 +92,63 @@
         .button_gold:hover {
             background-color: #86551e;
         }
+
+        .border {
+            border: 1px solid #6690cf;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            position: relative;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2>Available utilities</h2>
-        <!-- <a href="convert_geojson_to_kml.html" class="button" target="_blank">Convert GeoJSON to KML</a> -->
-        <!-- <a href="corners_to_kml.html" class="button" target="_blank">Convert array of GPS coordinates to KML path</a>
-        <a href="dms_to_dd.html" class="button" target="_blank">DMS to DD</a> -->
-        <a href="lat_long_path_to_kml_text_field.html" class="button" target="_blank">Generate KML from array of GPS coords</a>
-        <a href="dms_to_dd_2.html" class="button" target="_blank">Convert GPS lat long: DMS to DD</a>
-        <a href="kml_add_polyline.html" class="button" target="_blank">Add polyline for the points in KML</a>
-        <br>
-        <br>
-        <a href="../manager_report/generate_report_dc_blox_b1.html" class="button_gold" target="_blank">Generate Manager Report for DC Blox B1</a>
-        <a href="../manager_report/generate_report_pearl_springs_b1.html" class="button_blue" target="_blank">Generate Manager Report for Pearl Spring B1</a>
-        <a href="../manager_report/generate_report_pearl_springs_b2.html" class="button_blue" target="_blank">Generate Manager Report for Pearl Spring B2</a>
-        <a href="../manager_report/combine_reports.html" class="button_blue" target="_blank">Combine reports</a>
-        <br>
-        <a href="https://manager-report-pearl-springs-728486e38cea.herokuapp.com/" class="button_blue" target="_blank">Pearl Springs: Manager Report</a>
-        <a href="https://manager-report-pearl-springs-728486e38cea.herokuapp.com/panels/pour_calc" class="button_blue" target="_blank">Pearl Springs: Pour Calculator</a>
-        <a href="https://manager-report-pearl-springs-728486e38cea.herokuapp.com/panels/specs" class="button_blue" target="_blank">Pearl Springs: Panel Specifications</a>
-        <a href="https://pour-schedule-de4435b95636.herokuapp.com/panels/pour_calc" class="button_blue" target="_blank">(Demo) Pour Calculator</a>
-        <a href="https://backend-manager-report-146ac78afc19.herokuapp.com/" class="button_blue" target="_blank">(Demo) Manager Report for Cubes at Locust Grove</a>
+        <div class="container_links">
+            <h2>Customer Websites</h2>
+            <br/>
+            <div class="border">
+                <span style="position: absolute; top: -8px; left: 20px; background: white; padding: 0 10px; color: #4c74af; font-weight: bold;">Manager Reports</span>
+                <a href="https://manager-report-834c84c1e2ab.herokuapp.com/?worksiteKey=41c13af33b" class="button_gold" target="_blank">Manager Report: DC Blox</a>
+                <!-- <a href="https://manager-report-pearl-springs-728486e38cea.herokuapp.com/" class="button_blue" target="_blank">Pearl Springs: Manager Report</a> -->
+                <a href="https://manager-report-834c84c1e2ab.herokuapp.com/?worksiteKey=5a6f338ba4" class="button_blue" target="_blank">Manager Report: Pearl Springs</a>
+                
+                <!-- <a href="https://manager-report-pearl-springs-728486e38cea.herokuapp.com/panels/pour_calc" class="button_blue" target="_blank">Pearl Springs: Pour Calculator</a> -->
+                <!-- <a href="https://manager-report-pearl-springs-728486e38cea.herokuapp.com/panels/specs" class="button_blue" target="_blank">Pearl Springs: Panel Specifications</a> -->
+            </div>
+            <br/>
+            <br/>
+            <div class="border">
+                <span style="position: absolute; top: -8px; left: 20px; background: white; padding: 0 10px; color: #4c74af; font-weight: bold;">Demo pages</span>
+                <a href="https://manager-report-834c84c1e2ab.herokuapp.com/?worksiteKey=d51726411f" class="button_blue" target="_blank">(Demo) Manager Report (Pearl Springs copy) </a>
+                <a href="https://pour-schedule-de4435b95636.herokuapp.com/panels/pour_calc" class="button_blue" target="_blank">(Demo) Pour Calculator</a>
+                <a href="https://backend-manager-report-146ac78afc19.herokuapp.com/" class="button_blue" target="_blank">(Demo) Manager Report for Cubes at Locust Grove</a>
+            </div>
+            <!-- <a href="convert_geojson_to_kml.html" class="button" target="_blank">Convert GeoJSON to KML</a> -->
+            <!-- <a href="corners_to_kml.html" class="button" target="_blank">Convert array of GPS coordinates to KML path</a>
+            <a href="dms_to_dd.html" class="button" target="_blank">DMS to DD</a> -->
+            <!-- <a href="lat_long_path_to_kml_text_field.html" class="button" target="_blank">Generate KML from array of GPS coords</a>
+            <a href="dms_to_dd_2.html" class="button" target="_blank">Convert GPS lat long: DMS to DD</a>
+            <a href="kml_add_polyline.html" class="button" target="_blank">Add polyline for the points in KML</a> -->
+        </div>
+        
+        <div class="container_links">
+            <h2>Available utilities</h2>
+            <br/>
+            <a href="../manager_report/generate_report_dc_blox_b1.html" class="button_gold" target="_blank">Generate Manager Report for DC Blox B1</a>
+            <a href="../manager_report/generate_report_pearl_springs_b1.html" class="button_blue" target="_blank">Generate Manager Report for Pearl Spring B1</a>
+            <a href="../manager_report/generate_report_pearl_springs_b2.html" class="button_blue" target="_blank">Generate Manager Report for Pearl Spring B2</a>
+            <a href="../manager_report/combine_reports.html" class="button_blue" target="_blank">Combine reports</a>
+            <br/>
+            <br/>
+            <!-- <a href="convert_geojson_to_kml.html" class="button" target="_blank">Convert GeoJSON to KML</a> -->
+            <!-- <a href="corners_to_kml.html" class="button" target="_blank">Convert array of GPS coordinates to KML path</a>
+            <a href="dms_to_dd.html" class="button" target="_blank">DMS to DD</a> -->
+            <a href="lat_long_path_to_kml_text_field.html" class="button" target="_blank">Generate KML from array of GPS coords</a>
+            <a href="dms_to_dd_2.html" class="button" target="_blank">Convert GPS lat long: DMS to DD</a>
+            <a href="kml_add_polyline.html" class="button" target="_blank">Add polyline for the points in KML</a>
+        </div>
     </div>
 </body>
 </html>
