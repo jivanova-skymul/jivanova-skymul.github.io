@@ -332,17 +332,21 @@ function addPanel() {
             <label>Reveal:</label>
             <input type="checkbox" name="panel_reveal"><br>
 
-            <label>Embeds:</label>
-            <input type="checkbox" name="panel_embeds"><br>
-
-            <label>Rebars:</label>
-            <input type="checkbox" name="panel_rebars"><br>
-
-            <label>Inserts:</label>
-            <input type="checkbox" name="panel_inserts"><br>
+            <label>Embeds Bottom:</label>
+            <input type="checkbox" name="panel_embedsbottom"><br>
+            <label>Rebars Bottom:</label>
+            <input type="checkbox" name="panel_rebarsbottom"><br>
 
             <label>Pour Bottom:</label>
             <input type="checkbox" name="panel_pourbottom"><br>
+
+            <label>Embeds Top:</label>
+            <input type="checkbox" name="panel_embedstop"><br>
+            <label>Rebars Top:</label>
+            <input type="checkbox" name="panel_rebarstop"><br>
+
+            <label>Inserts:</label>
+            <input type="checkbox" name="panel_inserts"><br>
             <label>Pour Top:</label>
             <input type="checkbox" name="panel_pourtop"><br>
 
@@ -353,58 +357,15 @@ function addPanel() {
     panelSection.insertAdjacentHTML('beforeend', newPanel);
 }
 
-// function addPanelWithData(twoLayers, form, reveal, embeds, rebars, inserts, pourBottoms, pourTops, lifted) {
-//     const panelSection = document.getElementById('panelSection');
-//     const count = panelSection.getElementsByClassName('panel').length + 1;
-//     const newPanel = `
-//         <div class="panel">
-//             <h3>Panel ${count}</h3>
-//             <label>Panel code:</label>
-//             <input type="text" name="panel_code" value=${count}><br>
-
-//             <label>Two Layers:</label>
-//             <input type="checkbox" name="panel_twolayers" ` + boolToCheckString(twoLayers) + `><br>
-
-//             <label>Form:</label>
-//             <input type="checkbox" name="panel_form" ` + boolToCheckString(form) + `><br>
-
-//             <label>Reveal:</label>
-//             <input type="checkbox" name="panel_reveal" ` + boolToCheckString(reveal) + `><br>
-
-//             <label>Embeds:</label>
-//             <input type="checkbox" name="panel_embeds" ` + boolToCheckString(embeds) + `><br>
-
-//             <label>Rebars:</label>
-//             <input type="checkbox" name="panel_rebars" ` + boolToCheckString(rebars) + `><br>
-
-//             <label>Inserts:</label>
-//             <input type="checkbox" name="panel_inserts" ` + boolToCheckString(inserts) + `><br>
-
-//             <label>Pour Bottom:</label>
-//             <input type="checkbox" name="panel_pourbottom" ` + boolToCheckString(pourBottoms) + `><br>           
-//             <label>Pour Top:</label>
-//             <input type="checkbox" name="panel_pourtop" ` + boolToCheckString(pourTops) + `><br>
-
-//             <label>Lifted:</label>
-//             <input type="checkbox" name="panel_lifted" ` + boolToCheckString(lifted) + `><br>
-//     `;
-//     panelSection.insertAdjacentHTML('beforeend', newPanel);
-// }
-
 panels_row_counter = 0;
 
 function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
     console.log('Adding panelElement: ', panelElement.id, panelElement);
-    // console.log(panelElement);
-    // console.log(panelElement.id);
-    // codeLetter = panelElement.id.slice(-1);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
     const count = document.getElementsByClassName('panel').length + 1;
     console.log('Panel count: ' + count);
 
-    // <div class="panelRow">
-                    // <panelNumber> </panelNumber><br>
     var newPanelRow = `
             <div class="panelFirst">
                     <panelNumber>  </panelNumber><br>
@@ -412,10 +373,12 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
                     <div class="labelPanel" for="panel_twolayers"><input type="checkbox" name="panel_twolayers_row" id="panel_twolayers_row_${panels_row_counter}" class="checkboxPanelRowFill"> Two Layers:</div>
                     <div class="labelPanel" for="panel_form"><input type="checkbox" name="panel_form_row" id="panel_form_row_${panels_row_counter}" class="checkboxPanelRowFill"> Form:</div>
                     <div class="labelPanel" for="panel_reveal"><input type="checkbox" name="panel_reveal_row" id="panel_reveal_row_${panels_row_counter}" class="checkboxPanelRowFill"> Reveal:</div>
-                    <div class="labelPanel" for="panel_embeds"><input type="checkbox" name="panel_embeds_row" id="panel_embeds_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds:</div>
-                    <div class="labelPanel" for="panel_rebars"><input type="checkbox" name="panel_rebars_row" id="panel_rebars_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars:</div>
-                    <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
+                    <div class="labelPanel" for="panel_embedsbottom"><input type="checkbox" name="panel_embedsbottom_row" id="panel_embedsbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds Bottom:</div>
+                    <div class="labelPanel" for="panel_rebarsbottom"><input type="checkbox" name="panel_rebarsbottom_row" id="panel_rebarsbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars Bottom:</div>
                     <div class="labelPanel" for="panel_pourbottom"><input type="checkbox" name="panel_pourbottom_row" id="panel_pourbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Bottom:</div>
+                    <div class="labelPanel" for="panel_embedstop"><input type="checkbox" name="panel_embedstop_row" id="panel_embedstop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds Top:</div>
+                    <div class="labelPanel" for="panel_rebarstop"><input type="checkbox" name="panel_rebarstop_row" id="panel_rebarstop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars Top:</div>
+                    <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
                     <div class="labelPanel" for="panel_pourtop"><input type="checkbox" name="panel_pourtop_row" id="panel_pourtop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Top:</div>
                     <div class="labelPanel" for="panel_lifted"><input type="checkbox" name="panel_lifted_row" id="panel_lifted_row_${panels_row_counter}" class="checkboxPanelRowFill"> Lifted:</div>
             </div>
@@ -429,10 +392,12 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
                     <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
                     <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
                     <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
-                    <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
-                    <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
-                    <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                    <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}"><br>
+                    <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}"><br>
                     <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br>
+                    <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}"><br>
+                    <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}"><br>
+                    <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
                     <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br>
                     <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
             </div>
@@ -444,12 +409,8 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
     panelElement.insertAdjacentHTML('beforeend', newPanelRow);
 }
 
-function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals, embedss, rebarss, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
+function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
     console.log('PanelElement: ', panelElement.id, panelElement);
-    // console.log(panelElement);
-    // console.log(panelElement.id);
-    // codeLetter = panelElement.id.slice(-1);
-    // codeLetter = name.slice(0);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
     const count = document.getElementsByClassName('panel').length + 1;
@@ -462,10 +423,12 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
                     <div class="labelPanel" for="panel_twolayers"><input type="checkbox" name="panel_twolayers_row" id="panel_twolayers_row_${panels_row_counter}" class="checkboxPanelRowFill"> Two Layers:</div>
                     <div class="labelPanel" for="panel_form"><input type="checkbox" name="panel_form_row" id="panel_form_row_${panels_row_counter}" class="checkboxPanelRowFill"> Form:</div>
                     <div class="labelPanel" for="panel_reveal"><input type="checkbox" name="panel_reveal_row" id="panel_reveal_row_${panels_row_counter}" class="checkboxPanelRowFill"> Reveal:</div>
-                    <div class="labelPanel" for="panel_embeds"><input type="checkbox" name="panel_embeds_row" id="panel_embeds_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds:</div>
-                    <div class="labelPanel" for="panel_rebars"><input type="checkbox" name="panel_rebars_row" id="panel_rebars_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars:</div>
-                    <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
+                    <div class="labelPanel" for="panel_embedsbottom"><input type="checkbox" name="panel_embedsbottom_row" id="panel_embedsbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds Bottom:</div>
+                    <div class="labelPanel" for="panel_rebarsbottom"><input type="checkbox" name="panel_rebarsbottom_row" id="panel_rebarsbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars Bottom:</div>
                     <div class="labelPanel" for="panel_pourbottom"><input type="checkbox" name="panel_pourbottom_row" id="panel_pourbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Bottom:</div>
+                    <div class="labelPanel" for="panel_embedstop"><input type="checkbox" name="panel_embedstop_row" id="panel_embedstop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds Top:</div>
+                    <div class="labelPanel" for="panel_rebarstop"><input type="checkbox" name="panel_rebarstop_row" id="panel_rebarstop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars Top:</div>
+                    <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
                     <div class="labelPanel" for="panel_pourtop"><input type="checkbox" name="panel_pourtop_row" id="panel_pourtop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Top:</div>
                     <div class="labelPanel" for="panel_lifted"><input type="checkbox" name="panel_lifted_row" id="panel_lifted_row_${panels_row_counter}" class="checkboxPanelRowFill"> Lifted:</div>
             </div>
@@ -481,10 +444,12 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
                         <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}" ` + boolToCheckString(twoLayers[i]) + `><br>
                         <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}" ` + boolToCheckString(forms[i]) + `><br>
                         <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}" ` + boolToCheckString(reveals[i]) + `><br>
-                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}" ` + boolToCheckString(embedss[i]) + `><br>
-                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}" ` + boolToCheckString(rebarss[i]) + `><br>
-                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
+                        <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}" ` + boolToCheckString(embedsBottoms[i]) + `><br>
+                        <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}" ` + boolToCheckString(rebarsBottoms[i]) + `><br>
                         <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}" ` + boolToCheckString(pourBottoms[i]) + `><br>
+                        <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}" ` + boolToCheckString(embedsTops[i]) + `><br>
+                        <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}" ` + boolToCheckString(rebarsTops[i]) + `><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
                         <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}" ` + boolToCheckString(pourTops[i]) + `><br>
                         <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br>
                 </div>
@@ -500,10 +465,12 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
                         <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
                         <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
                         <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
-                        <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
-                        <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
-                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
+                        <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}"><br>
+                        <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}"><br>
                         <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br>
+                        <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}"><br>
+                        <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}"><br>
+                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
                         <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br>
                         <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
                 </div>
@@ -574,10 +541,12 @@ function generateAndDownloadJSON() {
             twoLayers: element.querySelector('[name="panel_twolayers"]').checked,
             form: element.querySelector('[name="panel_form"]').checked,
             reveal: element.querySelector('[name="panel_reveal"]').checked,
-            embeds: element.querySelector('[name="panel_embeds"]').checked,
-            rebars: element.querySelector('[name="panel_rebars"]').checked,
-            inserts: element.querySelector('[name="panel_inserts"]').checked,
+            embedsBottom: element.querySelector('[name="panel_embedsbottom"]').checked,
+            rebarsBottom: element.querySelector('[name="panel_rebarsbottom"]').checked,
             pourBottom: element.querySelector('[name="panel_pourbottom"]').checked,
+            embedsTop: element.querySelector('[name="panel_embedstop"]').checked,
+            rebarsTop: element.querySelector('[name="panel_rebarstop"]').checked,
+            inserts: element.querySelector('[name="panel_inserts"]').checked,
             pourTop: element.querySelector('[name="panel_pourtop"]').checked,
             lifted: element.querySelector('[name="panel_lifted"]').checked
         });
@@ -682,6 +651,10 @@ function loadPreviousReport() {
                         "reveal": true,
                         "embeds": true,
                         "rebars": true,
+                        "embedsBottom": true,
+                        "rebarsBottom": true,
+                        "embedsTop": true,
+                        "rebarsTop": true,
                         "inserts": true,
                         "pour": true,
                         "pourBottom": true,
@@ -814,8 +787,10 @@ function populateForm(fileData) {
             let twoLayers = [];
             let forms = [];
             let reveals = [];
-            let embedss = [];
-            let rebarss = [];
+            let embedsBottoms = [];
+            let rebarsBottoms = [];
+            let embedsTops = [];
+            let rebarsTops = [];
             let insertss = [];
             let pourBottoms = [];
             let pourTops = [];
@@ -870,13 +845,16 @@ function populateForm(fileData) {
                 panelCodes.push(panel.panelCode);
                 forms.push(panel.form)
                 reveals.push(panel.reveal);
-                embedss.push(panel.embeds);
-                rebarss.push(panel.rebars);
                 insertss.push(panel.inserts);
                 if (reportVersion < 1.0) {
                     twoLayers.push(false);
                     pourBottoms.push(false);
                     pourTops.push(panel.pour);
+
+                    embedsBottoms.push(false);
+                    rebarsBottoms.push(false);
+                    embedsTops.push(panel.embeds);
+                    rebarsTops.push(panel.rebars);
                 } else {
                     console.log('Adding bottoms and tops, panelCode:', panel.panelCode);
                     if (panel.panelCode == "S-107") {
@@ -886,10 +864,17 @@ function populateForm(fileData) {
                     twoLayers.push(panel.twoLayers);
                     if (panel.twoLayers) {
                         pourBottoms.push(panel.pourBottom);
+                        embedsBottoms.push(panel.embedsBottom);
+                        rebarsBottoms.push(panel.rebarsBottom);
                     } else {
                         pourBottoms.push(false);
+                        embedsBottoms.push(false);
+                        rebarsBottoms.push(false);
                     }
                     pourTops.push(panel.pourTop);
+
+                    embedsTops.push(panel.embedsTop);
+                    rebarsTops.push(panel.rebarsTop);
                 }   
                 lifteds.push(panel.lifted);
                 // console.log('Added');
@@ -903,20 +888,24 @@ function populateForm(fileData) {
                     console.log('twoLayers: ' + twoLayers);
                     console.log('forms: ' + forms);
                     console.log('reveals: ' + reveals);
-                    console.log('embedss: ' + embedss);
-                    console.log('rebarss: ' + rebarss);
+                    console.log('embedsBottoms: ' + embedsBottoms);
+                    console.log('rebarsBottoms: ' + rebarsBottoms);
+                    console.log('embedsTops: ' + embedsTops);
+                    console.log('rebarsTops: ' + rebarsTops);
                     console.log('insertss: ' + insertss);
                     console.log('pourBottoms: ' + pourBottoms);
                     console.log('pourTops: ' + pourTops);
                     console.log('lifteds: ' + lifteds);
-                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, twoLayers, forms, reveals, embedss, rebarss, insertss, pourBottoms, pourTops, lifteds);
+                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds);
             
                     panelCodes = [];
                     twoLayers = [];
                     forms = [];
                     reveals = [];
-                    embedss = [];
-                    rebarss = [];
+                    embedsBottoms = [];
+                    rebarsBottoms = [];
+                    embedsTops = [];
+                    rebarsTops = [];
                     insertss = [];
                     pourBottoms = [];
                     pourTops = [];
@@ -1106,8 +1095,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             value = ensurePercent(value);
             input.value = value;
-
-            // input.value = ensurePercent(input.value);
         });
 
         input.addEventListener('blur', () => {
@@ -1115,25 +1102,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             value = ensurePercent(value);
             input.value = value;
-
-            // input.value = ensurePercent(input.value);
         });
     });
     
-    // document.getElementById('myForm').addEventListener('submit', (event) => {
-    //     let value = percentageInput.value;
-        
-    //     // Ensure the value has a % at the end before form submission
-    //     if (value !== '' && !value.endsWith('%')) {
-    //         percentageInput.value = value + '%';
-    //     }
-        
-    //     // Prevent form submission if the input is invalid
-    //     if (!/^\d+%$/.test(percentageInput.value)) {
-    //         alert('Please enter a valid percentage value.');
-    //         event.preventDefault();
-    //     }
-    // });
 });
 
 
