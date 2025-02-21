@@ -557,7 +557,7 @@ function generateAndDownloadJSON() {
             embeds: element.querySelector('[name="panel_embeds"]').checked,
             rebars: element.querySelector('[name="panel_rebars"]').checked,
             inserts: element.querySelector('[name="panel_inserts"]').checked,
-            pourTop: element.querySelector('[name="panel_pour"]').checked,
+            pour: element.querySelector('[name="panel_pour"]').checked,
             lifted: element.querySelector('[name="panel_lifted"]').checked
         });
     });
@@ -587,7 +587,7 @@ function generateAndDownloadJSON() {
     };
 
     // For all buildings
-    const json = JSON.stringify({ version: 1.0, reports: [report] }, null, 4);
+    const json = JSON.stringify({ version: 0.1, reports: [report] }, null, 4);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 

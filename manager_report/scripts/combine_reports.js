@@ -25,7 +25,7 @@ function combineFiles() {
     }
 
     let combinedData = {};
-    combinedData.version = 0.1;
+    combinedData.version = 1.0;
     combinedData.reports = [];
     let warnings = [];
 
