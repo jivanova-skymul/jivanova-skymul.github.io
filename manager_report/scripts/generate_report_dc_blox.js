@@ -1,19 +1,19 @@
 function removeAllChildrenNodes(nodeId) {
     const node = document.getElementById(nodeId);
-    console.log('Children of node ' + nodeId + ' will be removed');
+    // console.log('Children of node ' + nodeId + ' will be removed');
     node.innerHTML = '';
 }
 
 function removeChildrenNodes(nodeId, subNode) {
     const node = document.getElementById(nodeId);
-    console.log('Children of node ' + nodeId + ' in the subnode ' + subNode + ' will be removed');
+    // console.log('Children of node ' + nodeId + ' in the subnode ' + subNode + ' will be removed');
     children = node.querySelectorAll('.' + subNode);
-    console.log('Found ' + children)
+    // console.log('Found ' + children)
     children.forEach((child, ind) => {
         child.remove();
     });
     
-    console.log('Removed');
+    // console.log('Removed');
 }
 
 function boolToCheckString(checkedStated) {
@@ -52,7 +52,7 @@ function addSpotFooting() {
 footings_row_counter = 0
 
 function addSpotFootingRow() {
-    console.log('Adding spot footing row');
+    // console.log('Adding spot footing row');
     const rowSize = document.getElementById('spotFootingRowSize').value;
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
@@ -105,12 +105,12 @@ function addSpotFootingRow() {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = false;
             }
@@ -143,7 +143,7 @@ function addSpotFootingWithData(trench, rebar, pour, inspected) {
 }
 
 function addSpotFootingRowWithData(trenches, rebars, poures, inspecteds) {
-    console.log('Adding spot footing row with data');
+    // console.log('Adding spot footing row with data');
     const rowSize = document.getElementById('spotFootingRowSize').value;
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
@@ -197,12 +197,12 @@ function addSpotFootingRowWithData(trenches, rebars, poures, inspecteds) {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = false;
             }
@@ -323,6 +323,9 @@ function addPanel() {
             <label>Panel code:</label>
             <input type="text" name="panel_code" value=${count}><br>
 
+            <label>2 Layers:</label>
+            <input type="checkbox" name="panel_twolayers"><br>
+
             <label>Form:</label>
             <input type="checkbox" name="panel_form"><br>
 
@@ -338,8 +341,10 @@ function addPanel() {
             <label>Inserts:</label>
             <input type="checkbox" name="panel_inserts"><br>
 
-            <label>Pour:</label>
-            <input type="checkbox" name="panel_pour"><br>
+            <label>Pour Bottom:</label>
+            <input type="checkbox" name="panel_pourbottom"><br>
+            <label>Pour Top:</label>
+            <input type="checkbox" name="panel_pourtop"><br>
 
             <label>Lifted:</label>
             <input type="checkbox" name="panel_lifted"><br>
@@ -348,45 +353,50 @@ function addPanel() {
     panelSection.insertAdjacentHTML('beforeend', newPanel);
 }
 
-function addPanelWithData(form, reveal, embeds, rebars, inserts, pour, lifted) {
-    const panelSection = document.getElementById('panelSection');
-    const count = panelSection.getElementsByClassName('panel').length + 1;
-    const newPanel = `
-        <div class="panel">
-            <h3>Panel ${count}</h3>
-            <label>Panel code:</label>
-            <input type="text" name="panel_code" value=${count}><br>
+// function addPanelWithData(twoLayers, form, reveal, embeds, rebars, inserts, pourBottoms, pourTops, lifted) {
+//     const panelSection = document.getElementById('panelSection');
+//     const count = panelSection.getElementsByClassName('panel').length + 1;
+//     const newPanel = `
+//         <div class="panel">
+//             <h3>Panel ${count}</h3>
+//             <label>Panel code:</label>
+//             <input type="text" name="panel_code" value=${count}><br>
 
-            <label>Form:</label>
-            <input type="checkbox" name="panel_form" ` + boolToCheckString(form) + `><br>
+//             <label>Two Layers:</label>
+//             <input type="checkbox" name="panel_twolayers" ` + boolToCheckString(twoLayers) + `><br>
 
-            <label>Reveal:</label>
-            <input type="checkbox" name="panel_reveal" ` + boolToCheckString(reveal) + `><br>
+//             <label>Form:</label>
+//             <input type="checkbox" name="panel_form" ` + boolToCheckString(form) + `><br>
 
-            <label>Embeds:</label>
-            <input type="checkbox" name="panel_embeds" ` + boolToCheckString(embeds) + `><br>
+//             <label>Reveal:</label>
+//             <input type="checkbox" name="panel_reveal" ` + boolToCheckString(reveal) + `><br>
 
-            <label>Rebars:</label>
-            <input type="checkbox" name="panel_rebars" ` + boolToCheckString(rebars) + `><br>
+//             <label>Embeds:</label>
+//             <input type="checkbox" name="panel_embeds" ` + boolToCheckString(embeds) + `><br>
 
-            <label>Inserts:</label>
-            <input type="checkbox" name="panel_inserts" ` + boolToCheckString(inserts) + `><br>
+//             <label>Rebars:</label>
+//             <input type="checkbox" name="panel_rebars" ` + boolToCheckString(rebars) + `><br>
 
-            <label>Pour:</label>
-            <input type="checkbox" name="panel_pour" ` + boolToCheckString(pour) + `><br>
+//             <label>Inserts:</label>
+//             <input type="checkbox" name="panel_inserts" ` + boolToCheckString(inserts) + `><br>
 
-            <label>Lifted:</label>
-            <input type="checkbox" name="panel_lifted" ` + boolToCheckString(lifted) + `><br>
-    `;
-    panelSection.insertAdjacentHTML('beforeend', newPanel);
-}
+//             <label>Pour Bottom:</label>
+//             <input type="checkbox" name="panel_pourbottom" ` + boolToCheckString(pourBottoms) + `><br>           
+//             <label>Pour Top:</label>
+//             <input type="checkbox" name="panel_pourtop" ` + boolToCheckString(pourTops) + `><br>
+
+//             <label>Lifted:</label>
+//             <input type="checkbox" name="panel_lifted" ` + boolToCheckString(lifted) + `><br>
+//     `;
+//     panelSection.insertAdjacentHTML('beforeend', newPanel);
+// }
 
 panels_row_counter = 0;
 
 function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
-    console.log('Adding panelElement: ');
-    console.log(panelElement);
-    console.log(panelElement.id);
+    console.log('Adding panelElement: ', panelElement.id, panelElement);
+    // console.log(panelElement);
+    // console.log(panelElement.id);
     // codeLetter = panelElement.id.slice(-1);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
@@ -399,12 +409,14 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
             <div class="panelFirst">
                     <panelNumber>  </panelNumber><br>
                     <div class="labelPanel" for="panel_code" style="margin-top:10px;margin-bottom:15px;">Panel code:</div>
+                    <div class="labelPanel" for="panel_twolayers"><input type="checkbox" name="panel_twolayers_row" id="panel_twolayers_row_${panels_row_counter}" class="checkboxPanelRowFill"> Two Layers:</div>
                     <div class="labelPanel" for="panel_form"><input type="checkbox" name="panel_form_row" id="panel_form_row_${panels_row_counter}" class="checkboxPanelRowFill"> Form:</div>
                     <div class="labelPanel" for="panel_reveal"><input type="checkbox" name="panel_reveal_row" id="panel_reveal_row_${panels_row_counter}" class="checkboxPanelRowFill"> Reveal:</div>
                     <div class="labelPanel" for="panel_embeds"><input type="checkbox" name="panel_embeds_row" id="panel_embeds_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds:</div>
                     <div class="labelPanel" for="panel_rebars"><input type="checkbox" name="panel_rebars_row" id="panel_rebars_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars:</div>
                     <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
-                    <div class="labelPanel" for="panel_pour"><input type="checkbox" name="panel_pour_row" id="panel_pour_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour:</div>
+                    <div class="labelPanel" for="panel_pourbottom"><input type="checkbox" name="panel_pourbottom_row" id="panel_pourbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Bottom:</div>
+                    <div class="labelPanel" for="panel_pourtop"><input type="checkbox" name="panel_pourtop_row" id="panel_pourtop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Top:</div>
                     <div class="labelPanel" for="panel_lifted"><input type="checkbox" name="panel_lifted_row" id="panel_lifted_row_${panels_row_counter}" class="checkboxPanelRowFill"> Lifted:</div>
             </div>
     `;
@@ -414,12 +426,14 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
             <div class="panel">
                     <panelNumber>${count + i}</panelNumber><br>
                     <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                    <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
                     <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
                     <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
                     <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
                     <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
                     <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
-                    <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                    <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br>
+                    <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br>
                     <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
             </div>
         `;
@@ -430,10 +444,10 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
     panelElement.insertAdjacentHTML('beforeend', newPanelRow);
 }
 
-function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds, codeLetter = panelElement.id.slice(-1)) {
-    console.log('PanelElement: ');
-    console.log(panelElement);
-    console.log(panelElement.id);
+function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals, embedss, rebarss, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
+    console.log('PanelElement: ', panelElement.id, panelElement);
+    // console.log(panelElement);
+    // console.log(panelElement.id);
     // codeLetter = panelElement.id.slice(-1);
     // codeLetter = name.slice(0);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
@@ -445,12 +459,14 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
             <div class="panelFirst">
                     <panelNumber>   </panelNumber><br>
                     <div class="labelPanel" for="panel_code" style="margin-top:10px;margin-bottom:15px;">Panel code:</div>
+                    <div class="labelPanel" for="panel_twolayers"><input type="checkbox" name="panel_twolayers_row" id="panel_twolayers_row_${panels_row_counter}" class="checkboxPanelRowFill"> Two Layers:</div>
                     <div class="labelPanel" for="panel_form"><input type="checkbox" name="panel_form_row" id="panel_form_row_${panels_row_counter}" class="checkboxPanelRowFill"> Form:</div>
                     <div class="labelPanel" for="panel_reveal"><input type="checkbox" name="panel_reveal_row" id="panel_reveal_row_${panels_row_counter}" class="checkboxPanelRowFill"> Reveal:</div>
                     <div class="labelPanel" for="panel_embeds"><input type="checkbox" name="panel_embeds_row" id="panel_embeds_row_${panels_row_counter}" class="checkboxPanelRowFill"> Embeds:</div>
                     <div class="labelPanel" for="panel_rebars"><input type="checkbox" name="panel_rebars_row" id="panel_rebars_row_${panels_row_counter}" class="checkboxPanelRowFill"> Rebars:</div>
                     <div class="labelPanel" for="panel_inserts"><input type="checkbox" name="panel_inserts_row" id="panel_inserts_row_${panels_row_counter}" class="checkboxPanelRowFill"> Inserts:</div>
-                    <div class="labelPanel" for="panel_pour"><input type="checkbox" name="panel_pour_row" id="panel_pour_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour:</div>
+                    <div class="labelPanel" for="panel_pourbottom"><input type="checkbox" name="panel_pourbottom_row" id="panel_pourbottom_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Bottom:</div>
+                    <div class="labelPanel" for="panel_pourtop"><input type="checkbox" name="panel_pourtop_row" id="panel_pourtop_row_${panels_row_counter}" class="checkboxPanelRowFill"> Pour Top:</div>
                     <div class="labelPanel" for="panel_lifted"><input type="checkbox" name="panel_lifted_row" id="panel_lifted_row_${panels_row_counter}" class="checkboxPanelRowFill"> Lifted:</div>
             </div>
     `;
@@ -462,12 +478,14 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
                 <div class="panel">
                         <panelNumber>${count + i}</panelNumber><br>
                         <input type="text" name="panel_code" class="panelCode" value=` + panelCodes[i] + `><br>
+                        <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}" ` + boolToCheckString(twoLayers[i]) + `><br>
                         <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}" ` + boolToCheckString(forms[i]) + `><br>
                         <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}" ` + boolToCheckString(reveals[i]) + `><br>
                         <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}" ` + boolToCheckString(embedss[i]) + `><br>
                         <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}" ` + boolToCheckString(rebarss[i]) + `><br>
                         <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
-                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}" ` + boolToCheckString(pours[i]) + `><br>
+                        <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}" ` + boolToCheckString(pourBottoms[i]) + `><br>
+                        <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}" ` + boolToCheckString(pourTops[i]) + `><br>
                         <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br>
                 </div>
             `;
@@ -479,12 +497,14 @@ function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, 
                 <div class="panel">
                         <panelNumber>${count + i}</panelNumber><br>
                         <input type="text" name="panel_code" class="panelCode" value=${codeLetter}-${100+i+1}> <br>
+                        <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
                         <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
                         <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
                         <input type="checkbox" name="panel_embeds" id="${panels_row_counter}_panel_embeds_${count}"><br>
                         <input type="checkbox" name="panel_rebars" id="${panels_row_counter}_panel_rebars_${count}"><br>
                         <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
-                        <input type="checkbox" name="panel_pour" id="${panels_row_counter}_panel_pour_${count}"><br>
+                        <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br>
+                        <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br>
                         <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
                 </div>
             `;
@@ -551,12 +571,14 @@ function generateAndDownloadJSON() {
         panels.push({
             id: (index + 1).toString(),
             panelCode: element.querySelector('[name="panel_code"]').value,
+            twoLayers: element.querySelector('[name="panel_twolayers"]').checked,
             form: element.querySelector('[name="panel_form"]').checked,
             reveal: element.querySelector('[name="panel_reveal"]').checked,
             embeds: element.querySelector('[name="panel_embeds"]').checked,
             rebars: element.querySelector('[name="panel_rebars"]').checked,
             inserts: element.querySelector('[name="panel_inserts"]').checked,
-            pour: element.querySelector('[name="panel_pour"]').checked,
+            pourBottom: element.querySelector('[name="panel_pourbottom"]').checked,
+            pourTop: element.querySelector('[name="panel_pourtop"]').checked,
             lifted: element.querySelector('[name="panel_lifted"]').checked
         });
     });
@@ -582,21 +604,6 @@ function generateAndDownloadJSON() {
                 building: form.building.value, //"1",
                 screenshot: form.screenshot.value,
                 works: buildingWorks
-                // works: [
-                //     {
-                //         type: "Foundation",
-                //         spotFootings: spotFootings
-                //     },
-                //     {
-                //         type: "Slab-on-Grade",
-                //         pours: pours
-                //     },
-                //     {
-                //         type: "Panel",
-                //         panelBookReady: form.panelBookReady.checked,
-                //         panels: panels
-                //     }
-                // ]
             }
         ]
     };
@@ -612,7 +619,7 @@ function generateAndDownloadJSON() {
         report.buildings[0].works.find(work => work.type === "Panel").panels = filteredPanels;
     }
 
-    const json = JSON.stringify({ version: 0.1, reports: [report] }, null, 4);
+    const json = JSON.stringify({ version: 1.0, reports: [report] }, null, 4);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
@@ -670,12 +677,15 @@ function loadPreviousReport() {
                     panels.splice(s106Index + 1, 0, {
                         "id": "36",
                         "panelCode": "S-107",
+                        "twoLayers": true,
                         "form": true,
                         "reveal": true,
                         "embeds": true,
                         "rebars": true,
                         "inserts": true,
                         "pour": true,
+                        "pourBottom": true,
+                        "pourTop": true,
                         "lifted": true
                     });
                     console.log('Updated array of panels:', panels);
@@ -749,20 +759,20 @@ function populateForm(fileData) {
             let inspecteds = [];
             buildingWork.spotFootings.forEach((spotFooting, index) => {
                 // addSpotFootingWithData(doneToBool(spotFooting.trench), doneToBool(spotFooting.rebar), doneToBool(spotFooting.pour));
-                console.log('Adding arrays');
+                // console.log('Adding arrays');
                 trenches.push(doneToBool(spotFooting.trench))
                 rebars.push(doneToBool(spotFooting.rebar));
                 pours.push(doneToBool(spotFooting.pour));
                 inspecteds.push(doneToBool(spotFooting.inspected));
-                console.log('Added');
+                // console.log('Added');
                 
                 if (index > 0 && ((index+1) % spotFootingRowSize) == 0) {
-                    console.log('Index ' + (index+1) + ' is divisable');
-                    console.log(index);
-                    console.log('trenches: ' + trenches);
-                    console.log('rebars: ' + rebars);
-                    console.log('pours: ' + pours);
-                    console.log('inspecteds: ' + inspecteds);
+                    // console.log('Index ' + (index+1) + ' is divisable');
+                    // console.log(index);
+                    // console.log('trenches: ' + trenches);
+                    // console.log('rebars: ' + rebars);
+                    // console.log('pours: ' + pours);
+                    // console.log('inspecteds: ' + inspecteds);
                     addSpotFootingRowWithData(trenches, rebars, pours, inspecteds);
             
                     trenches = [];
@@ -801,12 +811,14 @@ function populateForm(fileData) {
 
 
             let panelCodes = [];
+            let twoLayers = [];
             let forms = [];
             let reveals = [];
             let embedss = [];
             let rebarss = [];
             let insertss = [];
-            let pours = [];
+            let pourBottoms = [];
+            let pourTops = [];
             let lifteds = [];
 
             let panelRowElements = [];
@@ -854,16 +866,33 @@ function populateForm(fileData) {
             buildingWork.panels.forEach((panel, index) => {
                 // addPanelWithData(panel.form, panel.reveal, panel.embeds, panel.rebars, panel.inserts, panel.pour);
 
-                console.log('Adding arrays');
+                // console.log('Adding arrays');
                 panelCodes.push(panel.panelCode);
                 forms.push(panel.form)
                 reveals.push(panel.reveal);
                 embedss.push(panel.embeds);
                 rebarss.push(panel.rebars);
                 insertss.push(panel.inserts);
-                pours.push(panel.pour);
+                if (reportVersion < 1.0) {
+                    twoLayers.push(false);
+                    pourBottoms.push(false);
+                    pourTops.push(panel.pour);
+                } else {
+                    console.log('Adding bottoms and tops, panelCode:', panel.panelCode);
+                    if (panel.panelCode == "S-107") {
+                        console.log('Panel code is S-107, twoLayers = ', panel.twoLayers);
+                    }
+
+                    twoLayers.push(panel.twoLayers);
+                    if (panel.twoLayers) {
+                        pourBottoms.push(panel.pourBottom);
+                    } else {
+                        pourBottoms.push(false);
+                    }
+                    pourTops.push(panel.pourTop);
+                }   
                 lifteds.push(panel.lifted);
-                console.log('Added');
+                // console.log('Added');
 
                 if (index >= 0 && index == panelRowSizeIndex-1) {
                     console.log('currentPanel = ' + currentPanel);
@@ -871,22 +900,26 @@ function populateForm(fileData) {
                     console.log('Index ' + (index+1) + ' is divisable');
                     console.log(index);
                     console.log('panelCodes: ' + panelCodes);
+                    console.log('twoLayers: ' + twoLayers);
                     console.log('forms: ' + forms);
                     console.log('reveals: ' + reveals);
                     console.log('embedss: ' + embedss);
                     console.log('rebarss: ' + rebarss);
                     console.log('insertss: ' + insertss);
-                    console.log('pours: ' + pours);
+                    console.log('pourBottoms: ' + pourBottoms);
+                    console.log('pourTops: ' + pourTops);
                     console.log('lifteds: ' + lifteds);
-                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds);
+                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, twoLayers, forms, reveals, embedss, rebarss, insertss, pourBottoms, pourTops, lifteds);
             
                     panelCodes = [];
+                    twoLayers = [];
                     forms = [];
                     reveals = [];
                     embedss = [];
                     rebarss = [];
                     insertss = [];
-                    pours = [];
+                    pourBottoms = [];
+                    pourTops = [];
                     lifteds = [];
                     currentPanel += 1;
                     panelRowSizeIndex = panelRowSizeIndex + panelRowSizes[currentPanel];
@@ -913,12 +946,12 @@ function populateForm(fileData) {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = false;
             }
@@ -942,12 +975,12 @@ function populateForm(fileData) {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
             for (let j = 0; j < panelsRow.length; j++) {
                 panelsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
             for (let j = 0; j < panelsRow.length; j++) {
                 panelsRow[j].checked = false;
             }
@@ -986,12 +1019,12 @@ for (let i = 0; i < spotFootingCheckboxes.length; i++) {
     
 
     if (this.checked) {
-        console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+        // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
         for (let j = 0; j < spotFootingsRow.length; j++) {
             spotFootingsRow[j].checked = true;
         }
     } else {
-        console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+        // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
         for (let j = 0; j < spotFootingsRow.length; j++) {
             spotFootingsRow[j].checked = false;
         }
@@ -1010,12 +1043,10 @@ for(let i = 0; i < poursSize-1 - poursCount; i++) {
 
 // Add panel rows
 const panelRows = document.getElementsByClassName('panelRow');
-console.log('Found panel rowss: ');
-console.log(panelRows);
+// console.log('Found panel rowss: ', panelRows);
 
 const panelRowN = document.getElementById('panelRowN');
-console.log('Found panel row: ');
-console.log(panelRowN);
+// console.log('Found panel row: ', panelRowN);
 
 addPanelRow(document.getElementById('panelRowN')); //, 'N'); //, 'NORTH');
 addPanelRow(document.getElementById('panelRowE')); //, 'E'); //, 'EAST');
@@ -1050,12 +1081,12 @@ for (let i = 0; i < panelCheckboxes.length; i++) {
     
 
     if (this.checked) {
-        console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+        // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
         for (let j = 0; j < panelsRow.length; j++) {
             panelsRow[j].checked = true;
         }
     } else {
-        console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+        // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
         for (let j = 0; j < panelsRow.length; j++) {
             panelsRow[j].checked = false;
         }

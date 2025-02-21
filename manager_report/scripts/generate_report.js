@@ -1,19 +1,19 @@
 function removeAllChildrenNodes(nodeId) {
     const node = document.getElementById(nodeId);
-    console.log('Children of node ' + nodeId + ' will be removed');
+    // console.log('Children of node ' + nodeId + ' will be removed');
     node.innerHTML = '';
 }
 
 function removeChildrenNodes(nodeId, subNode) {
     const node = document.getElementById(nodeId);
-    console.log('Children of node ' + nodeId + ' in the subnode ' + subNode + ' will be removed');
+    // console.log('Children of node ' + nodeId + ' in the subnode ' + subNode + ' will be removed');
     children = node.querySelectorAll('.' + subNode);
-    console.log('Found ' + children)
+    // console.log('Found ' + children)
     children.forEach((child, ind) => {
         child.remove();
     });
     
-    console.log('Removed');
+    // console.log('Removed');
 }
 
 function boolToCheckString(checkedStated) {
@@ -52,7 +52,7 @@ function addSpotFooting() {
 footings_row_counter = 0
 
 function addSpotFootingRow() {
-    console.log('Adding spot footing row');
+    // console.log('Adding spot footing row');
     const rowSize = document.getElementById('spotFootingRowSize').value;
     const spotFootingSection = document.getElementById('spotFootingsSection');
     const count = spotFootingSection.getElementsByClassName('spotFooting').length + 1;
@@ -197,12 +197,12 @@ function addSpotFootingRowWithData(trenches, rebars, poures, inspecteds) {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = false;
             }
@@ -384,9 +384,9 @@ function addPanelWithData(form, reveal, embeds, rebars, inserts, pour, lifted) {
 panels_row_counter = 0;
 
 function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
-    console.log('Adding panelElement: ');
-    console.log(panelElement);
-    console.log(panelElement.id);
+    console.log('Adding panelElement: ', panelElement.id, panelElement);
+    // console.log(panelElement);
+    // console.log(panelElement.id);
     // codeLetter = panelElement.id.slice(-1);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
@@ -431,9 +431,9 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1)) {
 }
 
 function addPanelRowWithData(panelElement, panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds, codeLetter = panelElement.id.slice(-1)) {
-    console.log('PanelElement: ');
-    console.log(panelElement);
-    console.log(panelElement.id);
+    console.log('PanelElement: ', panelElement.id, panelElement);
+    // console.log(panelElement);
+    // console.log(panelElement.id);
     // codeLetter = panelElement.id.slice(-1);
     // codeLetter = name.slice(0);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
@@ -551,12 +551,13 @@ function generateAndDownloadJSON() {
         panels.push({
             id: (index + 1).toString(),
             panelCode: element.querySelector('[name="panel_code"]').value,
+            twoLayers: false,
             form: element.querySelector('[name="panel_form"]').checked,
             reveal: element.querySelector('[name="panel_reveal"]').checked,
             embeds: element.querySelector('[name="panel_embeds"]').checked,
             rebars: element.querySelector('[name="panel_rebars"]').checked,
             inserts: element.querySelector('[name="panel_inserts"]').checked,
-            pour: element.querySelector('[name="panel_pour"]').checked,
+            pourTop: element.querySelector('[name="panel_pour"]').checked,
             lifted: element.querySelector('[name="panel_lifted"]').checked
         });
     });
@@ -576,33 +577,17 @@ function generateAndDownloadJSON() {
         company: form.company.value,
         worksite: form.worksite.value,
         pix4dcloudlink: form.pix4dcloudlink.value,
-        // screenshot: form.screenshot.value,
         buildings: [
             {
-                building: form.building.value, //"1",
+                building: form.building.value,
                 screenshot: form.screenshot.value,
                 works: buildingWorks
-                // works: [
-                //     {
-                //         type: "Foundation",
-                //         spotFootings: spotFootings
-                //     },
-                //     {
-                //         type: "Slab-on-Grade",
-                //         pours: pours
-                //     },
-                //     {
-                //         type: "Panel",
-                //         panelBookReady: form.panelBookReady.checked,
-                //         panels: panels
-                //     }
-                // ]
             }
         ]
     };
 
     // For all buildings
-    const json = JSON.stringify({ version: 0.1, reports: [report] }, null, 4);
+    const json = JSON.stringify({ version: 1.0, reports: [report] }, null, 4);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
@@ -677,9 +662,9 @@ function populateForm(fileData) {
         console.log('The file does not have version field! Version is ', reportVersion);
     }
     
-    report.buildings.forEach((building, index) => {
-        console.log(building);
-    })
+    // report.buildings.forEach((building, index) => {
+    //     console.log(building);
+    // })
 
     // but for now only only one building
     building = report.buildings[0];
@@ -696,7 +681,7 @@ function populateForm(fileData) {
     console.log('spotFootingRowSize = ' + spotFootingRowSize);
 
     buildingWorks.forEach((buildingWork, index) => {
-        console.log(buildingWork)
+        // console.log(buildingWork)
         console.log('Work type: ' + buildingWork.type)
         if (buildingWork.type == "Foundation") {
             document.getElementById('addSpotFootingsSection').checked = true;
@@ -709,20 +694,20 @@ function populateForm(fileData) {
             let inspecteds = [];
             buildingWork.spotFootings.forEach((spotFooting, index) => {
                 // addSpotFootingWithData(doneToBool(spotFooting.trench), doneToBool(spotFooting.rebar), doneToBool(spotFooting.pour));
-                console.log('Adding arrays');
+                // console.log('Adding arrays');
                 trenches.push(doneToBool(spotFooting.trench))
                 rebars.push(doneToBool(spotFooting.rebar));
                 pours.push(doneToBool(spotFooting.pour));
                 inspecteds.push(doneToBool(spotFooting.inspected));
-                console.log('Added');
+                // console.log('Added');
                 
                 if (index > 0 && ((index+1) % spotFootingRowSize) == 0) {
-                    console.log('Index ' + (index+1) + ' is divisable');
-                    console.log(index);
-                    console.log('trenches: ' + trenches);
-                    console.log('rebars: ' + rebars);
-                    console.log('pours: ' + pours);
-                    console.log('inspecteds: ' + inspecteds);
+                    // console.log('Index ' + (index+1) + ' is divisable');
+                    // console.log(index);
+                    // console.log('trenches: ' + trenches);
+                    // console.log('rebars: ' + rebars);
+                    // console.log('pours: ' + pours);
+                    // console.log('inspecteds: ' + inspecteds);
                     addSpotFootingRowWithData(trenches, rebars, pours, inspecteds);
             
                     trenches = [];
@@ -814,30 +799,35 @@ function populateForm(fileData) {
             buildingWork.panels.forEach((panel, index) => {
                 // addPanelWithData(panel.form, panel.reveal, panel.embeds, panel.rebars, panel.inserts, panel.pour);
 
-                console.log('Adding arrays');
+                // console.log('Adding arrays');
                 panelCodes.push(panel.panelCode);
                 forms.push(panel.form)
                 reveals.push(panel.reveal);
                 embedss.push(panel.embeds);
                 rebarss.push(panel.rebars);
                 insertss.push(panel.inserts);
-                pours.push(panel.pour);
+                if (reportVersion < 1.0) {
+                    pours.push(panel.pour);
+                } else {
+                    pours.push(panel.pourTop);
+                }                
+                
                 lifteds.push(panel.lifted);
-                console.log('Added');
+                // console.log('Added');
 
                 if (index >= 0 && index == panelRowSizeIndex-1) {
                     console.log('currentPanel = ' + currentPanel);
                     console.log('panelRowSizeIndex = ' + panelRowSizeIndex);
-                    console.log('Index ' + (index+1) + ' is divisable');
-                    console.log(index);
+                    // console.log('Index ' + (index+1) + ' is divisable');
+                    // console.log(index);
                     console.log('panelCodes: ' + panelCodes);
-                    console.log('forms: ' + forms);
-                    console.log('reveals: ' + reveals);
-                    console.log('embedss: ' + embedss);
-                    console.log('rebarss: ' + rebarss);
-                    console.log('insertss: ' + insertss);
-                    console.log('pours: ' + pours);
-                    console.log('lifteds: ' + lifteds);
+                    // console.log('forms: ' + forms);
+                    // console.log('reveals: ' + reveals);
+                    // console.log('embedss: ' + embedss);
+                    // console.log('rebarss: ' + rebarss);
+                    // console.log('insertss: ' + insertss);
+                    // console.log('pours: ' + pours);
+                    // console.log('lifteds: ' + lifteds);
                     addPanelRowWithData(panelRowElements[currentPanel], panelCodes, forms, reveals, embedss, rebarss, insertss, pours, lifteds);
             
                     panelCodes = [];
@@ -873,12 +863,12 @@ function populateForm(fileData) {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
             for (let j = 0; j < spotFootingsRow.length; j++) {
                 spotFootingsRow[j].checked = false;
             }
@@ -902,12 +892,12 @@ function populateForm(fileData) {
         
 
         if (this.checked) {
-            console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+            // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
             for (let j = 0; j < panelsRow.length; j++) {
                 panelsRow[j].checked = true;
             }
         } else {
-            console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+            // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
             for (let j = 0; j < panelsRow.length; j++) {
                 panelsRow[j].checked = false;
             }
@@ -946,12 +936,12 @@ for (let i = 0; i < spotFootingCheckboxes.length; i++) {
     
 
     if (this.checked) {
-        console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+        // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
         for (let j = 0; j < spotFootingsRow.length; j++) {
             spotFootingsRow[j].checked = true;
         }
     } else {
-        console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
+        // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', spotFootingsRow:', spotFootingsRow);
         for (let j = 0; j < spotFootingsRow.length; j++) {
             spotFootingsRow[j].checked = false;
         }
@@ -970,12 +960,12 @@ for(let i = 0; i < poursSize-1 - poursCount; i++) {
 
 // Add panel rows
 const panelRows = document.getElementsByClassName('panelRow');
-console.log('Found panel rowss: ');
-console.log(panelRows);
+// console.log('Found panel rowss: ', panelRows);
+// console.log(panelRows);
 
 const panelRowN = document.getElementById('panelRowN');
-console.log('Found panel row: ');
-console.log(panelRowN);
+// console.log('Found panel row: ', panelRowN);
+// console.log(panelRowN);
 
 addPanelRow(document.getElementById('panelRowN')); //, 'N'); //, 'NORTH');
 addPanelRow(document.getElementById('panelRowE')); //, 'E'); //, 'EAST');
@@ -1010,12 +1000,12 @@ for (let i = 0; i < panelCheckboxes.length; i++) {
     
 
     if (this.checked) {
-        console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+        // console.log("Checkbox is checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
         for (let j = 0; j < panelsRow.length; j++) {
             panelsRow[j].checked = true;
         }
     } else {
-        console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
+        // console.log("Checkbox is not checked..", this['id'], ', row_id: ', row_id, ', row_name_pattern:', row_name_pattern, ', panelsRow:', panelsRow);
         for (let j = 0; j < panelsRow.length; j++) {
             panelsRow[j].checked = false;
         }
