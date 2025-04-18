@@ -83,32 +83,27 @@
 
         <hr class="horizontal-line">
         <h2> <input type="checkbox" name="addPanelSection" id="addPanelSection" checked> Panel Pours</h2> <!-- checked -->
-        <label for="panelRowPSize">Number of panel on P side:</label>
-        <input type="text" name="panelRowPSize" id="panelRowPSize" readonly="readonly" value="120"> <br>
-        <!-- <label for="panelRowESize">Number of panel on East side:</label>
-        <input type="text" name="panelRowESize" id="panelRowESize" readonly="readonly" value="13"> <br>
-        <label for="panelRowSSize">Number of panel on South side:</label>
-        <input type="text" name="panelRowSSize" id="panelRowSSize" readonly="readonly" value="51"> <br>
-        <label for="panelRowWSize">Number of panel on West side:</label>
-        <input type="text" name="panelRowWSize" id="panelRowWSize" readonly="readonly" value="13"> <br> -->
-
-        <!-- <label for="panelRowCPSize">Number of panel on CP side:</label>
-        <input type="text" name="panelRowCPSize" id="panelRowCPSize" readonly="readonly" value="4"> <br> -->
+        <label for="panelRowP0Size">Number of panel on P 0 side:</label>
+        <input type="text" name="panelRowP0Size" id="panelRowP0Size" readonly="readonly" value="41"> <br>
+        <label for="panelRowP1Size">Number of panel on P 1 side:</label>
+        <input type="text" name="panelRowP1Size" id="panelRowP1Size" readonly="readonly" value="25"> <br>
+        <label for="panelRowP2Size">Number of panel on P 2 side:</label>
+        <input type="text" name="panelRowP2Size" id="panelRowP2Size" readonly="readonly" value="43"> <br>
+        <label for="panelRowP3Size">Number of panel on P 3 side:</label>
+        <input type="text" name="panelRowP3Size" id="panelRowP3Size" readonly="readonly" value="43"> <br>
 
         <div id="panelSection" class="section">
             <label for="panelBookReady">Panel Book Ready:</label>
             <input type="checkbox" name="panelBookReady" id="panelBookReady" ><br>
             <br><br>
-            <div class="labelPanelName">P</div>
-            <div class="panelRow" id="panelRowP"></div>
-            <!-- <div class="labelPanelName">EAST</div>
-            <div class="panelRow" id="panelRowE"></div>
-            <div class="labelPanelName">SOUTH</div>
-            <div class="panelRow" id="panelRowS"></div>
-            <div class="labelPanelName">WEST</div>
-            <div class="panelRow" id="panelRowW"></div>
-            <div class="labelPanelName">CP</div>
-            <div class="panelRow" id="panelRowCP"></div> -->
+            <div class="labelPanelName">P-0</div>
+            <div class="panelRow" id="panelRowP0"></div>
+            <div class="labelPanelName">P-1</div>
+            <div class="panelRow" id="panelRowP1"></div>
+            <div class="labelPanelName">P-2</div>
+            <div class="panelRow" id="panelRowP2"></div>
+            <div class="labelPanelName">P-3</div>
+            <div class="panelRow" id="panelRowP3"></div>
         </div>
         <!-- <div class="section-buttons">
             <button type="button" onclick="addPanel()">Add Panel Pour</button>
@@ -128,6 +123,6 @@
         </div> -->
     </form>
     
-    <script src="scripts/generate_report_layers.js"></script>
+    <script src="scripts/generate_report_layers_ups.js"></script>
 </body>
 </html>
