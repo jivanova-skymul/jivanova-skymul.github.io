@@ -359,7 +359,7 @@ function addPanel() {
 
 panels_row_counter = 0;
 
-function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digits=2, skipZero=0) {
+function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digits=2, skipFirst=0) {
     console.log('Adding panelElement: ', panelElement.id, panelElement);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
@@ -384,13 +384,12 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
             </div>
     `;
 
-    for (let i = 0; i < rowSize; i++) {
-        if (! (i == 0 && skipZero > 0)) {
-            
+    for (let i = 0; i < Number(rowSize); i++) {
+        // if (! (i == 0 && Number(skipFirst) > 0)) {
         newPanelRow += `
             <div class="panel">
                     <panelNumber>${count + i}</panelNumber><br>
-                    <input type="text" name="panel_code" class="panelCode" value=${codeLetter}${String(i).padStart(digits, '0')}> <br>
+                    <input type="text" name="panel_code" class="panelCode" value=${codeLetter}${String(i + Number(skipFirst)).padStart(digits, '0')}> <br>
                     <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
                     <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
                     <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
@@ -404,7 +403,7 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
                     <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
             </div>
         `;
-    }
+    // }
     }
 
     panels_row_counter += 1;
@@ -412,9 +411,9 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
     panelElement.insertAdjacentHTML('beforeend', newPanelRow);
 }
 
-function addPanelRowWithData(panelElement, panelRowSizeIndex, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
+function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
     console.log('PanelElement: ', panelElement.id, panelElement);
-    const rowSize = panelRowSizeIndex; //document.getElementById(panelElement.id + 'Size').value;
+    const rowSize = document.getElementById(panelElement.id + 'Size').value; // panelRowSizeIndex; //
     console.log('Panel rowSize: ' + rowSize);
     const count = document.getElementsByClassName('panel').length + 1;
     console.log('Panel count: ' + count);
@@ -459,7 +458,7 @@ function addPanelRowWithData(panelElement, panelRowSizeIndex, panelCodes, twoLay
             `;
         }
     } else
-    {    
+    {
         for (let i = 0; i < rowSize; i++) {
             newPanelRow += `
                 <div class="panel">
@@ -480,6 +479,7 @@ function addPanelRowWithData(panelElement, panelRowSizeIndex, panelCodes, twoLay
             `;
         }
     }
+
 
 
     panels_row_counter += 1;
@@ -762,43 +762,28 @@ function populateForm(fileData) {
 
             let panelRowElements = [];
             let panelRowSizes = [];
-            if (panelRowCPElement)
-            {
-                panelRowElements = [
-                    document.getElementById('panelRowP0'),
-                    document.getElementById('panelRowP1'),
-                    document.getElementById('panelRowP2'),
-                    document.getElementById('panelRowP3'),
-                    panelRowCPElement
-                ];
-
-                panelRowSizes = [
-                    parseInt(document.getElementById('panelRowP0Size').value)-1,
-                    parseInt(document.getElementById('panelRowP1Size').value),
-                    parseInt(document.getElementById('panelRowP2Size').value),
-                    parseInt(document.getElementById('panelRowP3Size').value)
-                ];
-            }
-            else
-            {
-                panelRowElements = [
+            panelRowElements = [
                     document.getElementById('panelRowP0'),
                     document.getElementById('panelRowP1'),
                     document.getElementById('panelRowP2'),
                     document.getElementById('panelRowP3')
-                ];
+            ];
 
-                panelRowSizes = [
-                    parseInt(document.getElementById('panelRowP0Size').value)-1,
+            panelRowSizes = [
+                    parseInt(document.getElementById('panelRowP0Size').value),
                     parseInt(document.getElementById('panelRowP1Size').value),
                     parseInt(document.getElementById('panelRowP2Size').value),
                     parseInt(document.getElementById('panelRowP3Size').value)
-                ];
-            }
+            ];
+            
+            // let skipIndeces = [ 1,1,1,1 ];
+            
 
             let currentPanel = 0;
             let panelRowSizeIndex = 0;
             panelRowSizeIndex = panelRowSizes[currentPanel];
+            // let skipIndex = skipIndeces[0];
+
             console.log('Next index to hit for the row is ' + (panelRowSizeIndex-1));
             buildingWork.panels.forEach((panel, index) => {
                 // addPanelWithData(panel.form, panel.reveal, panel.embeds, panel.rebars, panel.inserts, panel.pour);
@@ -836,9 +821,8 @@ function populateForm(fileData) {
                     rebarsTops.push(panel.rebarsTop);
                 }   
                 lifteds.push(panel.lifted);
-                // console.log('Added');
 
-                if (index >= 0 && index == panelRowSizeIndex-1) {
+                if (index >= 0 && index == (panelRowSizeIndex-1)) {
                     console.log('currentPanel = ' + currentPanel);
                     console.log('panelRowSizeIndex = ' + panelRowSizeIndex);
                     console.log('Index ' + (index+1) + ' is divisable');
@@ -855,9 +839,10 @@ function populateForm(fileData) {
                     console.log('pourBottoms: ' + pourBottoms);
                     console.log('pourTops: ' + pourTops);
                     console.log('lifteds: ' + lifteds);
-                    // console.log('skipZero: ' + skipZero);
-                    addPanelRowWithData(panelRowElements[currentPanel], panelRowSizeIndex, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds); //, skipZero=skipZero);
-            
+                    // console.log('skipIndex: ' + skipIndex);
+
+                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds);
+
                     panelCodes = [];
                     twoLayers = [];
                     forms = [];
@@ -871,6 +856,7 @@ function populateForm(fileData) {
                     pourTops = [];
                     lifteds = [];
                     currentPanel += 1;
+                    // skipIndex = skipIndeces[index];
                     panelRowSizeIndex = panelRowSizeIndex + panelRowSizes[currentPanel];
                     console.log('Next index to hit for the row is ' + (panelRowSizeIndex-1));
                 }
@@ -997,7 +983,7 @@ const panelRows = document.getElementsByClassName('panelRow');
 // const panelRowP = document.getElementById('panelRowP');
 // console.log('Found panel row: ', panelRowP);
 
-addPanelRow(document.getElementById('panelRowP0'), 'P-0', digits=2, skipZero=1);
+addPanelRow(document.getElementById('panelRowP0'), 'P-0', digits=2, skipFirst=1);
 addPanelRow(document.getElementById('panelRowP1'), 'P-1');
 addPanelRow(document.getElementById('panelRowP2'), 'P-2');
 addPanelRow(document.getElementById('panelRowP3'), 'P-3');
