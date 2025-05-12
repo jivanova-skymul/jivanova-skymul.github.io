@@ -359,7 +359,7 @@ function addPanel() {
 
 panels_row_counter = 0;
 
-function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digits=2) {
+function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digits=2, skipZero=0) {
     console.log('Adding panelElement: ', panelElement.id, panelElement);
     const rowSize = document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
@@ -385,6 +385,8 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
     `;
 
     for (let i = 0; i < rowSize; i++) {
+        if (! (i == 0 && skipZero > 0)) {
+            
         newPanelRow += `
             <div class="panel">
                     <panelNumber>${count + i}</panelNumber><br>
@@ -403,15 +405,16 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
             </div>
         `;
     }
+    }
 
     panels_row_counter += 1;
 
     panelElement.insertAdjacentHTML('beforeend', newPanelRow);
 }
 
-function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
+function addPanelRowWithData(panelElement, panelRowSizeIndex, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds, codeLetter = panelElement.id.slice(-1)) {
     console.log('PanelElement: ', panelElement.id, panelElement);
-    const rowSize = document.getElementById(panelElement.id + 'Size').value;
+    const rowSize = panelRowSizeIndex; //document.getElementById(panelElement.id + 'Size').value;
     console.log('Panel rowSize: ' + rowSize);
     const count = document.getElementsByClassName('panel').length + 1;
     console.log('Panel count: ' + count);
@@ -477,7 +480,6 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
             `;
         }
     }
-
 
 
     panels_row_counter += 1;
@@ -771,7 +773,7 @@ function populateForm(fileData) {
                 ];
 
                 panelRowSizes = [
-                    parseInt(document.getElementById('panelRowP0Size').value),
+                    parseInt(document.getElementById('panelRowP0Size').value)-1,
                     parseInt(document.getElementById('panelRowP1Size').value),
                     parseInt(document.getElementById('panelRowP2Size').value),
                     parseInt(document.getElementById('panelRowP3Size').value)
@@ -787,7 +789,7 @@ function populateForm(fileData) {
                 ];
 
                 panelRowSizes = [
-                    parseInt(document.getElementById('panelRowP0Size').value),
+                    parseInt(document.getElementById('panelRowP0Size').value)-1,
                     parseInt(document.getElementById('panelRowP1Size').value),
                     parseInt(document.getElementById('panelRowP2Size').value),
                     parseInt(document.getElementById('panelRowP3Size').value)
@@ -853,7 +855,8 @@ function populateForm(fileData) {
                     console.log('pourBottoms: ' + pourBottoms);
                     console.log('pourTops: ' + pourTops);
                     console.log('lifteds: ' + lifteds);
-                    addPanelRowWithData(panelRowElements[currentPanel], panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds);
+                    // console.log('skipZero: ' + skipZero);
+                    addPanelRowWithData(panelRowElements[currentPanel], panelRowSizeIndex, panelCodes, twoLayers, forms, reveals, embedsBottoms, rebarsBottoms, embedsTops, rebarsTops, insertss, pourBottoms, pourTops, lifteds); //, skipZero=skipZero);
             
                     panelCodes = [];
                     twoLayers = [];
@@ -994,7 +997,7 @@ const panelRows = document.getElementsByClassName('panelRow');
 // const panelRowP = document.getElementById('panelRowP');
 // console.log('Found panel row: ', panelRowP);
 
-addPanelRow(document.getElementById('panelRowP0'), 'P-0');
+addPanelRow(document.getElementById('panelRowP0'), 'P-0', digits=2, skipZero=1);
 addPanelRow(document.getElementById('panelRowP1'), 'P-1');
 addPanelRow(document.getElementById('panelRowP2'), 'P-2');
 addPanelRow(document.getElementById('panelRowP3'), 'P-3');
