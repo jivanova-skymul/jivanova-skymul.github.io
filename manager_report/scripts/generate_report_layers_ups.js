@@ -368,8 +368,7 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
 
     var newPanelRow = `
             <div class="panelFirst">
-                    <panelNumber>  </panelNumber><br>
-                    <div class="labelPanel" for="panel_code" style="margin-top:10px;margin-bottom:15px;">Panel code:</div>
+                    <div class="labelPanel labelPanelCode" for="panel_code">Panel code:</div>
                     <div class="labelPanel" for="panel_twolayers"><input type="checkbox" name="panel_twolayers_row" id="panel_twolayers_row_${panels_row_counter}" class="checkboxPanelRowFill"> Two Layers:</div>
                     <div class="labelPanel" for="panel_form"><input type="checkbox" name="panel_form_row" id="panel_form_row_${panels_row_counter}" class="checkboxPanelRowFill"> Form:</div>
                     <div class="labelPanel" for="panel_reveal"><input type="checkbox" name="panel_reveal_row" id="panel_reveal_row_${panels_row_counter}" class="checkboxPanelRowFill"> Reveal:</div>
@@ -390,17 +389,17 @@ function addPanelRow(panelElement, codeLetter = panelElement.id.slice(-1), digit
             <div class="panel">
                     <panelNumber>${count + i}</panelNumber><br>
                     <input type="text" name="panel_code" class="panelCode" value=${codeLetter}${String(i + Number(skipFirst)).padStart(digits, '0')}> <br>
-                    <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
-                    <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
-                    <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
-                    <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}"><br>
-                    <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}"><br>
-                    <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br>
-                    <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}"><br>
-                    <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}"><br>
-                    <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
-                    <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br>
-                    <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br> </div>
+                    <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br> </div>
             </div>
         `;
     // }
@@ -443,17 +442,17 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
                 <div class="panel">
                         <panelNumber>${count + i}</panelNumber><br>
                         <input type="text" name="panel_code" class="panelCode" value=` + panelCodes[i] + `><br>
-                        <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}" ` + boolToCheckString(twoLayers[i]) + `><br>
-                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}" ` + boolToCheckString(forms[i]) + `><br>
-                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}" ` + boolToCheckString(reveals[i]) + `><br>
-                        <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}" ` + boolToCheckString(embedsBottoms[i]) + `><br>
-                        <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}" ` + boolToCheckString(rebarsBottoms[i]) + `><br>
-                        <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}" ` + boolToCheckString(pourBottoms[i]) + `><br>
-                        <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}" ` + boolToCheckString(embedsTops[i]) + `><br>
-                        <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}" ` + boolToCheckString(rebarsTops[i]) + `><br>
-                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br>
-                        <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}" ` + boolToCheckString(pourTops[i]) + `><br>
-                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}" ` + boolToCheckString(twoLayers[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}" ` + boolToCheckString(forms[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}" ` + boolToCheckString(reveals[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}" ` + boolToCheckString(embedsBottoms[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}" ` + boolToCheckString(rebarsBottoms[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}" ` + boolToCheckString(pourBottoms[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}" ` + boolToCheckString(embedsTops[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}" ` + boolToCheckString(rebarsTops[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}" ` + boolToCheckString(insertss[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}" ` + boolToCheckString(pourTops[i]) + `><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}" ` + boolToCheckString(lifteds[i]) + `><br></div>
                 </div>
             `;
         }
@@ -464,17 +463,17 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
                 <div class="panel">
                         <panelNumber>${count + i}</panelNumber><br>
                         <input type="text" name="panel_code" class="panelCode" value=${codeLetter}${i+1}> <br>
-                        <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br>
-                        <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br>
-                        <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br>
-                        <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}"><br>
-                        <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}"><br>
-                        <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br>
-                        <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}"><br>
-                        <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}"><br>
-                        <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br>
-                        <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br>
-                        <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_twolayers" id="${panels_row_counter}_panel_twolayers_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_form" id="${panels_row_counter}_panel_form_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_reveal" id="${panels_row_counter}_panel_reveal_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_embedsbottom" id="${panels_row_counter}_panel_embedsbottom_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_rebarsbottom" id="${panels_row_counter}_panel_rebarsbottom_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_pourbottom" id="${panels_row_counter}_panel_pourbottom_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_embedstop" id="${panels_row_counter}_panel_embedstop_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_rebarstop" id="${panels_row_counter}_panel_rebarstop_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_inserts" id="${panels_row_counter}_panel_inserts_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_pourtop" id="${panels_row_counter}_panel_pourtop_${count}"><br></div>
+                        <div class="checkboxCell" class="checkbox_input" > <input type="checkbox" name="panel_lifted" id="${panels_row_counter}_panel_lifted_${count}"><br></div>
                 </div>
             `;
         }

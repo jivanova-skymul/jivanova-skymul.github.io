@@ -120,7 +120,8 @@ spotFootingNumber {
 
 .panel {
     flex: 3;
-    padding: 7px;
+    /* padding: 7px; */
+    min-width: 4rem;
     padding-top: 0px;
     /* padding-bottom: 0px; */
     /* margin-bottom: 20px; */
@@ -131,18 +132,34 @@ spotFootingNumber {
 .panelFirst {
     padding-top: 7px;
     padding-left: 0px;
-    padding-right: 20px;
+    padding-right: 5px;
     padding-top: 0px;
     /* padding-bottom: 0px; */
     /* margin-bottom: 20px; */
-    width: 6vw;
+    width: 8vw;
+    position: sticky;
+    left: 0px;
+    min-width: 8vw;
+    max-width: 8vw;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.06rem;
+    padding-top: 1.8rem;
 }
+
+.labelPanel:nth-child(even) {
+    background: rgba(218, 230, 247, 0.856);
+}
+
+
 
 .panel label, .panel input {
     display: inline-block;
     /* width: auto; */
     margin: 5px 0;
 }
+
 
 panelNumber {
     /* padding-top: 5px;
@@ -172,7 +189,7 @@ label {
 }
 .labelPanel {
     min-height: 0.28vh;
-    width: 6vw;
+    /* width: 6vw; */
     font-size: x-small;
     text-align: end;
     margin-top:2px;margin-bottom:1px;
@@ -180,12 +197,15 @@ label {
 
 .labelPanelName {
     height: 1.5vh;
-    width: 6vw;
+    /* width: 6vw; */
     font-size: medium;
     font-weight: bold;
     text-align: left;
 }
 
+.labelPanelCode {
+    margin-bottom: 0.7rem
+}
 
 
 input[type="text"],
@@ -206,7 +226,14 @@ input[type="checkbox"] {
     border-radius: 2px;
 }
 
+.checkboxCell {
+    background-color: white;
+    min-width: 4rem;
+}
 
+.checkboxCell:nth-child(odd) {
+    background: rgba(218, 230, 247, 0.856);
+}
 
 button {
     padding: 10px 20px;
