@@ -419,7 +419,6 @@ function addPanelRowWithData(panelElement, panelCodes, twoLayers, forms, reveals
 
     var newPanelRow = `
             <div class="panelFirst">
-                    <panelNumber>   </panelNumber><br>
                     <div class="labelPanel" for="panel_code" style="margin-top:10px;margin-bottom:15px;">Panel code:</div>
                     <div class="labelPanel" for="panel_twolayers"><input type="checkbox" name="panel_twolayers_row" id="panel_twolayers_row_${panels_row_counter}" class="checkboxPanelRowFill"> Two Layers:</div>
                     <div class="labelPanel" for="panel_form"><input type="checkbox" name="panel_form_row" id="panel_form_row_${panels_row_counter}" class="checkboxPanelRowFill"> Form:</div>
